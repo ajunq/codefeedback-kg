@@ -1,0 +1,26 @@
+cff-version: 1.2.0
+message: "If you use this knowledge graph, adapter or code, please cite it as below."
+title: "CodeFeedback-KG: A Semantic Educational Knowledge Graph with GraphRAG for Programming Feedback"
+abstract: >-
+  An Educational Knowledge Graph for introductory Python (OWL 2 RL closure, SHACL
+  shapes, SKOS, and skos:exactMatch links to Wikidata) used as the retrieval
+  substrate for a GraphRAG programming-feedback pipeline, together with a QLoRA
+  fine-tuned adapter and a human-grounded criterion-validity study of an LLM judge.
+type: software
+authors:
+  - family-names: "Bueno Junquero"
+    given-names: "Adrián"
+    orcid: "https://orcid.org/0000-0002-5897-185X"
+    affiliation: "Universitat Oberta de Catalunya (UOC)"
+version: "2.0.0"
+date-released: "2026-06-22"
+license: Apache-2.0
+url: "https://github.com/ajunq/codefeedback-kg"
+repository-code: "https://github.com/ajunq/codefeedback-kg"
+keywords:
+  - knowledge graph
+  - GraphRAG
+  - large language models
+  - criterion validity
+  - inter-annotator agreement
+  - programming education
