@@ -1,0 +1,15 @@
+PREFIX cfkg: <https://w3id.org/codefeedback-kg/schema#>
+PREFIX rdfs:  <http://www.w3.org/2000/01/rdf-schema#>
+
+# Consulta DISEÑADA para evidenciar la inferencia RDFS.
+# Recupera todo lo que es cfkg:Concepto.
+#   - Inferencia NONE: 0 resultados (ningún individuo se tipa a mano
+#     como Concepto; solo por su subcategoría).
+#   - Inferencia RDFS/OWL-RL: 157 resultados (rdfs:subClassOf propaga el tipo).
+SELECT ?concepto ?etiqueta
+WHERE {
+  ?concepto a cfkg:Concepto ;
+            rdfs:label ?etiqueta .
+  FILTER(LANG(?etiqueta) = "es")
+}
+ORDER BY ?etiqueta

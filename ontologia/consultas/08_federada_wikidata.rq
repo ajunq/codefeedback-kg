@@ -1,0 +1,23 @@
+PREFIX cfkg:  <https://w3id.org/codefeedback-kg/schema#>
+PREFIX owl:    <http://www.w3.org/2002/07/owl#>
+PREFIX rdfs:   <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX skos:   <http://www.w3.org/2004/02/skos/core#>
+PREFIX schema: <http://schema.org/>
+
+# AMPLIACIÓN — Consulta FEDERADA (Tema 3: consultas federadas y enlazado
+# de datos). Para cada concepto enlazado a Wikidata con skos:exactMatch,
+# recupera su descripción en español desde el endpoint de Wikidata.
+# El dataset usa skos:exactMatch para el enlazado a Wikidata.
+# Requiere conexión de red; ejecutable en RDFPlayground, GraphDB o el
+# Wikidata Query Service.
+SELECT ?concepto ?etiqueta ?descripcionWikidata
+WHERE {
+  ?concepto skos:exactMatch ?wd ;
+            rdfs:label ?etiqueta .
+  FILTER(STRSTARTS(STR(?wd), "http://www.wikidata.org/entity/"))
+  FILTER(LANG(?etiqueta) = "es")
+  SERVICE <https://query.wikidata.org/sparql> {
+    ?wd schema:description ?descripcionWikidata .
+    FILTER(LANG(?descripcionWikidata) = "es")
+  }
+}

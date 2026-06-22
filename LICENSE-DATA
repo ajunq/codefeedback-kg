@@ -1,0 +1,18 @@
+CodeFeedback-KG — Data & Ontology License
+Copyright 2026 Adrián Bueno Junquero
+
+The CodeFeedback-KG ontology (TBox + ABox, in all serialisations: Turtle, JSON-LD, N-Triples, RDF/XML)
+and the associated dataset are licensed under the Creative Commons Attribution 4.0 International License
+(CC BY 4.0).
+
+You are free to share (copy and redistribute) and adapt (remix, transform, build upon) the material for
+any purpose, even commercially, provided you give appropriate credit, indicate if changes were made, and
+do not apply additional legal or technological restrictions.
+
+Full legal code: https://creativecommons.org/licenses/by/4.0/legalcode
+Human-readable summary: https://creativecommons.org/licenses/by/4.0/
+
+Suggested attribution: "CodeFeedback-KG" by Adrián Bueno Junquero, licensed under CC BY 4.0.
+
+NOTE: This data/ontology license does NOT apply to the source code, which is licensed under
+Apache-2.0, see LICENSE.

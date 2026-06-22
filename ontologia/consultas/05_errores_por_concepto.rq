@@ -1,0 +1,24 @@
+PREFIX cfkg:   <https://w3id.org/codefeedback-kg/schema#>
+PREFIX rdfs:    <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX dcterms: <http://purl.org/dc/terms/>
+PREFIX rdf:     <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+
+# Errores conceptuales con el concepto al que afectan y, si existe,
+# la procedencia bibliográfica registrada por reificación.
+SELECT ?error ?concepto ?fuente
+WHERE {
+  ?e a cfkg:ErrorConceptual ;
+     rdfs:label ?error ;
+     cfkg:errorSobreConcepto ?c .
+  ?c rdfs:label ?concepto .
+  FILTER(LANG(?error) = "es")
+  FILTER(LANG(?concepto) = "es")
+  OPTIONAL {
+    ?stmt rdf:subject ?e ;
+          rdf:predicate cfkg:errorSobreConcepto ;
+          rdf:object ?c ;
+          dcterms:source ?ref .
+    ?ref dcterms:title ?fuente .
+  }
+}
+ORDER BY ?error

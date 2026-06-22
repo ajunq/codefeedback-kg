@@ -1,0 +1,14 @@
+PREFIX cfkg: <https://w3id.org/codefeedback-kg/schema#>
+PREFIX cfr:   <https://w3id.org/codefeedback-kg/id/>
+PREFIX rdfs:  <http://www.w3.org/2000/01/rdf-schema#>
+
+# Ruta de aprendizaje hacia un concepto objetivo: lista sus prerrequisitos
+# ordenados por dificultad creciente (orden didáctico sugerido).
+SELECT ?paso ?etiqueta ?dificultad
+WHERE {
+  cfr:recursion cfkg:requierePrerrequisito+ ?paso .
+  ?paso rdfs:label ?etiqueta .
+  OPTIONAL { ?paso cfkg:tieneDificultad ?dificultad }
+  FILTER(LANG(?etiqueta) = "es")
+}
+ORDER BY ?dificultad ?etiqueta

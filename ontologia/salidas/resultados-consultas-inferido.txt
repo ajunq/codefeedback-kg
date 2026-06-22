@@ -1,0 +1,254 @@
+Resultados de consultas SPARQL — con inferencia OWL-RL — 4786 triples
+
+========================================================================
+01_conceptos_por_tema.rq
+========================================================================
+tema | conceptos
+------------------------------------------------------------------------
+Algoritmos | Árbol, Backtracking, Programación dinámica, sorted() y sort(), Tabla hash, Búsqueda lineal, Ordenación de burbuja, Ordenación por mezcla, Ordenación rápida, Recorrido en anchura (BFS), Recorrido en profundidad (DFS), Grafo (estructura), Notación O grande
+Cadenas de texto | Codificación de texto, Formateo de cadenas, f-strings, Métodos de cadena, Expresiones regulares (re), Slicing de cadenas
+Complejidad algorítmica | Complejidad temporal, Búsqueda binaria
+Concurrencia | asyncio, Corrutina, async/await, Hilos (threading), Multiproceso, GIL
+Control de flujo | break y continue, Gestor de contexto, else en bucles, enumerate(), match-case, range(), Operador ternario, Operador morsa (:=), zip(), Bucle while, Sentencia with, Condicional (if), Comprensión de listas, Bucle for
+Estructuras de datos | collections.Counter, collections.defaultdict, collections.deque, Montículo (heapq), Comprensión de diccionarios, Comprensión de conjuntos, Desempaquetado, Indexación negativa, Operador * y **, Conjunto (set), Mutabilidad, Pila (stack), Slicing (rebanado), Cola (queue), Iterables, Tupla, Diccionario, Indexación, Lista
+Excepciones | Encadenar excepciones, Excepción personalizada, try/except/else/finally, Jerarquía de excepciones, raise, Excepción
+Ficheros y E/S | Módulo csv, Escritura de ficheros, Módulo json, Lectura de ficheros, pathlib, Apertura de ficheros (open)
+Funciones | *args y **kwargs, Argumentos por nombre, Retorno múltiple, Argumentos por defecto, Ámbito de variables (scope), Parámetros y argumentos, Función
+Fundamentos | Asignación, Python, Entero (int), Variable, Booleano (bool), Cadena (str)
+Módulos y paquetes | collections, Entornos virtuales (venv), from ... import, Módulo datetime, Módulo math, Módulo os, Módulo random, Módulo sys, Gestor de paquetes (pip), Paquete, import
+Programación funcional | filter(), Función lambda, functools.wraps, itertools, map(), functools.partial, functools.reduce(), yield from, Expresión generadora, Iterador (iter, next), Clausura (closure), Generador (yield), Decorador, Funciones de orden superior
+Programación orientada a objetos | Clase abstracta (ABC), Mixin, Orden de resolución (MRO), Polimorfismo, Propiedad (@property), Parámetro self, Sobrecarga de operadores, __str__ y __repr__, super(), Atributo de instancia, Composición, Encapsulación, Constructor __init__, Método de clase, Método estático, Métodos especiales (dunder), Objeto / instancia, Herencia múltiple, Clase, Método, Herencia
+Pruebas y estilo | assert, Docstring, PEP 8 (estilo), pytest, Comprobación de tipos (mypy), unittest
+Recursión | Memoización (lru_cache), Recursión de cola, Recursión
+Sistema de tipos | Copia profunda, Dataclass, Enumeración (Enum), Identidad de objetos (is), namedtuple, Complejo (complex), Valores de verdad, Genéricos (TypeVar), typing.Optional, typing.Union, Conversión de tipos, Mutable vs inmutable, Bytes, NoneType (None), Flotante (float), Copia superficial, Anotaciones de tipo
+(16 filas)
+
+========================================================================
+02_inferencia_conceptos.rq
+========================================================================
+concepto | etiqueta
+------------------------------------------------------------------------
+https://w3id.org/codefeedback-kg/id/args_kwargs | *args y **kwargs
+https://w3id.org/codefeedback-kg/id/anotaciones_tipo | Anotaciones de tipo
+https://w3id.org/codefeedback-kg/id/abrir_fichero | Apertura de ficheros (open)
+https://w3id.org/codefeedback-kg/id/valor_por_defecto | Argumentos por defecto
+https://w3id.org/codefeedback-kg/id/argumentos_nombrados | Argumentos por nombre
+https://w3id.org/codefeedback-kg/id/asignacion | Asignación
+https://w3id.org/codefeedback-kg/id/atributo | Atributo de instancia
+https://w3id.org/codefeedback-kg/id/backtracking | Backtracking
+https://w3id.org/codefeedback-kg/id/tipo_bool | Booleano (bool)
+https://w3id.org/codefeedback-kg/id/bucle_for | Bucle for
+https://w3id.org/codefeedback-kg/id/bucle_while | Bucle while
+https://w3id.org/codefeedback-kg/id/tipo_bytes | Bytes
+https://w3id.org/codefeedback-kg/id/busqueda_binaria | Búsqueda binaria
+https://w3id.org/codefeedback-kg/id/busqueda_lineal | Búsqueda lineal
+https://w3id.org/codefeedback-kg/id/tipo_str | Cadena (str)
+https://w3id.org/codefeedback-kg/id/clase | Clase
+https://w3id.org/codefeedback-kg/id/abstract_class | Clase abstracta (ABC)
+https://w3id.org/codefeedback-kg/id/closure | Clausura (closure)
+https://w3id.org/codefeedback-kg/id/encoding | Codificación de texto
+https://w3id.org/codefeedback-kg/id/cola | Cola (queue)
+https://w3id.org/codefeedback-kg/id/complejidad | Complejidad temporal
+https://w3id.org/codefeedback-kg/id/tipo_complex | Complejo (complex)
+https://w3id.org/codefeedback-kg/id/composicion | Composición
+https://w3id.org/codefeedback-kg/id/comprension_sets | Comprensión de conjuntos
+https://w3id.org/codefeedback-kg/id/comprension_dicts | Comprensión de diccionarios
+https://w3id.org/codefeedback-kg/id/comprension_listas | Comprensión de listas
+https://w3id.org/codefeedback-kg/id/type_checking | Comprobación de tipos (mypy)
+https://w3id.org/codefeedback-kg/id/condicional | Condicional (if)
+https://w3id.org/codefeedback-kg/id/conjunto | Conjunto (set)
+https://w3id.org/codefeedback-kg/id/init_method | Constructor __init__
+https://w3id.org/codefeedback-kg/id/conversion_tipos | Conversión de tipos
+https://w3id.org/codefeedback-kg/id/copia_profunda | Copia profunda
+https://w3id.org/codefeedback-kg/id/copia_superficial | Copia superficial
+https://w3id.org/codefeedback-kg/id/corrutina | Corrutina
+https://w3id.org/codefeedback-kg/id/dataclass | Dataclass
+https://w3id.org/codefeedback-kg/id/decorador | Decorador
+https://w3id.org/codefeedback-kg/id/desempaquetado | Desempaquetado
+https://w3id.org/codefeedback-kg/id/diccionario | Diccionario
+https://w3id.org/codefeedback-kg/id/docstring | Docstring
+https://w3id.org/codefeedback-kg/id/encadenar_excepciones | Encadenar excepciones
+https://w3id.org/codefeedback-kg/id/encapsulacion | Encapsulación
+https://w3id.org/codefeedback-kg/id/tipo_int | Entero (int)
+https://w3id.org/codefeedback-kg/id/entorno_virtual | Entornos virtuales (venv)
+https://w3id.org/codefeedback-kg/id/enum_tipo | Enumeración (Enum)
+https://w3id.org/codefeedback-kg/id/escribir_fichero | Escritura de ficheros
+https://w3id.org/codefeedback-kg/id/excepcion | Excepción
+https://w3id.org/codefeedback-kg/id/excepcion_personalizada | Excepción personalizada
+https://w3id.org/codefeedback-kg/id/regex | Expresiones regulares (re)
+https://w3id.org/codefeedback-kg/id/expresion_generadora | Expresión generadora
+https://w3id.org/codefeedback-kg/id/tipo_float | Flotante (float)
+https://w3id.org/codefeedback-kg/id/formato_str | Formateo de cadenas
+https://w3id.org/codefeedback-kg/id/funcion_orden_superior | Funciones de orden superior
+https://w3id.org/codefeedback-kg/id/funcion | Función
+https://w3id.org/codefeedback-kg/id/funcion_lambda | Función lambda
+https://w3id.org/codefeedback-kg/id/gil | GIL
+https://w3id.org/codefeedback-kg/id/generador | Generador (yield)
+https://w3id.org/codefeedback-kg/id/typing_generics | Genéricos (TypeVar)
+https://w3id.org/codefeedback-kg/id/context_manager | Gestor de contexto
+https://w3id.org/codefeedback-kg/id/pip_mod | Gestor de paquetes (pip)
+https://w3id.org/codefeedback-kg/id/grafo_estr | Grafo (estructura)
+https://w3id.org/codefeedback-kg/id/herencia | Herencia
+https://w3id.org/codefeedback-kg/id/herencia_multiple | Herencia múltiple
+https://w3id.org/codefeedback-kg/id/hilos | Hilos (threading)
+https://w3id.org/codefeedback-kg/id/identidad_objetos | Identidad de objetos (is)
+https://w3id.org/codefeedback-kg/id/indexacion | Indexación
+https://w3id.org/codefeedback-kg/id/indexacion_negativa | Indexación negativa
+https://w3id.org/codefeedback-kg/id/iterables | Iterables
+https://w3id.org/codefeedback-kg/id/iterador | Iterador (iter, next)
+https://w3id.org/codefeedback-kg/id/jerarquia_excepciones | Jerarquía de excepciones
+https://w3id.org/codefeedback-kg/id/leer_fichero | Lectura de ficheros
+https://w3id.org/codefeedback-kg/id/lista | Lista
+https://w3id.org/codefeedback-kg/id/memoizacion | Memoización (lru_cache)
+https://w3id.org/codefeedback-kg/id/mixin | Mixin
+https://w3id.org/codefeedback-kg/id/heap | Montículo (heapq)
+https://w3id.org/codefeedback-kg/id/multiproceso | Multiproceso
+https://w3id.org/codefeedback-kg/id/mutabilidad | Mutabilidad
+https://w3id.org/codefeedback-kg/id/mutable_inmutable | Mutable vs inmutable
+https://w3id.org/codefeedback-kg/id/metodo | Método
+https://w3id.org/codefeedback-kg/id/metodo_clase | Método de clase
+https://w3id.org/codefeedback-kg/id/metodo_estatico | Método estático
+https://w3id.org/codefeedback-kg/id/metodos_str | Métodos de cadena
+https://w3id.org/codefeedback-kg/id/dunder | Métodos especiales (dunder)
+https://w3id.org/codefeedback-kg/id/csv_mod | Módulo csv
+https://w3id.org/codefeedback-kg/id/modulo_datetime | Módulo datetime
+https://w3id.org/codefeedback-kg/id/json_mod | Módulo json
+https://w3id.org/codefeedback-kg/id/modulo_math | Módulo math
+https://w3id.org/codefeedback-kg/id/modulo_os | Módulo os
+https://w3id.org/codefeedback-kg/id/modulo_random | Módulo random
+https://w3id.org/codefeedback-kg/id/modulo_sys | Módulo sys
+https://w3id.org/codefeedback-kg/id/tipo_none | NoneType (None)
+https://w3id.org/codefeedback-kg/id/notacion_o | Notación O grande
+https://w3id.org/codefeedback-kg/id/objeto | Objeto / instancia
+https://w3id.org/codefeedback-kg/id/operador_estrella | Operador * y **
+https://w3id.org/codefeedback-kg/id/walrus | Operador morsa (:=)
+https://w3id.org/codefeedback-kg/id/ternario | Operador ternario
+https://w3id.org/codefeedback-kg/id/mro | Orden de resolución (MRO)
+https://w3id.org/codefeedback-kg/id/ordenacion_burbuja | Ordenación de burbuja
+https://w3id.org/codefeedback-kg/id/ordenacion_mezcla | Ordenación por mezcla
+https://w3id.org/codefeedback-kg/id/ordenacion_rapida | Ordenación rápida
+https://w3id.org/codefeedback-kg/id/pep8 | PEP 8 (estilo)
+https://w3id.org/codefeedback-kg/id/paquete | Paquete
+https://w3id.org/codefeedback-kg/id/self_param | Parámetro self
+https://w3id.org/codefeedback-kg/id/parametros | Parámetros y argumentos
+https://w3id.org/codefeedback-kg/id/pila | Pila (stack)
+https://w3id.org/codefeedback-kg/id/polimorfismo | Polimorfismo
+https://w3id.org/codefeedback-kg/id/prog_dinamica | Programación dinámica
+https://w3id.org/codefeedback-kg/id/propiedad | Propiedad (@property)
+https://w3id.org/codefeedback-kg/id/python | Python
+https://w3id.org/codefeedback-kg/id/bfs | Recorrido en anchura (BFS)
+https://w3id.org/codefeedback-kg/id/dfs | Recorrido en profundidad (DFS)
+https://w3id.org/codefeedback-kg/id/recursion | Recursión
+https://w3id.org/codefeedback-kg/id/recursion_cola | Recursión de cola
+https://w3id.org/codefeedback-kg/id/retorno_multiple | Retorno múltiple
+https://w3id.org/codefeedback-kg/id/with_context | Sentencia with
+https://w3id.org/codefeedback-kg/id/slicing | Slicing (rebanado)
+https://w3id.org/codefeedback-kg/id/slicing_str | Slicing de cadenas
+https://w3id.org/codefeedback-kg/id/sobrecarga_operadores | Sobrecarga de operadores
+https://w3id.org/codefeedback-kg/id/tabla_hash | Tabla hash
+https://w3id.org/codefeedback-kg/id/tupla | Tupla
+https://w3id.org/codefeedback-kg/id/truthiness | Valores de verdad
+https://w3id.org/codefeedback-kg/id/variable | Variable
+https://w3id.org/codefeedback-kg/id/str_repr | __str__ y __repr__
+https://w3id.org/codefeedback-kg/id/assert_stmt | assert
+https://w3id.org/codefeedback-kg/id/async_await | async/await
+https://w3id.org/codefeedback-kg/id/asyncio_mod | asyncio
+https://w3id.org/codefeedback-kg/id/break_continue | break y continue
+https://w3id.org/codefeedback-kg/id/collections_mod | collections
+https://w3id.org/codefeedback-kg/id/counter | collections.Counter
+https://w3id.org/codefeedback-kg/id/defaultdict | collections.defaultdict
+https://w3id.org/codefeedback-kg/id/deque | collections.deque
+https://w3id.org/codefeedback-kg/id/else_bucle | else en bucles
+https://w3id.org/codefeedback-kg/id/enumerate_f | enumerate()
+https://w3id.org/codefeedback-kg/id/fstring | f-strings
+https://w3id.org/codefeedback-kg/id/filter_func | filter()
+https://w3id.org/codefeedback-kg/id/from_import | from ... import
+https://w3id.org/codefeedback-kg/id/partial | functools.partial
+https://w3id.org/codefeedback-kg/id/reduce_func | functools.reduce()
+https://w3id.org/codefeedback-kg/id/functools_wraps | functools.wraps
+https://w3id.org/codefeedback-kg/id/import_mod | import
+https://w3id.org/codefeedback-kg/id/itertools_mod | itertools
+https://w3id.org/codefeedback-kg/id/map_func | map()
+https://w3id.org/codefeedback-kg/id/match_case | match-case
+https://w3id.org/codefeedback-kg/id/namedtuple | namedtuple
+https://w3id.org/codefeedback-kg/id/pathlib | pathlib
+https://w3id.org/codefeedback-kg/id/pytest_mod | pytest
+https://w3id.org/codefeedback-kg/id/raise_excepcion | raise
+https://w3id.org/codefeedback-kg/id/range_f | range()
+https://w3id.org/codefeedback-kg/id/sorted_f | sorted() y sort()
+https://w3id.org/codefeedback-kg/id/super_call | super()
+https://w3id.org/codefeedback-kg/id/try_except_else | try/except/else/finally
+https://w3id.org/codefeedback-kg/id/typing_optional | typing.Optional
+https://w3id.org/codefeedback-kg/id/typing_union | typing.Union
+https://w3id.org/codefeedback-kg/id/unittest_mod | unittest
+https://w3id.org/codefeedback-kg/id/yield_from | yield from
+https://w3id.org/codefeedback-kg/id/zip_f | zip()
+https://w3id.org/codefeedback-kg/id/ambito | Ámbito de variables (scope)
+https://w3id.org/codefeedback-kg/id/arbol_estr | Árbol
+(157 filas)
+
+========================================================================
+03_prerrequisitos_transitivos.rq
+========================================================================
+prerequisito | etiqueta
+------------------------------------------------------------------------
+https://w3id.org/codefeedback-kg/id/tipo_bool | Booleano (bool)
+https://w3id.org/codefeedback-kg/id/bucle_while | Bucle while
+https://w3id.org/codefeedback-kg/id/condicional | Condicional (if)
+https://w3id.org/codefeedback-kg/id/indexacion | Indexación
+https://w3id.org/codefeedback-kg/id/lista | Lista
+(5 filas)
+
+========================================================================
+04_ruta_aprendizaje.rq
+========================================================================
+paso | etiqueta | dificultad
+------------------------------------------------------------------------
+https://w3id.org/codefeedback-kg/id/funcion | Función | 2
+(1 filas)
+
+========================================================================
+05_errores_por_concepto.rq
+========================================================================
+error | concepto | fuente
+------------------------------------------------------------------------
+Capturar Exception de forma demasiado amplia | Jerarquía de excepciones | 
+Comparar flotantes con == | Flotante (float) | 
+Concatenar cadena y número (TypeError) | Conversión de tipos | 
+Confundir variable global y local | Ámbito de variables (scope) | 
+Confusión == frente a is | Booleano (bool) | 
+Confusión iteración / recursión | Recursión | 
+Confusión paso por valor / por referencia | Mutabilidad | 
+Copia superficial cuando se necesita profunda | Copia superficial | 
+Decorador sin functools.wraps | Decorador | 
+Error de índice por uno (off-by-one) | Indexación | A systematic literature review of automated feedback generation for programming exercises
+Esperar paralelismo real con hilos (GIL) | GIL | 
+Late binding en clausuras de bucle | Clausura (closure) | 
+Modificar una lista mientras se itera | Bucle for | 
+No llamar a super() en la subclase | Herencia | 
+Olvidar self en un método | Método | 
+Reutilizar un generador agotado | Generador (yield) | 
+(16 filas)
+
+========================================================================
+06_construct_prereq_directos.rq
+========================================================================
+[CONSTRUCT] 356 triples generados
+
+========================================================================
+07_diagnostico_envio.rq
+========================================================================
+envio | ejercicio | error | conceptoAfectado | prerequisito
+------------------------------------------------------------------------
+Envío 001 | Búsqueda binaria sobre lista ordenada | Error de índice por uno (off-by-one) | Indexación | Lista
+Envío 002 | Factorial recursivo | Confusión iteración / recursión | Recursión | Función
+(2 filas)
+
+========================================================================
+10_jerarquia_skos_estrella.rq
+========================================================================
+general | etiqueta
+------------------------------------------------------------------------
+https://w3id.org/codefeedback-kg/id/grafo_estr | Grafo (estructura)
+https://w3id.org/codefeedback-kg/id/bfs | Recorrido en anchura (BFS)
+(2 filas)

@@ -1,0 +1,202 @@
+abrir_fichero	FuncionIntegrada	File open | Apertura de ficheros (open)
+abstract_class	Paradigma	Abstract base class | Clase abstracta (ABC)
+ambito	PrincipioTransversal	Variable scope | Ámbito de variables (scope)
+anotaciones_tipo	PrincipioTransversal	Type hints | Anotaciones de tipo
+any_all	FuncionIntegrada	any and all | Funciones any y all
+arbol_binario	EstructuraDeDatos	Binary tree | Arbol binario
+arbol_busqueda_binaria	EstructuraDeDatos	Binary search tree | Arbol de busqueda binaria
+arbol_estr	EstructuraDeDatos	Tree | Árbol
+argparse_mod	ModuloLibreria	argparse | Modulo argparse
+args_kwargs	PrincipioTransversal	args and kwargs | *args y **kwargs
+argumentos_nombrados	PrincipioTransversal	Keyword arguments | Argumentos por nombre
+asignacion	PrincipioTransversal	Assignment | Asignación
+assert_stmt	EstructuraDeControl	assert | assert
+async_await	EstructuraDeControl	async/await | async/await
+async_generator	EstructuraDeControl	Async generator | Generador asincrono
+asyncio_mod	ModuloLibreria	asyncio | asyncio
+atributo	Paradigma	Attribute | Atributo de instancia
+atributo_clase	Paradigma	Class attribute | Atributo de clase
+backtracking	PrincipioTransversal	Backtracking | Backtracking
+bfs	PrincipioTransversal	Breadth-first search | Recorrido en anchura (BFS)
+break_continue	EstructuraDeControl	break and continue | break y continue
+bucle_for	EstructuraDeControl	For loop | Bucle for
+bucle_while	EstructuraDeControl	While loop | Bucle while
+busqueda_binaria	PrincipioTransversal	Binary search | Búsqueda binaria
+busqueda_lineal	PrincipioTransversal	Linear search | Búsqueda lineal
+bytearray_tipo	TipoDeDato	bytearray | bytearray
+cached_property_mod	ModuloLibreria	functools.cached_property | functools.cached_property
+callable_func	FuncionIntegrada	callable | Funcion callable
+chainmap	EstructuraDeDatos	ChainMap | collections.ChainMap
+clase	Paradigma	Class | Clase
+closure	PrincipioTransversal	Closure | Clausura (closure)
+cola	EstructuraDeDatos	Queue | Cola (queue)
+cola_prioridad	EstructuraDeDatos	Priority queue | Cola de prioridad
+collections_mod	ModuloLibreria	collections | collections
+complejidad	PrincipioTransversal	Time complexity | Complejidad temporal
+composicion	Paradigma	Composition | Composición
+comprension_dicts	EstructuraDeControl	Dict comprehension | Comprensión de diccionarios
+comprension_listas	EstructuraDeControl	List comprehension | Comprensión de listas
+comprension_sets	EstructuraDeControl	Set comprehension | Comprensión de conjuntos
+concatenacion_str	PrincipioTransversal	String concatenation | Concatenacion de cadenas
+condicional	EstructuraDeControl	Conditional (if) | Condicional (if)
+conjunto	EstructuraDeDatos	Set | Conjunto (set)
+conteo_referencias	PrincipioTransversal	Reference counting | Conteo de referencias
+context_manager	Paradigma	Context manager | Gestor de contexto
+contextlib_mod	ModuloLibreria	contextlib | Modulo contextlib
+conversion_tipos	PrincipioTransversal	Type casting | Conversión de tipos
+copia_profunda	PrincipioTransversal	Deep copy | Copia profunda
+copia_superficial	PrincipioTransversal	Shallow copy | Copia superficial
+corrutina	PrincipioTransversal	Coroutine | Corrutina
+counter	EstructuraDeDatos	Counter | collections.Counter
+csv_mod	ModuloLibreria	csv module | Módulo csv
+dataclass	Paradigma	Dataclass | Dataclass
+dataclass_field	Paradigma	dataclasses.field | dataclasses.field
+decorador	Paradigma	Decorator | Decorador
+defaultdict	EstructuraDeDatos	defaultdict | collections.defaultdict
+deque	EstructuraDeDatos	deque | collections.deque
+descriptor	Paradigma	Descriptor | Descriptor
+desempaquetado	PrincipioTransversal	Unpacking | Desempaquetado
+dfs	PrincipioTransversal	Depth-first search | Recorrido en profundidad (DFS)
+diccionario	EstructuraDeDatos	Dictionary | Diccionario
+docstring	PrincipioTransversal	Docstring | Docstring
+duck_typing	Paradigma	Duck typing | Duck typing
+dunder	Paradigma	Dunder methods | Métodos especiales (dunder)
+else_bucle	EstructuraDeControl	loop else | else en bucles
+encadenar_excepciones	EstructuraDeControl	Exception chaining | Encadenar excepciones
+encapsulacion	Paradigma	Encapsulation | Encapsulación
+encoding	PrincipioTransversal	Text encoding | Codificación de texto
+entorno_virtual	PrincipioTransversal	Virtual environments | Entornos virtuales (venv)
+enum_tipo	Paradigma	Enum | Enumeración (Enum)
+enumerate_f	FuncionIntegrada	enumerate | enumerate()
+escribir_fichero	FuncionIntegrada	File writing | Escritura de ficheros
+excepcion	EstructuraDeControl	Exception | Excepción
+excepcion_personalizada	Paradigma	Custom exception | Excepción personalizada
+expresion_generadora	EstructuraDeControl	Generator expression | Expresión generadora
+filter_func	FuncionIntegrada	filter | filter()
+finally_clause	EstructuraDeControl	finally clause | Clausula finally
+format_method	FuncionIntegrada	str.format | Metodo str.format
+formato_str	PrincipioTransversal	String formatting | Formateo de cadenas
+from_import	PrincipioTransversal	from import | from ... import
+frozen_dataclass	Paradigma	Frozen dataclass | Dataclass inmutable
+frozenset_tipo	EstructuraDeDatos	frozenset | Conjunto inmutable (frozenset)
+fstring	PrincipioTransversal	f-strings | f-strings
+fstring_format_spec	PrincipioTransversal	Format specification | Mini-lenguaje de formato
+funcion	PrincipioTransversal	Function | Función
+funcion_lambda	PrincipioTransversal	Lambda | Función lambda
+funcion_orden_superior	PrincipioTransversal	Higher-order functions | Funciones de orden superior
+functools_wraps	ModuloLibreria	functools.wraps | functools.wraps
+generador	EstructuraDeControl	Generator | Generador (yield)
+getattr_setattr	FuncionIntegrada	getattr and setattr | getattr y setattr
+gil	PrincipioTransversal	Global Interpreter Lock | GIL
+global_kw	PrincipioTransversal	global | Palabra clave global
+grafo_estr	EstructuraDeDatos	Graph | Grafo (estructura)
+heap	EstructuraDeDatos	Heap | Montículo (heapq)
+herencia	Paradigma	Inheritance | Herencia
+herencia_multiple	Paradigma	Multiple inheritance | Herencia múltiple
+hilos	Paradigma	Threads | Hilos (threading)
+identidad_objetos	PrincipioTransversal	Object identity | Identidad de objetos (is)
+import_mod	PrincipioTransversal	import | import
+indexacion	PrincipioTransversal	Indexing | Indexación
+indexacion_negativa	PrincipioTransversal	Negative indexing | Indexación negativa
+init_method	Paradigma	Constructor | Constructor __init__
+isinstance_func	FuncionIntegrada	isinstance | Funcion isinstance
+iterables	PrincipioTransversal	Iterables | Iterables
+iterador	PrincipioTransversal	Iterator | Iterador (iter, next)
+itertools_chain	ModuloLibreria	itertools.chain | itertools.chain
+itertools_mod	ModuloLibreria	itertools | itertools
+itertools_product	ModuloLibreria	itertools.product | itertools.product
+jerarquia_excepciones	EstructuraDeControl	Exception hierarchy | Jerarquía de excepciones
+json_mod	ModuloLibreria	json module | Módulo json
+leer_fichero	FuncionIntegrada	File reading | Lectura de ficheros
+lista	EstructuraDeDatos	List | Lista
+lista_enlazada	EstructuraDeDatos	Linked list | Lista enlazada
+logging_mod	ModuloLibreria	logging | Modulo logging
+lru_cache	ModuloLibreria	functools.lru_cache | functools.lru_cache
+map_func	FuncionIntegrada	map | map()
+match_case	EstructuraDeControl	Structural pattern matching | match-case
+memoizacion	PrincipioTransversal	Memoization | Memoización (lru_cache)
+memoryview_tipo	TipoDeDato	memoryview | memoryview
+metaclase	Paradigma	Metaclass | Metaclase
+metodo	Paradigma	Method | Método
+metodo_clase	Paradigma	Class method | Método de clase
+metodo_estatico	Paradigma	Static method | Método estático
+metodo_split_join	FuncionIntegrada	split and join | Metodos split y join
+metodos_str	FuncionIntegrada	String methods | Métodos de cadena
+min_max	FuncionIntegrada	min and max | Funciones min y max
+mixin	Paradigma	Mixin | Mixin
+modulo_datetime	ModuloLibreria	datetime module | Módulo datetime
+modulo_math	ModuloLibreria	math module | Módulo math
+modulo_os	ModuloLibreria	os module | Módulo os
+modulo_random	ModuloLibreria	random module | Módulo random
+modulo_sys	ModuloLibreria	sys module | Módulo sys
+mro	Paradigma	Method resolution order | Orden de resolución (MRO)
+multilinea_str	PrincipioTransversal	Triple-quoted strings | Cadenas multilinea
+multiproceso	Paradigma	Multiprocessing | Multiproceso
+mutabilidad	PrincipioTransversal	Mutability | Mutabilidad
+mutable_inmutable	PrincipioTransversal	Mutable vs immutable | Mutable vs inmutable
+namedtuple	EstructuraDeDatos	Named tuple | namedtuple
+nonlocal_kw	PrincipioTransversal	nonlocal | Palabra clave nonlocal
+notacion_o	PrincipioTransversal	Big-O notation | Notación O grande
+objeto	Paradigma	Object | Objeto / instancia
+operador_estrella	PrincipioTransversal	Star operator | Operador * y **
+ordenacion_burbuja	PrincipioTransversal	Bubble sort | Ordenación de burbuja
+ordenacion_mezcla	PrincipioTransversal	Merge sort | Ordenación por mezcla
+ordenacion_rapida	PrincipioTransversal	Quicksort | Ordenación rápida
+ordered_dict	EstructuraDeDatos	OrderedDict | collections.OrderedDict
+paquete	ModuloLibreria	Package | Paquete
+parametros	PrincipioTransversal	Parameters | Parámetros y argumentos
+partial	ModuloLibreria	partial | functools.partial
+pathlib	ModuloLibreria	pathlib | pathlib
+patron_captura	EstructuraDeControl	Capture patterns | Patrones de captura
+pep8	PrincipioTransversal	PEP 8 | PEP 8 (estilo)
+pila	EstructuraDeDatos	Stack | Pila (stack)
+pip_mod	PrincipioTransversal	pip | Gestor de paquetes (pip)
+polimorfismo	Paradigma	Polymorphism | Polimorfismo
+prog_dinamica	PrincipioTransversal	Dynamic programming | Programación dinámica
+propiedad	Paradigma	Property | Propiedad (@property)
+pytest_mod	ModuloLibreria	pytest | pytest
+python	PrincipioTransversal	Python | Python
+raise_excepcion	EstructuraDeControl	raise | raise
+range_f	FuncionIntegrada	range | range()
+raw_string	PrincipioTransversal	Raw strings | Cadenas en bruto (raw)
+recoleccion_basura	PrincipioTransversal	Garbage collection | Recoleccion de basura
+recursion	PrincipioTransversal	Recursion | Recursión
+recursion_cola	PrincipioTransversal	Tail recursion | Recursión de cola
+reduce_func	FuncionIntegrada	reduce | functools.reduce()
+regex	ModuloLibreria	Regular expressions | Expresiones regulares (re)
+retorno_multiple	PrincipioTransversal	Multiple return | Retorno múltiple
+self_param	Paradigma	self | Parámetro self
+singledispatch	ModuloLibreria	functools.singledispatch | functools.singledispatch
+slicing	PrincipioTransversal	Slicing | Slicing (rebanado)
+slicing_str	PrincipioTransversal	String slicing | Slicing de cadenas
+slots	Paradigma	__slots__ | __slots__
+sobrecarga_operadores	Paradigma	Operator overloading | Sobrecarga de operadores
+sorted_f	FuncionIntegrada	sorted/sort | sorted() y sort()
+str_repr	Paradigma	str and repr | __str__ y __repr__
+sum_func	FuncionIntegrada	sum | Funcion sum
+super_call	Paradigma	super | super()
+suppress_context	EstructuraDeControl	contextlib.suppress | contextlib.suppress
+tabla_hash	EstructuraDeDatos	Hash table | Tabla hash
+ternario	EstructuraDeControl	Ternary operator | Operador ternario
+tipo_bool	TipoDeDato	Boolean (bool) | Booleano (bool)
+tipo_bytes	TipoDeDato	Bytes | Bytes
+tipo_complex	TipoDeDato	Complex | Complejo (complex)
+tipo_float	TipoDeDato	Float | Flotante (float)
+tipo_int	TipoDeDato	Integer (int) | Entero (int)
+tipo_none	TipoDeDato	NoneType | NoneType (None)
+tipo_str	TipoDeDato	String (str) | Cadena (str)
+truthiness	PrincipioTransversal	Truthiness | Valores de verdad
+try_except_else	EstructuraDeControl	try/except/else/finally | try/except/else/finally
+tupla	EstructuraDeDatos	Tuple | Tupla
+type_checking	PrincipioTransversal	Type checking | Comprobación de tipos (mypy)
+typing_generics	Paradigma	Generics | Genéricos (TypeVar)
+typing_optional	PrincipioTransversal	Optional | typing.Optional
+typing_union	PrincipioTransversal	Union | typing.Union
+unittest_mod	ModuloLibreria	unittest | unittest
+valor_por_defecto	PrincipioTransversal	Default arguments | Argumentos por defecto
+variable	PrincipioTransversal	Variable | Variable
+walrus	PrincipioTransversal	Walrus operator | Operador morsa (:=)
+with_context	EstructuraDeControl	with statement | Sentencia with
+with_multiple	EstructuraDeControl	Multiple context managers | with multiple
+yield_from	EstructuraDeControl	yield from | yield from
+zip_f	FuncionIntegrada	zip | zip()

@@ -1,0 +1,16 @@
+PREFIX cfkg: <https://w3id.org/codefeedback-kg/schema#>
+PREFIX cfr:   <https://w3id.org/codefeedback-kg/id/>
+PREFIX rdfs:  <http://www.w3.org/2000/01/rdf-schema#>
+
+# Prerrequisitos directos e indirectos de "búsqueda binaria" mediante
+# un property path (+). Esta consulta NO necesita razonador: el camino
+# transitivo se calcula en tiempo de consulta. Es el contraste didáctico
+# con la propiedad owl:TransitiveProperty, que materializa los mismos
+# hechos por inferencia.
+SELECT DISTINCT ?prerequisito ?etiqueta
+WHERE {
+  cfr:busqueda_binaria cfkg:requierePrerrequisito+ ?prerequisito .
+  ?prerequisito rdfs:label ?etiqueta .
+  FILTER(LANG(?etiqueta) = "es")
+}
+ORDER BY ?etiqueta

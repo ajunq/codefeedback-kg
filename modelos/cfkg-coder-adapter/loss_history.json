@@ -1,0 +1,272 @@
+[
+  {
+    "step": 5,
+    "loss": 2.267283630371094,
+    "eval_loss": null
+  },
+  {
+    "step": 10,
+    "loss": 1.786037063598633,
+    "eval_loss": null
+  },
+  {
+    "step": 15,
+    "loss": 1.1540470123291016,
+    "eval_loss": null
+  },
+  {
+    "step": 20,
+    "loss": 0.6787214756011963,
+    "eval_loss": null
+  },
+  {
+    "step": 25,
+    "loss": 0.348215913772583,
+    "eval_loss": null
+  },
+  {
+    "step": 30,
+    "loss": 0.14048399925231933,
+    "eval_loss": null
+  },
+  {
+    "step": 35,
+    "loss": 0.06764613389968872,
+    "eval_loss": null
+  },
+  {
+    "step": 40,
+    "loss": 0.038294821977615356,
+    "eval_loss": null
+  },
+  {
+    "step": 45,
+    "loss": 0.02382981777191162,
+    "eval_loss": null
+  },
+  {
+    "step": 50,
+    "loss": 0.021612562239170074,
+    "eval_loss": null
+  },
+  {
+    "step": 55,
+    "loss": 0.016763278841972352,
+    "eval_loss": null
+  },
+  {
+    "step": 60,
+    "loss": 0.014715167880058288,
+    "eval_loss": null
+  },
+  {
+    "step": 65,
+    "loss": 0.0158663272857666,
+    "eval_loss": null
+  },
+  {
+    "step": 70,
+    "loss": 0.01406443864107132,
+    "eval_loss": null
+  },
+  {
+    "step": 75,
+    "loss": 0.011846587061882019,
+    "eval_loss": null
+  },
+  {
+    "step": 80,
+    "loss": 0.01243727058172226,
+    "eval_loss": null
+  },
+  {
+    "step": 85,
+    "loss": 0.013757780194282532,
+    "eval_loss": null
+  },
+  {
+    "step": 90,
+    "loss": 0.014508868753910064,
+    "eval_loss": null
+  },
+  {
+    "step": 95,
+    "loss": 0.013789905607700348,
+    "eval_loss": null
+  },
+  {
+    "step": 100,
+    "loss": 0.01425125151872635,
+    "eval_loss": null
+  },
+  {
+    "step": 105,
+    "loss": 0.012846472859382629,
+    "eval_loss": null
+  },
+  {
+    "step": 110,
+    "loss": 0.0126624196767807,
+    "eval_loss": null
+  },
+  {
+    "step": 115,
+    "loss": 0.011383096873760223,
+    "eval_loss": null
+  },
+  {
+    "step": 120,
+    "loss": 0.012351039052009582,
+    "eval_loss": null
+  },
+  {
+    "step": 125,
+    "loss": 0.011433559656143188,
+    "eval_loss": null
+  },
+  {
+    "step": 130,
+    "loss": 0.012290037423372268,
+    "eval_loss": null
+  },
+  {
+    "step": 132,
+    "loss": null,
+    "eval_loss": 1.0508805513381958
+  },
+  {
+    "step": 135,
+    "loss": 0.015473836660385131,
+    "eval_loss": null
+  },
+  {
+    "step": 140,
+    "loss": 0.012225053459405898,
+    "eval_loss": null
+  },
+  {
+    "step": 145,
+    "loss": 0.011589475721120835,
+    "eval_loss": null
+  },
+  {
+    "step": 150,
+    "loss": 0.011421557515859604,
+    "eval_loss": null
+  },
+  {
+    "step": 155,
+    "loss": 0.011899494379758836,
+    "eval_loss": null
+  },
+  {
+    "step": 160,
+    "loss": 0.011338092386722565,
+    "eval_loss": null
+  },
+  {
+    "step": 165,
+    "loss": 0.01111609786748886,
+    "eval_loss": null
+  },
+  {
+    "step": 170,
+    "loss": 0.011031394451856613,
+    "eval_loss": null
+  },
+  {
+    "step": 175,
+    "loss": 0.011450260132551193,
+    "eval_loss": null
+  },
+  {
+    "step": 180,
+    "loss": 0.011020363122224808,
+    "eval_loss": null
+  },
+  {
+    "step": 185,
+    "loss": 0.01103559583425522,
+    "eval_loss": null
+  },
+  {
+    "step": 190,
+    "loss": 0.010795986652374268,
+    "eval_loss": null
+  },
+  {
+    "step": 195,
+    "loss": 0.010906185954809189,
+    "eval_loss": null
+  },
+  {
+    "step": 200,
+    "loss": 0.01131814569234848,
+    "eval_loss": null
+  },
+  {
+    "step": 205,
+    "loss": 0.010455425083637237,
+    "eval_loss": null
+  },
+  {
+    "step": 210,
+    "loss": 0.011046676337718964,
+    "eval_loss": null
+  },
+  {
+    "step": 215,
+    "loss": 0.011073801666498184,
+    "eval_loss": null
+  },
+  {
+    "step": 220,
+    "loss": 0.010809880495071412,
+    "eval_loss": null
+  },
+  {
+    "step": 225,
+    "loss": 0.010704487562179565,
+    "eval_loss": null
+  },
+  {
+    "step": 230,
+    "loss": 0.011230187863111496,
+    "eval_loss": null
+  },
+  {
+    "step": 235,
+    "loss": 0.011135173588991165,
+    "eval_loss": null
+  },
+  {
+    "step": 240,
+    "loss": 0.010971657931804657,
+    "eval_loss": null
+  },
+  {
+    "step": 245,
+    "loss": 0.010656915605068207,
+    "eval_loss": null
+  },
+  {
+    "step": 250,
+    "loss": 0.011179058998823165,
+    "eval_loss": null
+  },
+  {
+    "step": 255,
+    "loss": 0.010987678915262223,
+    "eval_loss": null
+  },
+  {
+    "step": 260,
+    "loss": 0.01101185604929924,
+    "eval_loss": null
+  },
+  {
+    "step": 264,
+    "loss": null,
+    "eval_loss": 1.0276581048965454
+  }
+]

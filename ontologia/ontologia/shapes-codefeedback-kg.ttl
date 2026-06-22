@@ -1,0 +1,279 @@
+@prefix sh:      <http://www.w3.org/ns/shacl#> .
+@prefix cfkg:    <https://w3id.org/codefeedback-kg/schema#> .
+@prefix cfr:     <https://w3id.org/codefeedback-kg/id/> .
+@prefix rdf:     <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix xsd:     <http://www.w3.org/2001/XMLSchema#> .
+@prefix foaf:    <http://xmlns.com/foaf/0.1/> .
+@prefix owl:     <http://www.w3.org/2002/07/owl#> .
+@prefix skos:    <http://www.w3.org/2004/02/skos/core#> .
+
+#################################################################
+#  SHACL v2.0 — Validacion de forma del CodeFeedback-KG
+#  Conjunto AMPLIADO (>=16 formas) que crece sobre shapes-ekg.ttl:
+#  anade restricciones de tipo de dato, rango (min/max), patron,
+#  SPARQL, nodo (sh:node) y par de propiedades (sh:disjoint),
+#  ademas de validar la cobertura SKOS (definicion/nota/ejemplo).
+#  Se valida sobre el grafo con inferencia RDFS para alcanzar los
+#  tipos inferidos (p. ej. cfkg:Concepto via subclases).
+#################################################################
+
+############################# 1 ################################
+cfkg:ConceptoShape a sh:NodeShape ;
+    sh:targetClass cfkg:Concepto ;
+    sh:property [
+        sh:path rdfs:label ;
+        sh:minCount 1 ;
+        sh:message "Todo concepto debe tener al menos una etiqueta rdfs:label."@es ] ;
+    sh:property [
+        sh:path cfkg:perteneceATema ;
+        sh:minCount 1 ;
+        sh:class cfkg:Tema ;
+        sh:message "Todo concepto debe pertenecer al menos a un tema."@es ] ;
+    sh:property [
+        sh:path cfkg:tieneDificultad ;
+        sh:maxCount 1 ;
+        sh:datatype xsd:integer ;
+        sh:minInclusive 1 ;
+        sh:maxInclusive 5 ;
+        sh:message "La dificultad, si existe, debe ser un entero entre 1 y 5."@es ] ;
+    sh:property [
+        sh:path skos:exactMatch ;
+        sh:nodeKind sh:IRI ;
+        sh:pattern "^http://www.wikidata.org/entity/Q[0-9]+$" ;
+        sh:message "skos:exactMatch debe apuntar a una entidad Wikidata (http://www.wikidata.org/entity/Q…)."@es ] .
+
+############################# 2 ################################
+cfkg:EjercicioShape a sh:NodeShape ;
+    sh:targetClass cfkg:Ejercicio ;
+    sh:property [
+        sh:path cfkg:tieneEnunciado ;
+        sh:minCount 1 ;
+        sh:message "Todo ejercicio debe tener un enunciado."@es ] ;
+    sh:property [
+        sh:path cfkg:cubreConcepto ;
+        sh:minCount 1 ;
+        sh:class cfkg:Concepto ;
+        sh:message "Todo ejercicio debe cubrir al menos un concepto."@es ] ;
+    sh:property [
+        sh:path cfkg:tieneDificultad ;
+        sh:minCount 1 ;
+        sh:datatype xsd:integer ;
+        sh:minInclusive 1 ;
+        sh:maxInclusive 5 ;
+        sh:message "Todo ejercicio debe declarar una dificultad entera de 1 a 5."@es ] .
+
+############################# 3 ################################
+cfkg:ErrorConceptualShape a sh:NodeShape ;
+    sh:targetClass cfkg:ErrorConceptual ;
+    sh:property [
+        sh:path rdfs:label ;
+        sh:minCount 1 ;
+        sh:message "Todo error conceptual debe tener etiqueta."@es ] ;
+    sh:property [
+        sh:path cfkg:errorSobreConcepto ;
+        sh:minCount 1 ;
+        sh:class cfkg:Concepto ;
+        sh:message "Todo error conceptual debe asociarse al menos a un concepto."@es ] .
+
+############################# 4 ################################
+cfkg:EnvioEstudianteShape a sh:NodeShape ;
+    sh:targetClass cfkg:EnvioEstudiante ;
+    sh:property [
+        sh:path cfkg:enviadoPor ;
+        sh:minCount 1 ;
+        sh:class cfkg:Estudiante ;
+        sh:message "Todo envio debe tener un estudiante autor."@es ] ;
+    sh:property [
+        sh:path cfkg:resuelveEjercicio ;
+        sh:minCount 1 ;
+        sh:class cfkg:Ejercicio ;
+        sh:message "Todo envio debe resolver un ejercicio."@es ] ;
+    sh:property [
+        sh:path cfkg:numeroDeLineas ;
+        sh:maxCount 1 ;
+        sh:datatype xsd:integer ;
+        sh:minInclusive 1 ;
+        sh:message "El numero de lineas, si existe, debe ser un entero positivo."@es ] .
+
+############################# 5 ################################
+cfkg:RecursoShape a sh:NodeShape ;
+    sh:targetClass cfkg:Recurso ;
+    sh:property [
+        sh:path dcterms:title ;
+        sh:minCount 1 ;
+        sh:message "Todo recurso debe declarar un titulo (dcterms:title)."@es ] .
+
+############################# 6 ################################
+cfkg:EstudianteShape a sh:NodeShape ;
+    sh:targetClass cfkg:Estudiante ;
+    sh:property [
+        sh:path foaf:name ;
+        sh:minCount 1 ;
+        sh:message "Todo estudiante debe tener foaf:name."@es ] ;
+    sh:property [
+        sh:path rdfs:label ;
+        sh:minCount 1 ;
+        sh:message "Todo estudiante debe tener etiqueta."@es ] .
+
+############################# 7 ################################
+cfkg:TemaShape a sh:NodeShape ;
+    sh:targetClass cfkg:Tema ;
+    sh:property [
+        sh:path rdfs:label ;
+        sh:minCount 1 ;
+        sh:message "Todo tema debe tener etiqueta."@es ] .
+
+############################# 8 ################################
+cfkg:NivelDominioShape a sh:NodeShape ;
+    sh:targetClass cfkg:NivelDominio ;
+    sh:property [
+        sh:path rdfs:label ;
+        sh:minCount 1 ;
+        sh:message "Todo nivel de dominio debe tener etiqueta."@es ] .
+
+############################# 9 ################################
+cfkg:EvaluacionDeConceptoShape a sh:NodeShape ;
+    sh:targetClass cfkg:EvaluacionDeConcepto ;
+    sh:property [
+        sh:path cfkg:enEjercicio ;
+        sh:minCount 1 ;
+        sh:nodeKind sh:IRI ;
+        sh:class cfkg:Ejercicio ;
+        sh:message "La evaluacion de concepto debe referir a un ejercicio."@es ] ;
+    sh:property [
+        sh:path cfkg:sobreConcepto ;
+        sh:minCount 1 ;
+        sh:nodeKind sh:IRI ;
+        sh:class cfkg:Concepto ;
+        sh:message "La evaluacion de concepto debe referir a un concepto."@es ] ;
+    sh:property [
+        sh:path cfkg:conPeso ;
+        sh:maxCount 1 ;
+        sh:datatype xsd:decimal ;
+        sh:minInclusive 0 ;
+        sh:maxInclusive 1 ;
+        sh:message "El peso debe ser un decimal entre 0 y 1."@es ] .
+
+############################# 10 ###############################
+cfkg:EvaluacionActividadShape a sh:NodeShape ;
+    sh:targetClass cfkg:EvaluacionActividad ;
+    sh:property [
+        sh:path cfkg:porEstudiante ;
+        sh:minCount 1 ;
+        sh:class cfkg:Estudiante ;
+        sh:message "Toda evaluacion de actividad debe tener un estudiante."@es ] ;
+    sh:property [
+        sh:path cfkg:evaluaA ;
+        sh:minCount 1 ;
+        sh:message "Toda evaluacion de actividad debe evaluar una actividad."@es ] ;
+    sh:property [
+        sh:path cfkg:obtuvoNota ;
+        sh:maxCount 1 ;
+        sh:datatype xsd:decimal ;
+        sh:minInclusive 0 ;
+        sh:maxInclusive 10 ;
+        sh:message "La nota debe ser un decimal entre 0 y 10."@es ] ;
+    sh:property [
+        sh:path cfkg:enFecha ;
+        sh:maxCount 1 ;
+        sh:datatype xsd:date ;
+        sh:message "La fecha debe ser xsd:date."@es ] .
+
+#################################################################
+#  NUEVAS FORMAS v2.0
+#################################################################
+
+############################# 11 ##############################
+#  Cobertura SKOS obligatoria: definicion + nota de alcance + ejemplo
+cfkg:ConceptoSkosShape a sh:NodeShape ;
+    sh:targetClass cfkg:Concepto ;
+    sh:property [
+        sh:path skos:definition ;
+        sh:minCount 1 ;
+        sh:datatype rdf:langString ;
+        sh:message "Todo concepto debe tener al menos una skos:definition (con etiqueta de idioma)."@es ] ;
+    sh:property [
+        sh:path skos:scopeNote ;
+        sh:minCount 1 ;
+        sh:message "Todo concepto debe tener al menos una skos:scopeNote."@es ] ;
+    sh:property [
+        sh:path skos:example ;
+        sh:minCount 1 ;
+        sh:nodeKind sh:Literal ;
+        sh:message "Todo concepto debe incluir al menos un skos:example (codigo)."@es ] .
+
+############################# 12 ##############################
+#  Tipo de dato + patron + cardinalidad: version de introduccion
+cfkg:ConceptoVersionShape a sh:NodeShape ;
+    sh:targetClass cfkg:Concepto ;
+    sh:property [
+        sh:path cfkg:introducidoEnVersion ;
+        sh:maxCount 1 ;
+        sh:datatype xsd:string ;
+        sh:pattern "^[23]\\.[0-9]{1,2}$" ;
+        sh:message "introducidoEnVersion debe ser una version Python como '3.10'."@es ] .
+
+############################# 13 ##############################
+#  Patron: complejidad temporal en notacion O grande
+cfkg:ConceptoComplejidadShape a sh:NodeShape ;
+    sh:targetClass cfkg:Concepto ;
+    sh:property [
+        sh:path cfkg:tieneComplejidadTemporal ;
+        sh:datatype xsd:string ;
+        sh:pattern "^O\\(.+\\)$" ;
+        sh:message "tieneComplejidadTemporal debe expresarse en notacion O grande, p. ej. 'O(log n)'."@es ] .
+
+############################# 14 ##############################
+#  Tipo de dato + patron: URL de documentacion oficial
+cfkg:ConceptoDocURLShape a sh:NodeShape ;
+    sh:targetClass cfkg:Concepto ;
+    sh:property [
+        sh:path cfkg:tieneURLDocumentacion ;
+        sh:datatype xsd:anyURI ;
+        sh:pattern "^https?://" ;
+        sh:message "tieneURLDocumentacion debe ser una URL http(s) valida."@es ] .
+
+############################# 15 ##############################
+#  Restriccion SPARQL: ningun concepto puede ser su propio prerrequisito
+cfkg:ConceptoNoAutoPrerequisitoShape a sh:NodeShape ;
+    sh:targetClass cfkg:Concepto ;
+    sh:sparql [
+        sh:message "Un concepto no puede ser su propio prerrequisito (ciclo trivial)."@es ;
+        sh:select """
+            SELECT $this WHERE {
+                $this <https://w3id.org/codefeedback-kg/schema#requierePrerrequisito> $this .
+            }
+        """ ] .
+
+############################# 16 ##############################
+#  Par de propiedades (sh:disjoint): un concepto no puede a la vez
+#  requerir y ser prerrequisito del MISMO concepto.
+cfkg:ConceptoPrereqCoherenciaShape a sh:NodeShape ;
+    sh:targetClass cfkg:Concepto ;
+    sh:property [
+        sh:path cfkg:requierePrerrequisito ;
+        sh:disjoint cfkg:esPrerrequisitoDe ;
+        sh:message "requierePrerrequisito y esPrerrequisitoDe no pueden compartir el mismo concepto."@es ] .
+
+############################# 17 ##############################
+#  Restriccion de NODO (sh:node): el autor de un envio debe cumplir
+#  ademas la forma de estudiante (foaf:name + etiqueta).
+cfkg:EnvioAutorNodoShape a sh:NodeShape ;
+    sh:targetClass cfkg:EnvioEstudiante ;
+    sh:property [
+        sh:path cfkg:enviadoPor ;
+        sh:node cfkg:EstudianteShape ;
+        sh:message "El autor del envio debe satisfacer cfkg:EstudianteShape."@es ] .
+
+############################# 18 ##############################
+#  Coherencia de prerrequisitos: el objeto de requierePrerrequisito
+#  debe ser un Concepto (validacion por sujetos de la propiedad).
+cfkg:PrerrequisitoRangoShape a sh:NodeShape ;
+    sh:targetSubjectsOf cfkg:requierePrerrequisito ;
+    sh:property [
+        sh:path cfkg:requierePrerrequisito ;
+        sh:class cfkg:Concepto ;
+        sh:nodeKind sh:IRI ;
+        sh:message "El prerrequisito debe ser un recurso cfkg:Concepto."@es ] .

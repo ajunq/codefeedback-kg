@@ -1,0 +1,586 @@
+@prefix cfkg:   <https://w3id.org/codefeedback-kg/schema#> .
+@prefix cfr:     <https://w3id.org/codefeedback-kg/id/> .
+@prefix rdf:     <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl:     <http://www.w3.org/2002/07/owl#> .
+@prefix xsd:     <http://www.w3.org/2001/XMLSchema#> .
+@prefix skos:    <http://www.w3.org/2004/02/skos/core#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix foaf:    <http://xmlns.com/foaf/0.1/> .
+@prefix schema:  <http://schema.org/> .
+@prefix wd:      <http://www.wikidata.org/entity/> .
+
+#################################################################
+#  GRAFO DE CONOCIMIENTO EDUCATIVO DE PROGRAMACIÓN EN PYTHON
+#  (CodeFeedback-KG) — didactic base graph
+#
+#  Autor:    Adrián Bueno Junquero
+#
+#  Nota de diseño: las IRIs de entidad son estables y neutras respecto
+#  al idioma (recomendación del material docente); el nombre legible
+#  se aporta siempre con rdfs:label / skos:prefLabel multilingüe. Se
+#  reutilizan vocabularios estándar (SKOS, Dublin Core, FOAF,
+#  schema.org) antes de acuñar términos propios. El espacio de nombres
+#  del proyecto es repuntable a su publicación definitiva (GitHub/w3id).
+#################################################################
+
+cfkg: a owl:Ontology ;
+    dcterms:title "Grafo de Conocimiento Educativo de Programación en Python (CodeFeedback-KG)"@es ;
+    dcterms:title "Educational Knowledge Graph for Python Programming (CodeFeedback-KG)"@en ;
+    dcterms:creator "Adrián Bueno Junquero" ;
+    dcterms:description "Ontología y grafo de conocimiento del dominio de la programación en Python, diseñado para anclar la generación de retroalimentación formativa automática (arquitectura EKG + RAG + LLM). Modela conceptos, sus prerrequisitos y contrastes, temas, ejercicios, errores conceptuales (misconceptions), recursos y perfiles de estudiante."@es ;
+    dcterms:license <https://creativecommons.org/licenses/by/4.0/> ;
+    dcterms:created "2026-06-18"^^xsd:date ;
+    owl:versionInfo "0.1.0" .
+
+#################################################################
+#  1. TBox — CLASES (taxonomía RDFS + OWL)
+#################################################################
+
+cfkg:EntidadEducativa a owl:Class ;
+    rdfs:label "Entidad educativa"@es , "Educational entity"@en ;
+    rdfs:comment "Superclase abstracta de todas las entidades del grafo educativo."@es .
+
+cfkg:Concepto a owl:Class ;
+    rdfs:subClassOf cfkg:EntidadEducativa , skos:Concept ;
+    rdfs:label "Concepto de programación"@es , "Programming concept"@en ;
+    rdfs:comment "Unidad de conocimiento del dominio (p. ej. recursión, bucle for, mutabilidad). Al ser subclase de skos:Concept admite la red conceptual skos:broader/narrower/related."@es .
+
+# Subcategorías de Concepto: la taxonomía es-un que el profesor ejercita
+# (rdf:type + rdfs:subClassOf con inferencia de pertenencia a superclases).
+cfkg:EstructuraDeControl a owl:Class ;
+    rdfs:subClassOf cfkg:Concepto ;
+    rdfs:label "Estructura de control"@es , "Control structure"@en .
+
+cfkg:EstructuraDeDatos a owl:Class ;
+    rdfs:subClassOf cfkg:Concepto ;
+    rdfs:label "Estructura de datos"@es , "Data structure"@en .
+
+cfkg:TipoDeDato a owl:Class ;
+    rdfs:subClassOf cfkg:Concepto ;
+    rdfs:label "Tipo de dato"@es , "Data type"@en .
+
+cfkg:Paradigma a owl:Class ;
+    rdfs:subClassOf cfkg:Concepto ;
+    rdfs:label "Paradigma de programación"@es , "Programming paradigm"@en .
+
+cfkg:FuncionIntegrada a owl:Class ;
+    rdfs:subClassOf cfkg:Concepto ;
+    rdfs:label "Función integrada"@es , "Built-in function"@en .
+
+cfkg:ModuloLibreria a owl:Class ;
+    rdfs:subClassOf cfkg:Concepto ;
+    rdfs:label "Módulo o librería"@es , "Module or library"@en .
+
+cfkg:PrincipioTransversal a owl:Class ;
+    rdfs:subClassOf cfkg:Concepto ;
+    rdfs:label "Principio transversal"@es , "Cross-cutting principle"@en .
+
+cfkg:Tema a owl:Class ;
+    rdfs:subClassOf cfkg:EntidadEducativa ;
+    rdfs:label "Tema curricular"@es , "Curricular topic"@en ;
+    rdfs:comment "Agrupación curricular de conceptos (unidad didáctica)."@es .
+
+cfkg:Competencia a owl:Class ;
+    rdfs:subClassOf cfkg:EntidadEducativa ;
+    rdfs:label "Competencia"@es , "Competency"@en .
+
+cfkg:Ejercicio a owl:Class ;
+    rdfs:subClassOf cfkg:EntidadEducativa ;
+    rdfs:label "Ejercicio o enunciado"@es , "Exercise or assignment"@en .
+
+cfkg:ErrorConceptual a owl:Class ;
+    rdfs:subClassOf cfkg:EntidadEducativa ;
+    rdfs:label "Error conceptual (misconception)"@es , "Misconception"@en ;
+    rdfs:comment "Malentendido recurrente documentado en la literatura de didáctica de la programación."@es .
+
+cfkg:Recurso a owl:Class ;
+    rdfs:subClassOf cfkg:EntidadEducativa ;
+    rdfs:label "Recurso de aprendizaje"@es , "Learning resource"@en .
+
+cfkg:Estudiante a owl:Class ;
+    rdfs:subClassOf cfkg:EntidadEducativa ;
+    rdfs:label "Estudiante"@es , "Student"@en .
+
+cfkg:EnvioEstudiante a owl:Class ;
+    rdfs:subClassOf cfkg:EntidadEducativa ;
+    rdfs:label "Envío de estudiante"@es , "Student submission"@en ;
+    rdfs:comment "Entrega de código de un estudiante en respuesta a un ejercicio."@es .
+
+cfkg:RutaAprendizaje a owl:Class ;
+    rdfs:subClassOf cfkg:EntidadEducativa ;
+    rdfs:label "Ruta de aprendizaje"@es , "Learning path"@en .
+
+cfkg:NivelDominio a owl:Class ;
+    rdfs:subClassOf skos:Concept ;
+    rdfs:label "Nivel de dominio"@es , "Mastery level"@en .
+
+# Reificación N-aria: ocurrencia de evaluación de un concepto en un ejercicio.
+cfkg:EvaluacionDeConcepto a owl:Class ;
+    rdfs:subClassOf cfkg:EntidadEducativa ;
+    rdfs:label "Evaluación de concepto"@es , "Concept assessment occurrence"@en ;
+    rdfs:comment "Nodo intermedio que reifica la relación N-aria (ejercicio, concepto, peso, nivel) sin perder información, según el patrón de relaciones N-arias del material docente."@es .
+
+# Clases de nivel superior mutuamente disjuntas (capa OWL, ampliación).
+[] a owl:AllDisjointClasses ;
+   owl:members ( cfkg:Concepto cfkg:Tema cfkg:Competencia cfkg:Ejercicio
+                 cfkg:EnvioEstudiante cfkg:ErrorConceptual cfkg:Recurso
+                 cfkg:Estudiante cfkg:RutaAprendizaje cfkg:EvaluacionDeConcepto ) .
+
+#################################################################
+#  2. TBox — PROPIEDADES DE OBJETO
+#################################################################
+
+cfkg:relacionadoConceptualmenteCon a owl:ObjectProperty ;
+    rdfs:domain cfkg:Concepto ;
+    rdfs:range cfkg:Concepto ;
+    rdfs:label "relacionado conceptualmente con"@es ;
+    rdfs:comment "Superpropiedad genérica de las relaciones entre conceptos; permite consultas amplias por subsunción de subpropiedades."@es .
+
+cfkg:esPrerrequisitoDe a owl:ObjectProperty , owl:TransitiveProperty ;
+    rdfs:subPropertyOf cfkg:relacionadoConceptualmenteCon ;
+    rdfs:domain cfkg:Concepto ;
+    rdfs:range cfkg:Concepto ;
+    owl:inverseOf cfkg:requierePrerrequisito ;
+    rdfs:label "es prerrequisito de"@es , "is prerequisite of"@en ;
+    rdfs:comment "A esPrerrequisitoDe B significa que dominar A es condición previa para aprender B. Transitiva: habilita el cálculo de prerrequisitos indirectos por inferencia."@es .
+
+cfkg:requierePrerrequisito a owl:ObjectProperty , owl:TransitiveProperty ;
+    rdfs:domain cfkg:Concepto ;
+    rdfs:range cfkg:Concepto ;
+    rdfs:label "requiere como prerrequisito"@es , "requires prerequisite"@en .
+
+cfkg:contrastaCon a owl:ObjectProperty , owl:SymmetricProperty ;
+    rdfs:subPropertyOf cfkg:relacionadoConceptualmenteCon ;
+    rdfs:domain cfkg:Concepto ;
+    rdfs:range cfkg:Concepto ;
+    rdfs:label "contrasta con"@es , "contrasts with"@en ;
+    rdfs:comment "Conceptos frecuentemente confundidos que conviene explicar por oposición (p. ej. iteración / recursión). Simétrica."@es .
+
+cfkg:generaliza a owl:ObjectProperty ;
+    rdfs:subPropertyOf cfkg:relacionadoConceptualmenteCon ;
+    rdfs:domain cfkg:Concepto ;
+    rdfs:range cfkg:Concepto ;
+    owl:inverseOf cfkg:especializa ;
+    rdfs:label "generaliza a"@es , "generalises"@en .
+
+cfkg:especializa a owl:ObjectProperty ;
+    rdfs:domain cfkg:Concepto ;
+    rdfs:range cfkg:Concepto ;
+    rdfs:label "especializa a"@es , "specialises"@en .
+
+cfkg:seAplicaA a owl:ObjectProperty ;
+    rdfs:subPropertyOf cfkg:relacionadoConceptualmenteCon ;
+    rdfs:domain cfkg:Concepto ;
+    rdfs:range cfkg:Concepto ;
+    rdfs:label "se aplica a"@es , "applies to"@en .
+
+cfkg:perteneceATema a owl:ObjectProperty ;
+    rdfs:domain cfkg:Concepto ;
+    rdfs:range cfkg:Tema ;
+    rdfs:label "pertenece al tema"@es , "belongs to topic"@en .
+
+cfkg:cubreConcepto a owl:ObjectProperty ;
+    rdfs:domain cfkg:Ejercicio ;
+    rdfs:range cfkg:Concepto ;
+    rdfs:label "cubre el concepto"@es , "covers concept"@en .
+
+cfkg:evaluaCompetencia a owl:ObjectProperty ;
+    rdfs:domain cfkg:Ejercicio ;
+    rdfs:range cfkg:Competencia ;
+    rdfs:label "evalúa la competencia"@es , "assesses competency"@en .
+
+cfkg:ilustraConcepto a owl:ObjectProperty ;
+    rdfs:domain cfkg:Recurso ;
+    rdfs:range cfkg:Concepto ;
+    rdfs:label "ilustra el concepto"@es , "illustrates concept"@en .
+
+cfkg:errorSobreConcepto a owl:ObjectProperty ;
+    rdfs:domain cfkg:ErrorConceptual ;
+    rdfs:range cfkg:Concepto ;
+    rdfs:label "es un error sobre el concepto"@es , "is a misconception about"@en .
+
+cfkg:resuelveEjercicio a owl:ObjectProperty ;
+    rdfs:domain cfkg:EnvioEstudiante ;
+    rdfs:range cfkg:Ejercicio ;
+    rdfs:label "resuelve el ejercicio"@es , "solves exercise"@en .
+
+cfkg:enviadoPor a owl:ObjectProperty ;
+    rdfs:domain cfkg:EnvioEstudiante ;
+    rdfs:range cfkg:Estudiante ;
+    rdfs:label "enviado por"@es , "submitted by"@en .
+
+cfkg:manifiestaError a owl:ObjectProperty ;
+    rdfs:domain cfkg:EnvioEstudiante ;
+    rdfs:range cfkg:ErrorConceptual ;
+    rdfs:label "manifiesta el error"@es , "exhibits misconception"@en .
+
+cfkg:dominaConcepto a owl:ObjectProperty ;
+    rdfs:domain cfkg:Estudiante ;
+    rdfs:range cfkg:Concepto ;
+    rdfs:label "domina el concepto"@es , "has mastered concept"@en .
+
+cfkg:aNivelDominio a owl:ObjectProperty ;
+    rdfs:range cfkg:NivelDominio ;
+    rdfs:label "a nivel de dominio"@es , "at mastery level"@en .
+
+# Propiedades del nodo N-ario EvaluacionDeConcepto
+cfkg:enEjercicio a owl:ObjectProperty ;
+    rdfs:domain cfkg:EvaluacionDeConcepto ;
+    rdfs:range cfkg:Ejercicio ;
+    rdfs:label "en el ejercicio"@es .
+
+cfkg:sobreConcepto a owl:ObjectProperty ;
+    rdfs:domain cfkg:EvaluacionDeConcepto ;
+    rdfs:range cfkg:Concepto ;
+    rdfs:label "sobre el concepto"@es .
+
+#################################################################
+#  3. TBox — PROPIEDADES DE DATOS
+#  (literales solo en posición objeto; tipados con xsd; idioma con @)
+#  Nota: para "nombrar" se usa siempre rdfs:label estándar, evitando
+#  el error de reusar una propiedad propia con dominios incompatibles.
+#################################################################
+
+cfkg:tieneDificultad a owl:DatatypeProperty , owl:FunctionalProperty ;
+    rdfs:domain cfkg:EntidadEducativa ;
+    rdfs:range xsd:integer ;
+    rdfs:label "tiene dificultad"@es , "has difficulty"@en ;
+    rdfs:comment "Dificultad estimada en una escala entera 1–5."@es .
+
+cfkg:tieneEjemploCodigo a owl:DatatypeProperty ;
+    rdfs:range xsd:string ;
+    rdfs:label "tiene ejemplo de código"@es , "has code example"@en .
+
+cfkg:tieneEnunciado a owl:DatatypeProperty ;
+    rdfs:domain cfkg:Ejercicio ;
+    rdfs:range rdf:langString ;
+    rdfs:label "tiene enunciado"@es , "has statement"@en .
+
+cfkg:numeroDeLineas a owl:DatatypeProperty ;
+    rdfs:domain cfkg:EnvioEstudiante ;
+    rdfs:range xsd:integer ;
+    rdfs:label "número de líneas"@es , "number of lines"@en .
+
+cfkg:conPeso a owl:DatatypeProperty ;
+    rdfs:domain cfkg:EvaluacionDeConcepto ;
+    rdfs:range xsd:decimal ;
+    rdfs:label "con peso"@es , "with weight"@en .
+
+#################################################################
+#  4. Individuos de NivelDominio (vocabulario controlado)
+#################################################################
+
+cfr:basico a cfkg:NivelDominio ;
+    rdfs:label "básico"@es , "basic"@en ;
+    skos:prefLabel "básico"@es , "basic"@en ;
+    skos:notation "1" .
+
+cfr:intermedio a cfkg:NivelDominio ;
+    rdfs:label "intermedio"@es , "intermediate"@en ;
+    skos:prefLabel "intermedio"@es , "intermediate"@en ;
+    skos:notation "2" .
+
+cfr:avanzado a cfkg:NivelDominio ;
+    rdfs:label "avanzado"@es , "advanced"@en ;
+    skos:prefLabel "avanzado"@es , "advanced"@en ;
+    skos:notation "3" .
+
+#################################################################
+#  5. ABox — TEMAS CURRICULARES
+#################################################################
+
+cfr:T_fundamentos a cfkg:Tema ;
+    rdfs:label "Fundamentos"@es , "Fundamentals"@en .
+cfr:T_control a cfkg:Tema ;
+    rdfs:label "Control de flujo"@es , "Control flow"@en .
+cfr:T_estructuras a cfkg:Tema ;
+    rdfs:label "Estructuras de datos"@es , "Data structures"@en .
+cfr:T_funciones a cfkg:Tema ;
+    rdfs:label "Funciones"@es , "Functions"@en .
+cfr:T_poo a cfkg:Tema ;
+    rdfs:label "Programación orientada a objetos"@es , "Object-oriented programming"@en .
+cfr:T_recursion a cfkg:Tema ;
+    rdfs:label "Recursión"@es , "Recursion"@en .
+cfr:T_complejidad a cfkg:Tema ;
+    rdfs:label "Complejidad algorítmica"@es , "Algorithmic complexity"@en .
+cfr:T_excepciones a cfkg:Tema ;
+    rdfs:label "Excepciones"@es , "Exceptions"@en .
+
+#################################################################
+#  6. ABox — CONCEPTOS
+#  (tipados por su subcategoría; la pertenencia a cfkg:Concepto y a
+#   skos:Concept se obtiene por inferencia RDFS, no se afirma a mano)
+#################################################################
+
+cfr:python a cfkg:PrincipioTransversal ;
+    rdfs:label "Python"@es , "Python"@en ;
+    skos:prefLabel "Python"@es ;
+    skos:exactMatch wd:Q28865 ;
+    cfkg:perteneceATema cfr:T_fundamentos .
+
+cfr:variable a cfkg:PrincipioTransversal ;
+    rdfs:label "Variable"@es , "Variable"@en ;
+    rdfs:comment "Nombre asociado a un valor en memoria."@es ;
+    cfkg:perteneceATema cfr:T_fundamentos ;
+    cfkg:tieneDificultad 1 ;
+    cfkg:aNivelDominio cfr:basico ;
+    cfkg:tieneEjemploCodigo "x = 42" .
+
+cfr:asignacion a cfkg:PrincipioTransversal ;
+    rdfs:label "Asignación"@es , "Assignment"@en ;
+    cfkg:perteneceATema cfr:T_fundamentos ;
+    cfkg:tieneDificultad 1 ;
+    cfkg:esPrerrequisitoDe cfr:bucle_for .
+
+cfr:tipo_int a cfkg:TipoDeDato ;
+    rdfs:label "Entero (int)"@es , "Integer (int)"@en ;
+    cfkg:perteneceATema cfr:T_fundamentos ;
+    cfkg:tieneDificultad 1 .
+
+cfr:tipo_str a cfkg:TipoDeDato ;
+    rdfs:label "Cadena (str)"@es , "String (str)"@en ;
+    cfkg:perteneceATema cfr:T_fundamentos ;
+    cfkg:tieneDificultad 1 .
+
+cfr:tipo_bool a cfkg:TipoDeDato ;
+    rdfs:label "Booleano (bool)"@es , "Boolean (bool)"@en ;
+    cfkg:perteneceATema cfr:T_fundamentos ;
+    cfkg:tieneDificultad 1 .
+
+cfr:lista a cfkg:EstructuraDeDatos ;
+    rdfs:label "Lista"@es , "List"@en ;
+    skos:prefLabel "Lista"@es ;
+    cfkg:perteneceATema cfr:T_estructuras ;
+    cfkg:tieneDificultad 2 ;
+    cfkg:aNivelDominio cfr:basico ;
+    cfkg:tieneEjemploCodigo "xs = [1, 2, 3]" .
+
+cfr:tupla a cfkg:EstructuraDeDatos ;
+    rdfs:label "Tupla"@es , "Tuple"@en ;
+    cfkg:perteneceATema cfr:T_estructuras ;
+    cfkg:tieneDificultad 2 ;
+    cfkg:contrastaCon cfr:lista .
+
+cfr:diccionario a cfkg:EstructuraDeDatos ;
+    rdfs:label "Diccionario"@es , "Dictionary"@en ;
+    cfkg:perteneceATema cfr:T_estructuras ;
+    cfkg:tieneDificultad 2 .
+
+cfr:conjunto a cfkg:EstructuraDeDatos ;
+    rdfs:label "Conjunto (set)"@es , "Set"@en ;
+    cfkg:perteneceATema cfr:T_estructuras ;
+    cfkg:tieneDificultad 3 .
+
+cfr:indexacion a cfkg:PrincipioTransversal ;
+    rdfs:label "Indexación"@es , "Indexing"@en ;
+    cfkg:perteneceATema cfr:T_estructuras ;
+    cfkg:tieneDificultad 2 ;
+    cfkg:seAplicaA cfr:lista ;
+    cfkg:requierePrerrequisito cfr:lista .
+
+cfr:slicing a cfkg:PrincipioTransversal ;
+    rdfs:label "Slicing (rebanado)"@es , "Slicing"@en ;
+    cfkg:perteneceATema cfr:T_estructuras ;
+    cfkg:tieneDificultad 3 ;
+    cfkg:requierePrerrequisito cfr:indexacion .
+
+cfr:mutabilidad a cfkg:PrincipioTransversal ;
+    rdfs:label "Mutabilidad"@es , "Mutability"@en ;
+    rdfs:comment "Propiedad de los objetos cuyo estado puede cambiar tras su creación."@es ;
+    cfkg:perteneceATema cfr:T_estructuras ;
+    cfkg:tieneDificultad 4 ;
+    cfkg:aNivelDominio cfr:avanzado ;
+    cfkg:contrastaCon cfr:tupla .
+
+cfr:condicional a cfkg:EstructuraDeControl ;
+    rdfs:label "Condicional (if)"@es , "Conditional (if)"@en ;
+    cfkg:perteneceATema cfr:T_control ;
+    cfkg:tieneDificultad 1 ;
+    cfkg:requierePrerrequisito cfr:tipo_bool .
+
+cfr:bucle_for a cfkg:EstructuraDeControl ;
+    rdfs:label "Bucle for"@es , "For loop"@en ;
+    skos:prefLabel "Bucle for"@es ;
+    cfkg:perteneceATema cfr:T_control ;
+    cfkg:tieneDificultad 2 ;
+    cfkg:aNivelDominio cfr:basico ;
+    cfkg:tieneEjemploCodigo "for x in xs:\n    print(x)" ;
+    cfkg:esPrerrequisitoDe cfr:comprension_listas .
+
+cfr:bucle_while a cfkg:EstructuraDeControl ;
+    rdfs:label "Bucle while"@es , "While loop"@en ;
+    cfkg:perteneceATema cfr:T_control ;
+    cfkg:tieneDificultad 2 ;
+    cfkg:requierePrerrequisito cfr:condicional .
+
+cfr:comprension_listas a cfkg:EstructuraDeControl ;
+    rdfs:label "Comprensión de listas"@es , "List comprehension"@en ;
+    cfkg:perteneceATema cfr:T_control ;
+    cfkg:tieneDificultad 4 ;
+    cfkg:aNivelDominio cfr:avanzado ;
+    cfkg:tieneEjemploCodigo "ys = [x*x for x in xs if x > 0]" ;
+    cfkg:requierePrerrequisito cfr:lista .
+
+cfr:funcion a cfkg:PrincipioTransversal ;
+    rdfs:label "Función"@es , "Function"@en ;
+    skos:prefLabel "Función"@es ;
+    cfkg:perteneceATema cfr:T_funciones ;
+    cfkg:tieneDificultad 2 ;
+    cfkg:esPrerrequisitoDe cfr:recursion ;
+    cfkg:tieneEjemploCodigo "def f(x):\n    return x + 1" .
+
+cfr:ambito a cfkg:PrincipioTransversal ;
+    rdfs:label "Ámbito de variables (scope)"@es , "Variable scope"@en ;
+    cfkg:perteneceATema cfr:T_funciones ;
+    cfkg:tieneDificultad 3 ;
+    cfkg:requierePrerrequisito cfr:funcion .
+
+cfr:recursion a cfkg:PrincipioTransversal ;
+    rdfs:label "Recursión"@es , "Recursion"@en ;
+    skos:prefLabel "Recursión"@es ;
+    rdfs:comment "Definición de una función en términos de sí misma."@es ;
+    cfkg:perteneceATema cfr:T_recursion ;
+    cfkg:tieneDificultad 4 ;
+    cfkg:aNivelDominio cfr:avanzado ;
+    cfkg:contrastaCon cfr:bucle_for ;
+    cfkg:requierePrerrequisito cfr:funcion .
+
+cfr:clase a cfkg:Paradigma ;
+    rdfs:label "Clase"@es , "Class"@en ;
+    cfkg:perteneceATema cfr:T_poo ;
+    cfkg:tieneDificultad 3 ;
+    cfkg:requierePrerrequisito cfr:funcion .
+
+cfr:herencia a cfkg:Paradigma ;
+    rdfs:label "Herencia"@es , "Inheritance"@en ;
+    cfkg:perteneceATema cfr:T_poo ;
+    cfkg:tieneDificultad 4 ;
+    cfkg:requierePrerrequisito cfr:clase .
+
+cfr:excepcion a cfkg:EstructuraDeControl ;
+    rdfs:label "Excepción"@es , "Exception"@en ;
+    cfkg:perteneceATema cfr:T_excepciones ;
+    cfkg:tieneDificultad 3 ;
+    cfkg:requierePrerrequisito cfr:condicional .
+
+cfr:complejidad a cfkg:PrincipioTransversal ;
+    rdfs:label "Complejidad temporal"@es , "Time complexity"@en ;
+    cfkg:perteneceATema cfr:T_complejidad ;
+    cfkg:tieneDificultad 5 ;
+    cfkg:aNivelDominio cfr:avanzado .
+
+cfr:busqueda_binaria a cfkg:PrincipioTransversal ;
+    rdfs:label "Búsqueda binaria"@es , "Binary search"@en ;
+    skos:prefLabel "Búsqueda binaria"@es ;
+    cfkg:perteneceATema cfr:T_complejidad ;
+    cfkg:tieneDificultad 4 ;
+    cfkg:requierePrerrequisito cfr:indexacion ;
+    cfkg:requierePrerrequisito cfr:bucle_while ;
+    cfkg:seAplicaA cfr:lista .
+
+#################################################################
+#  7. ABox — ERRORES CONCEPTUALES (misconceptions)
+#  con procedencia bibliográfica por reificación estilo Wikidata
+#################################################################
+
+cfr:err_off_by_one a cfkg:ErrorConceptual ;
+    rdfs:label "Error de índice por uno (off-by-one)"@es , "Off-by-one error"@en ;
+    rdfs:comment "Confusión en la condición de parada de un bucle o en los límites de un rango/índice."@es ;
+    cfkg:errorSobreConcepto cfr:indexacion ;
+    cfkg:tieneDificultad 3 .
+
+cfr:err_paso_referencia a cfkg:ErrorConceptual ;
+    rdfs:label "Confusión paso por valor / por referencia"@es , "Value vs reference confusion"@en ;
+    cfkg:errorSobreConcepto cfr:mutabilidad .
+
+cfr:err_iteracion_recursion a cfkg:ErrorConceptual ;
+    rdfs:label "Confusión iteración / recursión"@es , "Iteration vs recursion confusion"@en ;
+    cfkg:errorSobreConcepto cfr:recursion .
+
+cfr:err_identidad_igualdad a cfkg:ErrorConceptual ;
+    rdfs:label "Confusión == frente a is"@es , "Equality vs identity confusion"@en ;
+    cfkg:errorSobreConcepto cfr:tipo_bool .
+
+# Reificación (rdf:Statement): la afirmación "err_off_by_one es un error
+# sobre indexacion" está documentada en Keuning et al. (2019).
+cfr:stmt_offbyone a rdf:Statement ;
+    rdf:subject cfr:err_off_by_one ;
+    rdf:predicate cfkg:errorSobreConcepto ;
+    rdf:object cfr:indexacion ;
+    dcterms:source cfr:ref_keuning2019 ;
+    rdfs:comment "Procedencia del enunciado (patrón de reificación del material docente)."@es .
+
+cfr:ref_keuning2019 a cfkg:Recurso ;
+    rdfs:label "Keuning, Jeuring & Heeren (2019), A systematic literature review of automated feedback generation for programming exercises"@en ;
+    dcterms:title "A systematic literature review of automated feedback generation for programming exercises"@en ;
+    dcterms:creator "Hieke Keuning" , "Johan Jeuring" , "Bastiaan Heeren" ;
+    dcterms:date "2019"^^xsd:gYear ;
+    dcterms:identifier "10.1145/3231711" .
+
+#################################################################
+#  8. ABox — EJERCICIOS y EVALUACIÓN N-ARIA
+#################################################################
+
+cfr:ej_suma_lista a cfkg:Ejercicio ;
+    rdfs:label "Suma de los elementos de una lista"@es , "Sum the elements of a list"@en ;
+    cfkg:tieneEnunciado "Escribe una función que reciba una lista de enteros y devuelva su suma usando un bucle."@es ;
+    cfkg:tieneDificultad 2 ;
+    cfkg:cubreConcepto cfr:bucle_for , cfr:lista , cfr:funcion .
+
+cfr:ej_factorial a cfkg:Ejercicio ;
+    rdfs:label "Factorial recursivo"@es , "Recursive factorial"@en ;
+    cfkg:tieneEnunciado "Implementa el factorial de n de forma recursiva."@es ;
+    cfkg:tieneDificultad 3 ;
+    cfkg:cubreConcepto cfr:recursion , cfr:funcion .
+
+cfr:ej_busqueda a cfkg:Ejercicio ;
+    rdfs:label "Búsqueda binaria sobre lista ordenada"@es , "Binary search on a sorted list"@en ;
+    cfkg:tieneEnunciado "Implementa la búsqueda binaria sobre una lista ordenada y devuelve el índice del elemento."@es ;
+    cfkg:tieneDificultad 4 ;
+    cfkg:cubreConcepto cfr:busqueda_binaria , cfr:indexacion , cfr:bucle_while .
+
+# Relación N-aria reificada: en ej_busqueda se evalúa busqueda_binaria
+# con peso 0.6 y a nivel avanzado.
+cfr:eval_busqueda_bb a cfkg:EvaluacionDeConcepto ;
+    cfkg:enEjercicio cfr:ej_busqueda ;
+    cfkg:sobreConcepto cfr:busqueda_binaria ;
+    cfkg:conPeso 0.6 ;
+    cfkg:aNivelDominio cfr:avanzado .
+
+#################################################################
+#  9. ABox — RECURSOS, ESTUDIANTES Y ENVÍOS
+#################################################################
+
+cfr:rec_doc_listas a cfkg:Recurso , schema:LearningResource ;
+    rdfs:label "Documentación oficial: estructuras de datos"@es ;
+    dcterms:title "Data Structures — The Python Tutorial"@en ;
+    dcterms:creator "Python Software Foundation" ;
+    schema:url "https://docs.python.org/3/tutorial/datastructures.html" ;
+    cfkg:ilustraConcepto cfr:lista , cfr:diccionario .
+
+cfr:est_alicia a cfkg:Estudiante , foaf:Person ;
+    foaf:name "Alicia" ;
+    rdfs:label "Alicia"@es ;
+    cfkg:dominaConcepto cfr:variable , cfr:bucle_for , cfr:funcion .
+
+cfr:est_borja a cfkg:Estudiante , foaf:Person ;
+    foaf:name "Borja" ;
+    rdfs:label "Borja"@es ;
+    cfkg:dominaConcepto cfr:variable , cfr:condicional .
+
+cfr:envio_001 a cfkg:EnvioEstudiante ;
+    rdfs:label "Envío 001"@es ;
+    cfkg:enviadoPor cfr:est_alicia ;
+    cfkg:resuelveEjercicio cfr:ej_busqueda ;
+    cfkg:manifiestaError cfr:err_off_by_one ;
+    cfkg:numeroDeLineas 18 ;
+    dcterms:created "2026-05-12"^^xsd:date .
+
+cfr:envio_002 a cfkg:EnvioEstudiante ;
+    rdfs:label "Envío 002"@es ;
+    cfkg:enviadoPor cfr:est_borja ;
+    cfkg:resuelveEjercicio cfr:ej_factorial ;
+    cfkg:manifiestaError cfr:err_iteracion_recursion ;
+    cfkg:numeroDeLineas 11 ;
+    dcterms:created "2026-05-14"^^xsd:date .

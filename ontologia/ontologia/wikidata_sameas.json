@@ -1,0 +1,152 @@
+{
+  "python": {
+    "qid": "Q28865",
+    "label": "Python",
+    "desc": "general-purpose programming language"
+  },
+  "tabla_hash": {
+    "qid": "Q207440",
+    "label": "hash table",
+    "desc": "associates data values with key values - a lookup table"
+  },
+  "notacion_o": {
+    "qid": "Q269878",
+    "label": "big O notation",
+    "desc": "form of Landau notation representing asymptotically equivalent or slower growth"
+  },
+  "busqueda_binaria": {
+    "qid": "Q243754",
+    "label": "binary search algorithm",
+    "desc": "search algorithm in sorted lists that operates by decreasing the search space by half each pass"
+  },
+  "busqueda_lineal": {
+    "qid": "Q787903",
+    "label": "linear search",
+    "desc": "search algorithm in unsorted lists"
+  },
+  "ordenacion_burbuja": {
+    "qid": "Q60864",
+    "label": "bubble sort",
+    "desc": "simple sorting algorithm"
+  },
+  "ordenacion_mezcla": {
+    "qid": "Q189057",
+    "label": "merge sort",
+    "desc": "worst-case optimal stable divide and conquer comparison sorting algorithm"
+  },
+  "ordenacion_rapida": {
+    "qid": "Q486598",
+    "label": "quicksort",
+    "desc": "divide and conquer sorting algorithm"
+  },
+  "arbol_estr": {
+    "qid": "Q223655",
+    "label": "tree",
+    "desc": "abstract data type"
+  },
+  "bfs": {
+    "qid": "Q325904",
+    "label": "breadth-first search",
+    "desc": "algorithm for searching the nodes of a graph in order by their hop count from a starting node"
+  },
+  "dfs": {
+    "qid": "Q816319",
+    "label": "depth-first search",
+    "desc": "algorithm for traversing or searching tree or graph data structures"
+  },
+  "excepcion": {
+    "qid": "Q471748",
+    "label": "exception handling",
+    "desc": "process of responding to anomalous or exceptional conditions requiring special processing in computer programming"
+  },
+  "funcion_lambda": {
+    "qid": "Q567612",
+    "label": "anonymous function",
+    "desc": "function definition that is not bound to an identifier"
+  },
+  "tupla": {
+    "qid": "Q2879072",
+    "label": "tuple",
+    "desc": "computer science concept"
+  },
+  "diccionario": {
+    "qid": "Q80585",
+    "label": "associative array",
+    "desc": "data type that associates keys with values"
+  },
+  "complejidad": {
+    "qid": "Q2393193",
+    "label": "time complexity",
+    "desc": "estimate of time taken for running an algorithm"
+  },
+  "regex": {
+    "qid": "Q185612",
+    "label": "regular expression",
+    "desc": "sequence of characters that forms a search pattern"
+  },
+  "gil": {
+    "qid": "Q5570451",
+    "label": "global interpreter lock",
+    "desc": "coarse-grained mutex used in some process virtual machines"
+  },
+  "comprension_listas": {
+    "qid": "Q795065",
+    "label": "list comprehension",
+    "desc": "computer language construct for declaratively defining lists (or other data structures)"
+  },
+  "recursion": {
+    "qid": "Q264164",
+    "label": "recursion",
+    "desc": "algorithmic technique in computer science of solving a problem by reducing it to a smaller instance of the same problem"
+  },
+  "lista": {
+    "qid": "Q27948",
+    "label": "list",
+    "desc": "abstract data type used in computer science"
+  },
+  "clase": {
+    "qid": "Q4479242",
+    "label": "class",
+    "desc": "in object-oriented programming, a definition that specifies how an object works"
+  },
+  "herencia": {
+    "qid": "Q212542",
+    "label": "inheritance",
+    "desc": "concept in object-oriented programming"
+  },
+  "conjunto": {
+    "qid": "Q1514741",
+    "label": "set",
+    "desc": "abstract data type in computer science"
+  },
+  "grafo_estr": {
+    "qid": "Q2479726",
+    "label": "graph data structure",
+    "desc": "abstract data type in computer science"
+  },
+  "closure": {
+    "qid": "Q535335",
+    "label": "closure",
+    "desc": "technique for creating lexically scoped first class functions"
+  },
+  "generador": {
+    "qid": "Q2565187",
+    "label": "generator",
+    "desc": "special routine that can be used to control the iteration behaviour of a loopː looks like an array function, behaves like an iterator"
+  },
+  "iterador": {
+    "qid": "Q1326388",
+    "label": "iterator",
+    "desc": "in computing, an object whose methods enables a program to orderly traverse elements having some logical conditions in a given container from a given first element"
+  },
+  "polimorfismo": {
+    "qid": "Q3240252",
+    "label": "polymorphism",
+    "desc": "in programming languages and type theory, accessing different types using a common interface"
+  },
+  "decorador": {
+    "qid": "Q110938941",
+    "label": "decorator",
+    "desc": "expression that can be attached to a declaration"
+  }
+}

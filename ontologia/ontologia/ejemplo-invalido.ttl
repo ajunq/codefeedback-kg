@@ -1,0 +1,17 @@
+@prefix cfkg:   <https://w3id.org/codefeedback-kg/schema#> .
+@prefix cfr:     <https://w3id.org/codefeedback-kg/id/> .
+@prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
+
+#################################################################
+#  Ejemplo con violaciones DELIBERADAS para demostrar que SHACL
+#  detecta los defectos de forma. NO forma parte del grafo válido;
+#  se usa solo en la demostración de validación.
+#################################################################
+
+# Concepto sin tema y sin etiqueta, con dificultad fuera de rango (8).
+cfr:mal_concepto a cfkg:PrincipioTransversal ;
+    cfkg:tieneDificultad 8 .
+
+# Ejercicio sin enunciado, sin conceptos cubiertos y sin dificultad.
+cfr:mal_ejercicio a cfkg:Ejercicio ;
+    rdfs:label "Ejercicio mal formado"@es .

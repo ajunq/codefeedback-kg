@@ -1,0 +1,97 @@
+Resultados de consultas SPARQL — sin inferencia (NONE) — 1772 triples
+
+========================================================================
+01_conceptos_por_tema.rq
+========================================================================
+tema | conceptos
+------------------------------------------------------------------------
+Algoritmos | Árbol, Backtracking, Programación dinámica, sorted() y sort(), Tabla hash, Búsqueda lineal, Ordenación de burbuja, Ordenación por mezcla, Ordenación rápida, Recorrido en anchura (BFS), Recorrido en profundidad (DFS), Grafo (estructura), Notación O grande
+Cadenas de texto | Codificación de texto, Formateo de cadenas, f-strings, Métodos de cadena, Expresiones regulares (re), Slicing de cadenas
+Complejidad algorítmica | Complejidad temporal, Búsqueda binaria
+Concurrencia | asyncio, Corrutina, async/await, Hilos (threading), Multiproceso, GIL
+Control de flujo | break y continue, Gestor de contexto, else en bucles, enumerate(), match-case, range(), Operador ternario, Operador morsa (:=), zip(), Bucle while, Sentencia with, Condicional (if), Comprensión de listas, Bucle for
+Estructuras de datos | collections.Counter, collections.defaultdict, collections.deque, Montículo (heapq), Comprensión de diccionarios, Comprensión de conjuntos, Desempaquetado, Indexación negativa, Operador * y **, Conjunto (set), Mutabilidad, Pila (stack), Slicing (rebanado), Cola (queue), Iterables, Tupla, Diccionario, Indexación, Lista
+Excepciones | Encadenar excepciones, Excepción personalizada, try/except/else/finally, Jerarquía de excepciones, raise, Excepción
+Ficheros y E/S | Módulo csv, Escritura de ficheros, Módulo json, Lectura de ficheros, pathlib, Apertura de ficheros (open)
+Funciones | *args y **kwargs, Argumentos por nombre, Retorno múltiple, Argumentos por defecto, Ámbito de variables (scope), Parámetros y argumentos, Función
+Fundamentos | Asignación, Python, Entero (int), Variable, Booleano (bool), Cadena (str)
+Módulos y paquetes | collections, Entornos virtuales (venv), from ... import, Módulo datetime, Módulo math, Módulo os, Módulo random, Módulo sys, Gestor de paquetes (pip), Paquete, import
+Programación funcional | filter(), Función lambda, functools.wraps, itertools, map(), functools.partial, functools.reduce(), yield from, Expresión generadora, Iterador (iter, next), Clausura (closure), Generador (yield), Decorador, Funciones de orden superior
+Programación orientada a objetos | Clase abstracta (ABC), Mixin, Orden de resolución (MRO), Polimorfismo, Propiedad (@property), Parámetro self, Sobrecarga de operadores, __str__ y __repr__, super(), Atributo de instancia, Composición, Encapsulación, Constructor __init__, Método de clase, Método estático, Métodos especiales (dunder), Objeto / instancia, Herencia múltiple, Clase, Método, Herencia
+Pruebas y estilo | assert, Docstring, PEP 8 (estilo), pytest, Comprobación de tipos (mypy), unittest
+Recursión | Memoización (lru_cache), Recursión de cola, Recursión
+Sistema de tipos | Copia profunda, Dataclass, Enumeración (Enum), Identidad de objetos (is), namedtuple, Complejo (complex), Valores de verdad, Genéricos (TypeVar), typing.Optional, typing.Union, Conversión de tipos, Mutable vs inmutable, Bytes, NoneType (None), Flotante (float), Copia superficial, Anotaciones de tipo
+(16 filas)
+
+========================================================================
+02_inferencia_conceptos.rq
+========================================================================
+concepto | etiqueta
+------------------------------------------------------------------------
+(0 filas)
+
+========================================================================
+03_prerrequisitos_transitivos.rq
+========================================================================
+prerequisito | etiqueta
+------------------------------------------------------------------------
+https://w3id.org/codefeedback-kg/id/tipo_bool | Booleano (bool)
+https://w3id.org/codefeedback-kg/id/bucle_while | Bucle while
+https://w3id.org/codefeedback-kg/id/condicional | Condicional (if)
+https://w3id.org/codefeedback-kg/id/indexacion | Indexación
+https://w3id.org/codefeedback-kg/id/lista | Lista
+(5 filas)
+
+========================================================================
+04_ruta_aprendizaje.rq
+========================================================================
+paso | etiqueta | dificultad
+------------------------------------------------------------------------
+https://w3id.org/codefeedback-kg/id/funcion | Función | 2
+(1 filas)
+
+========================================================================
+05_errores_por_concepto.rq
+========================================================================
+error | concepto | fuente
+------------------------------------------------------------------------
+Capturar Exception de forma demasiado amplia | Jerarquía de excepciones | 
+Comparar flotantes con == | Flotante (float) | 
+Concatenar cadena y número (TypeError) | Conversión de tipos | 
+Confundir variable global y local | Ámbito de variables (scope) | 
+Confusión == frente a is | Booleano (bool) | 
+Confusión iteración / recursión | Recursión | 
+Confusión paso por valor / por referencia | Mutabilidad | 
+Copia superficial cuando se necesita profunda | Copia superficial | 
+Decorador sin functools.wraps | Decorador | 
+Error de índice por uno (off-by-one) | Indexación | A systematic literature review of automated feedback generation for programming exercises
+Esperar paralelismo real con hilos (GIL) | GIL | 
+Late binding en clausuras de bucle | Clausura (closure) | 
+Modificar una lista mientras se itera | Bucle for | 
+No llamar a super() en la subclase | Herencia | 
+Olvidar self en un método | Método | 
+Reutilizar un generador agotado | Generador (yield) | 
+(16 filas)
+
+========================================================================
+06_construct_prereq_directos.rq
+========================================================================
+[CONSTRUCT] 340 triples generados
+
+========================================================================
+07_diagnostico_envio.rq
+========================================================================
+envio | ejercicio | error | conceptoAfectado | prerequisito
+------------------------------------------------------------------------
+Envío 001 | Búsqueda binaria sobre lista ordenada | Error de índice por uno (off-by-one) | Indexación | Lista
+Envío 002 | Factorial recursivo | Confusión iteración / recursión | Recursión | Función
+(2 filas)
+
+========================================================================
+10_jerarquia_skos_estrella.rq
+========================================================================
+general | etiqueta
+------------------------------------------------------------------------
+https://w3id.org/codefeedback-kg/id/grafo_estr | Grafo (estructura)
+https://w3id.org/codefeedback-kg/id/bfs | Recorrido en anchura (BFS)
+(2 filas)

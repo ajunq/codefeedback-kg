@@ -1,0 +1,14 @@
+PREFIX cfkg: <https://w3id.org/codefeedback-kg/schema#>
+PREFIX rdfs:  <http://www.w3.org/2000/01/rdf-schema#>
+
+# Consulta básica (SELECT): conceptos agrupados por tema, en español.
+SELECT ?tema (GROUP_CONCAT(?etiqueta; SEPARATOR=", ") AS ?conceptos)
+WHERE {
+  ?concepto cfkg:perteneceATema ?t .
+  ?t rdfs:label ?tema .
+  ?concepto rdfs:label ?etiqueta .
+  FILTER(LANG(?tema) = "es")
+  FILTER(LANG(?etiqueta) = "es")
+}
+GROUP BY ?tema
+ORDER BY ?tema

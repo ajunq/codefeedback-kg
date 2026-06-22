@@ -1,0 +1,7 @@
+# Entregable de grafo (CodeFeedback-KG) — Web Semántica
+# Python 3.12. Instalar con: pip install -r requirements.txt
+rdflib==7.6.0
+owlrl==7.1.4
+pyshacl==0.31.0
+networkx==3.6.1
+requests==2.34.2

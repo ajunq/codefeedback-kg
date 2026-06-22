@@ -1,0 +1,12 @@
+PREFIX cfkg: <https://w3id.org/codefeedback-kg/schema#>
+
+# CONSTRUCT: materializa como triples directos el cierre transitivo de
+# prerrequisitos. Devuelve un grafo nuevo (cfkg:tienePrerrequisitoTransitivo)
+# que aplana la representación indirecta, útil para exportar o cargar
+# en un sistema que no razone.
+CONSTRUCT {
+  ?concepto cfkg:tienePrerrequisitoTransitivo ?prerequisito .
+}
+WHERE {
+  ?concepto cfkg:requierePrerrequisito+ ?prerequisito .
+}

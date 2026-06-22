@@ -1,0 +1,11 @@
+CFKG-Coder-Adapter-v1
+Copyright 2026 Adrián Bueno Junquero
+Licensed under the Apache License, Version 2.0. See LICENSE.
+
+This artifact is a parameter-efficient LoRA fine-tuning adapter (trained with QLoRA, 4-bit NF4
+quantisation, NEFTune) over the base model Qwen2.5-Coder-7B-Instruct, which is licensed under
+Apache-2.0 (© Alibaba Cloud / Qwen Team).
+
+Significant change (Apache-2.0 §4): additive low-rank adapter weights only. Trained with a fixed
+random seed 11 on the CodeFeedback-KG Spanish code-feedback dataset, on a single NVIDIA RTX 5090.
+The base model is not redistributed here; only the adapter weights, tokenizer and chat template.

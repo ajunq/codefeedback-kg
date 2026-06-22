@@ -1,0 +1,28 @@
+PREFIX cfkg: <https://w3id.org/codefeedback-kg/schema#>
+PREFIX rdfs:  <http://www.w3.org/2000/01/rdf-schema#>
+
+# Caso de uso (recuperación de subgrafo para el RAG):
+# dado un envío de estudiante, recupera el ejercicio, el error
+# manifestado, el concepto afectado y los prerrequisitos de ese
+# concepto que el estudiante podría no dominar todavía.
+SELECT ?envio ?ejercicio ?error ?conceptoAfectado ?prerequisito
+WHERE {
+  ?env a cfkg:EnvioEstudiante ;
+       rdfs:label ?envio ;
+       cfkg:resuelveEjercicio ?ej ;
+       cfkg:manifiestaError ?e .
+  ?ej rdfs:label ?ejercicio .
+  ?e  rdfs:label ?error ;
+      cfkg:errorSobreConcepto ?c .
+  ?c  rdfs:label ?conceptoAfectado .
+  OPTIONAL {
+    ?c cfkg:requierePrerrequisito+ ?p .
+    ?p rdfs:label ?prerequisito .
+    FILTER(LANG(?prerequisito) = "es")
+  }
+  FILTER(LANG(?envio) = "es")
+  FILTER(LANG(?ejercicio) = "es")
+  FILTER(LANG(?error) = "es")
+  FILTER(LANG(?conceptoAfectado) = "es")
+}
+ORDER BY ?envio ?prerequisito

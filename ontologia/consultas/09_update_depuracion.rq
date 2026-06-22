@@ -1,0 +1,48 @@
+PREFIX cfkg: <https://w3id.org/codefeedback-kg/schema#>
+PREFIX cfr:   <https://w3id.org/codefeedback-kg/id/>
+PREFIX rdfs:  <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX skos:  <http://www.w3.org/2004/02/skos/core#>
+
+# AMPLIACIÓN — SPARQL como ADMINISTRACIÓN y DEPURACIÓN del grafo (capa UPDATE
+# de SPARQL 1.1: INSERT/DELETE). El mismo lenguaje que interroga el EKG también
+# lo mantiene: dar de alta hechos, corregirlos y retirarlos. Se incluye por
+# indicación del director.
+#
+# IMPORTANTE: este fichero NO es una consulta de lectura (SELECT/CONSTRUCT/ASK),
+# sino tres OPERACIONES DE ESCRITURA. Por eso NO lo ejecuta `scripts/consultar.py`
+# (que recorre solo las consultas de lectura). Para probarlo, ejecútelo en la
+# consola "Query & Update" de GraphDB o en cualquier almacén RDF4J/endpoint
+# SPARQL 1.1 con permiso de escritura. Opera sobre el esquema (`cfkg:`) y los
+# identificadores reales del proyecto (`cfr:`), parafraseando la ontología
+# `codefeedback-kg-150.ttl`. Tras administrar, conviene revalidar con SHACL
+# (`scripts/validar.py`) y recalcular las cifras del grafo, ya que cambian con
+# cada edición.
+
+# --- (1) ALTA de hechos con INSERT DATA -------------------------------------
+# Incorpora un concepto nuevo ("Comprensión de listas") y lo enlaza con su tema,
+# su prerrequisito y su dificultad. El patrón es el mismo Turtle del grafo,
+# expresado como operación de escritura.
+INSERT DATA {
+  cfr:comprension_listas a cfkg:EstructuraDeDatos ;
+      rdfs:label "List comprehension"@en , "Comprensión de listas"@es ;
+      skos:prefLabel "Comprensión de listas"@es ;
+      cfkg:perteneceATema cfr:T_colecciones ;
+      cfkg:requierePrerrequisito cfr:bucle_for ;
+      cfkg:tieneDificultad 3 .
+} ;
+
+# --- (2) CORRECCIÓN con DELETE … INSERT … WHERE -----------------------------
+# Reajusta en una sola transacción la dificultad declarada de "Recursión":
+# retira el valor antiguo (cualquiera que sea, capturado en ?d) y coloca el 5.
+# `cfkg:tieneDificultad` es owl:FunctionalProperty, así que conviene sustituir
+# (DELETE+INSERT) en vez de añadir un segundo valor.
+DELETE { cfr:recursion cfkg:tieneDificultad ?d . }
+INSERT { cfr:recursion cfkg:tieneDificultad 5 . }
+WHERE  { cfr:recursion cfkg:tieneDificultad ?d . } ;
+
+# --- (3) RETIRADA de hechos con DELETE WHERE --------------------------------
+# Da de baja TODO lo afirmado sobre un recurso obsoleto: elimina cualquier
+# triple cuyo sujeto sea el concepto retirado. Úsese con cuidado y dentro de la
+# transacción de mantenimiento (no purga los triples en los que el recurso
+# aparezca como OBJETO; para eso añádase un segundo patrón ?s ?p cfr:... ).
+DELETE WHERE { cfr:concepto_obsoleto ?p ?o . }

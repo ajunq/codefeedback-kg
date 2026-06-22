@@ -1,0 +1,24 @@
+PREFIX cfkg: <https://w3id.org/codefeedback-kg/schema#>
+PREFIX cfr:   <https://w3id.org/codefeedback-kg/id/>
+PREFIX rdfs:  <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX skos:  <http://www.w3.org/2004/02/skos/core#>
+
+# AMPLIACIÓN — Property path con la ESTRELLA (*): cierre transitivo REFLEXIVO.
+# Mientras `+` (consulta 03) recorre UNO O MÁS pasos y excluye el punto de
+# partida, `*` recorre CERO O MÁS pasos e INCLUYE el propio nodo de partida.
+# Aquí se recorre la jerarquía conceptual SKOS (skos:broader) hacia arriba
+# desde "Recorrido en anchura (BFS)" para obtener todos sus conceptos más
+# generales, INCLUYÉNDOSE a sí mismo.
+#
+# Contraste real sobre el grafo canónico (codefeedback-kg-150.ttl):
+#   cfr:bfs skos:broader*  -> 2 filas: "Recorrido en anchura (BFS)" (él mismo,
+#                                       camino de longitud 0) y "Grafo (estructura)".
+#   cfr:bfs skos:broader+  -> 1 fila : "Grafo (estructura)" (excluye el de partida).
+# La diferencia (el nodo de partida) es exactamente lo que aporta la estrella.
+SELECT DISTINCT ?general ?etiqueta
+WHERE {
+  cfr:bfs skos:broader* ?general .
+  ?general rdfs:label ?etiqueta .
+  FILTER(LANG(?etiqueta) = "es")
+}
+ORDER BY ?etiqueta

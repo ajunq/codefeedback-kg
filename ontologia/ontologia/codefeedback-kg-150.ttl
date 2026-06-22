@@ -1,0 +1,2028 @@
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix cfkg: <https://w3id.org/codefeedback-kg/schema#> .
+@prefix cfr: <https://w3id.org/codefeedback-kg/id/> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix schema: <http://schema.org/> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix wd: <http://www.wikidata.org/entity/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+cfr:abstract_class a cfkg:Paradigma ;
+    rdfs:label "Abstract base class"@en,
+        "Clase abstracta (ABC)"@es ;
+    cfkg:aNivelDominio cfr:avanzado ;
+    cfkg:perteneceATema cfr:T_poo ;
+    cfkg:requierePrerrequisito cfr:herencia ;
+    cfkg:tieneDificultad 5 .
+
+cfr:arbol_estr a cfkg:EstructuraDeDatos ;
+    rdfs:label "Tree"@en,
+        "Árbol"@es ;
+    skos:exactMatch wd:Q223655 ;
+    cfkg:aNivelDominio cfr:avanzado ;
+    cfkg:perteneceATema cfr:T_algoritmos ;
+    cfkg:requierePrerrequisito cfr:recursion ;
+    cfkg:tieneDificultad 4 .
+
+cfr:args_kwargs a cfkg:PrincipioTransversal ;
+    rdfs:label "args and kwargs"@en,
+        "*args y **kwargs"@es ;
+    cfkg:aNivelDominio cfr:intermedio ;
+    cfkg:perteneceATema cfr:T_funciones ;
+    cfkg:requierePrerrequisito cfr:operador_estrella,
+        cfr:parametros ;
+    cfkg:tieneDificultad 3 .
+
+cfr:argumentos_nombrados a cfkg:PrincipioTransversal ;
+    rdfs:label "Keyword arguments"@en,
+        "Argumentos por nombre"@es ;
+    cfkg:aNivelDominio cfr:basico ;
+    cfkg:perteneceATema cfr:T_funciones ;
+    cfkg:requierePrerrequisito cfr:parametros ;
+    cfkg:tieneDificultad 2 .
+
+cfr:asignacion a cfkg:PrincipioTransversal ;
+    rdfs:label "Assignment"@en,
+        "Asignación"@es ;
+    cfkg:esPrerrequisitoDe cfr:bucle_for ;
+    cfkg:perteneceATema cfr:T_fundamentos ;
+    cfkg:tieneDificultad 1 .
+
+cfr:assert_stmt a cfkg:EstructuraDeControl ;
+    rdfs:label "assert"@en,
+        "assert"@es ;
+    cfkg:aNivelDominio cfr:intermedio ;
+    cfkg:perteneceATema cfr:T_testing ;
+    cfkg:requierePrerrequisito cfr:condicional ;
+    cfkg:tieneDificultad 3 .
+
+cfr:asyncio_mod a cfkg:ModuloLibreria ;
+    rdfs:label "asyncio"@en,
+        "asyncio"@es ;
+    cfkg:aNivelDominio cfr:avanzado ;
+    cfkg:perteneceATema cfr:T_concurrencia ;
+    cfkg:requierePrerrequisito cfr:async_await ;
+    cfkg:tieneDificultad 5 .
+
+cfr:backtracking a cfkg:PrincipioTransversal ;
+    rdfs:label "Backtracking"@en,
+        "Backtracking"@es ;
+    cfkg:aNivelDominio cfr:avanzado ;
+    cfkg:perteneceATema cfr:T_algoritmos ;
+    cfkg:requierePrerrequisito cfr:recursion ;
+    cfkg:tieneDificultad 5 .
+
+cfr:break_continue a cfkg:EstructuraDeControl ;
+    rdfs:label "break and continue"@en,
+        "break y continue"@es ;
+    cfkg:aNivelDominio cfr:basico ;
+    cfkg:perteneceATema cfr:T_control ;
+    cfkg:requierePrerrequisito cfr:bucle_for ;
+    cfkg:tieneDificultad 2 .
+
+cfr:collections_mod a cfkg:ModuloLibreria ;
+    rdfs:label "collections"@en,
+        "collections"@es ;
+    cfkg:aNivelDominio cfr:intermedio ;
+    cfkg:perteneceATema cfr:T_modulos ;
+    cfkg:requierePrerrequisito cfr:import_mod ;
+    cfkg:tieneDificultad 3 .
+
+cfr:context_manager a cfkg:Paradigma ;
+    rdfs:label "Context manager"@en,
+        "Gestor de contexto"@es ;
+    cfkg:aNivelDominio cfr:avanzado ;
+    cfkg:perteneceATema cfr:T_control ;
+    cfkg:requierePrerrequisito cfr:clase,
+        cfr:with_context ;
+    cfkg:tieneDificultad 5 .
+
+cfr:copia_profunda a cfkg:PrincipioTransversal ;
+    rdfs:label "Deep copy"@en,
+        "Copia profunda"@es ;
+    cfkg:aNivelDominio cfr:avanzado ;
+    cfkg:contrastaCon cfr:copia_superficial ;
+    cfkg:perteneceATema cfr:T_tipos ;
+    cfkg:requierePrerrequisito cfr:copia_superficial ;
+    cfkg:tieneDificultad 4 .
+
+cfr:corrutina a cfkg:PrincipioTransversal ;
+    rdfs:label "Coroutine"@en,
+        "Corrutina"@es ;
+    cfkg:aNivelDominio cfr:avanzado ;
+    cfkg:perteneceATema cfr:T_concurrencia ;
+    cfkg:requierePrerrequisito cfr:async_await,
+        cfr:generador ;
+    cfkg:tieneDificultad 5 .
+
+cfr:counter a cfkg:EstructuraDeDatos ;
+    rdfs:label "Counter"@en,
+        "collections.Counter"@es ;
+    cfkg:aNivelDominio cfr:intermedio ;
+    cfkg:perteneceATema cfr:T_estructuras ;
+    cfkg:requierePrerrequisito cfr:diccionario ;
+    cfkg:tieneDificultad 3 .
+
+cfr:csv_mod a cfkg:ModuloLibreria ;
+    rdfs:label "csv module"@en,
+        "Módulo csv"@es ;
+    cfkg:aNivelDominio cfr:intermedio ;
+    cfkg:perteneceATema cfr:T_ficheros ;
+    cfkg:requierePrerrequisito cfr:lista ;
+    cfkg:tieneDificultad 3 .
+
+cfr:dataclass a cfkg:Paradigma ;
+    rdfs:label "Dataclass"@en,
+        "Dataclass"@es ;
+    cfkg:aNivelDominio cfr:intermedio ;
+    cfkg:perteneceATema cfr:T_tipos ;
+    cfkg:requierePrerrequisito cfr:anotaciones_tipo,
+        cfr:clase ;
+    cfkg:tieneDificultad 3 .
+
+cfr:defaultdict a cfkg:EstructuraDeDatos ;
+    rdfs:label "defaultdict"@en,
+        "collections.defaultdict"@es ;
+    cfkg:aNivelDominio cfr:intermedio ;
+    cfkg:perteneceATema cfr:T_estructuras ;
+    cfkg:requierePrerrequisito cfr:diccionario ;
+    cfkg:tieneDificultad 3 .
+
+cfr:deque a cfkg:EstructuraDeDatos ;
+    rdfs:label "deque"@en,
+        "collections.deque"@es ;
+    cfkg:aNivelDominio cfr:intermedio ;
+    cfkg:perteneceATema cfr:T_estructuras ;
+    cfkg:requierePrerrequisito cfr:lista ;
+    cfkg:tieneDificultad 3 .
+
+cfr:docstring a cfkg:PrincipioTransversal ;
+    rdfs:label "Docstring"@en,
+        "Docstring"@es ;
+    cfkg:aNivelDominio cfr:basico ;
+    cfkg:perteneceATema cfr:T_testing ;
+    cfkg:requierePrerrequisito cfr:funcion ;
+    cfkg:tieneDificultad 2 .
+
+cfr:else_bucle a cfkg:EstructuraDeControl ;
+    rdfs:label "loop else"@en,
+        "else en bucles"@es ;
+    cfkg:aNivelDominio cfr:intermedio ;
+    cfkg:perteneceATema cfr:T_control ;
+    cfkg:requierePrerrequisito cfr:bucle_for ;
+    cfkg:tieneDificultad 3 .
+
+cfr:encadenar_excepciones a cfkg:EstructuraDeControl ;
+    rdfs:label "Exception chaining"@en,
+        "Encadenar excepciones"@es ;
+    cfkg:aNivelDominio cfr:avanzado ;
+    cfkg:perteneceATema cfr:T_excepciones ;
+    cfkg:requierePrerrequisito cfr:raise_excepcion ;
+    cfkg:tieneDificultad 4 .
+
+cfr:encoding a cfkg:PrincipioTransversal ;
+    rdfs:label "Text encoding"@en,
+        "Codificación de texto"@es ;
+    cfkg:aNivelDominio cfr:avanzado ;
+    cfkg:perteneceATema cfr:T_strings ;
+    cfkg:requierePrerrequisito cfr:tipo_bytes,
+        cfr:tipo_str ;
+    cfkg:tieneDificultad 4 .
+
+cfr:entorno_virtual a cfkg:PrincipioTransversal ;
+    rdfs:label "Virtual environments"@en,
+        "Entornos virtuales (venv)"@es ;
+    cfkg:aNivelDominio cfr:intermedio ;
+    cfkg:perteneceATema cfr:T_modulos ;
+    cfkg:requierePrerrequisito cfr:paquete ;
+    cfkg:tieneDificultad 3 .
+
+cfr:enum_tipo a cfkg:Paradigma ;
+    rdfs:label "Enum"@en,
+        "Enumeración (Enum)"@es ;
+    cfkg:aNivelDominio cfr:intermedio ;
+    cfkg:perteneceATema cfr:T_tipos ;
+    cfkg:requierePrerrequisito cfr:clase ;
+    cfkg:tieneDificultad 3 .
+
+cfr:enumerate_f a cfkg:FuncionIntegrada ;
+    rdfs:label "enumerate"@en,
+        "enumerate()"@es ;
+    cfkg:aNivelDominio cfr:basico ;
+    cfkg:perteneceATema cfr:T_control ;
+    cfkg:requierePrerrequisito cfr:bucle_for,
+        cfr:indexacion ;
+    cfkg:tieneDificultad 2 .
+
+cfr:envio_001 a cfkg:EnvioEstudiante ;
+    rdfs:label "Submission 001"@en,
+        "Envío 001"@es ;
+    dcterms:created "2026-05-12"^^xsd:date ;
+    cfkg:enviadoPor cfr:est_alicia ;
+    cfkg:manifiestaError cfr:err_off_by_one ;
+    cfkg:numeroDeLineas 18 ;
+    cfkg:resuelveEjercicio cfr:ej_busqueda .
+
+cfr:envio_002 a cfkg:EnvioEstudiante ;
+    rdfs:label "Submission 002"@en,
+        "Envío 002"@es ;
+    dcterms:created "2026-05-14"^^xsd:date ;
+    cfkg:enviadoPor cfr:est_borja ;
+    cfkg:manifiestaError cfr:err_iteracion_recursion ;
+    cfkg:numeroDeLineas 11 ;
+    cfkg:resuelveEjercicio cfr:ej_factorial .
+
+cfr:err_concatenar_tipos a cfkg:ErrorConceptual ;
+    rdfs:label "Concatenating str and int"@en,
+        "Concatenar cadena y número (TypeError)"@es ;
+    cfkg:errorSobreConcepto cfr:conversion_tipos .
+
+cfr:err_decorador_wraps a cfkg:ErrorConceptual ;
+    rdfs:label "Decorator without wraps"@en,
+        "Decorador sin functools.wraps"@es ;
+    cfkg:errorSobreConcepto cfr:decorador .
+
+cfr:err_except_generico a cfkg:ErrorConceptual ;
+    rdfs:label "Overly broad except"@en,
+        "Capturar Exception de forma demasiado amplia"@es ;
+    cfkg:errorSobreConcepto cfr:jerarquia_excepciones .
+
+cfr:err_float_igualdad a cfkg:ErrorConceptual ;
+    rdfs:label "Float equality comparison"@en,
+        "Comparar flotantes con =="@es ;
+    cfkg:errorSobreConcepto cfr:tipo_float .
+
+cfr:err_generador_agotado a cfkg:ErrorConceptual ;
+    rdfs:label "Exhausted generator reuse"@en,
+        "Reutilizar un generador agotado"@es ;
+    cfkg:errorSobreConcepto cfr:generador .
+
+cfr:err_gil_paralelismo a cfkg:ErrorConceptual ;
+    rdfs:label "Expecting threads to parallelize"@en,
+        "Esperar paralelismo real con hilos (GIL)"@es ;
+    cfkg:errorSobreConcepto cfr:gil .
+
+cfr:err_global_local a cfkg:ErrorConceptual ;
+    rdfs:label "Global vs local confusion"@en,
+        "Confundir variable global y local"@es ;
+    cfkg:errorSobreConcepto cfr:ambito .
+
+cfr:err_identidad_igualdad a cfkg:ErrorConceptual ;
+    rdfs:label "Equality vs identity confusion"@en,
+        "Confusión == frente a is"@es ;
+    cfkg:errorSobreConcepto cfr:tipo_bool .
+
+cfr:err_late_binding a cfkg:ErrorConceptual ;
+    rdfs:label "Loop closure late binding"@en,
+        "Late binding en clausuras de bucle"@es ;
+    cfkg:errorSobreConcepto cfr:closure .
+
+cfr:err_mod_durante_iteracion a cfkg:ErrorConceptual ;
+    rdfs:label "Mutating list while iterating"@en,
+        "Modificar una lista mientras se itera"@es ;
+    cfkg:errorSobreConcepto cfr:bucle_for .
+
+cfr:err_paso_referencia a cfkg:ErrorConceptual ;
+    rdfs:label "Value vs reference confusion"@en,
+        "Confusión paso por valor / por referencia"@es ;
+    cfkg:errorSobreConcepto cfr:mutabilidad .
+
+cfr:err_self_olvidado a cfkg:ErrorConceptual ;
+    rdfs:label "Missing self parameter"@en,
+        "Olvidar self en un método"@es ;
+    cfkg:errorSobreConcepto cfr:metodo .
+
+cfr:err_shallow_copy a cfkg:ErrorConceptual ;
+    rdfs:label "Shallow when deep needed"@en,
+        "Copia superficial cuando se necesita profunda"@es ;
+    cfkg:errorSobreConcepto cfr:copia_superficial .
+
+cfr:err_super_olvidado a cfkg:ErrorConceptual ;
+    rdfs:label "Missing super() call"@en,
+        "No llamar a super() en la subclase"@es ;
+    cfkg:errorSobreConcepto cfr:herencia .
+
+cfr:escribir_fichero a cfkg:FuncionIntegrada ;
+    rdfs:label "File writing"@en,
+        "Escritura de ficheros"@es ;
+    cfkg:aNivelDominio cfr:intermedio ;
+    cfkg:perteneceATema cfr:T_ficheros ;
+    cfkg:requierePrerrequisito cfr:abrir_fichero ;
+    cfkg:tieneDificultad 3 .
+
+cfr:eval_busqueda_bb a cfkg:EvaluacionDeConcepto ;
+    rdfs:label "Binary-search assessment in ej_busqueda"@en,
+        "Evaluación de búsqueda binaria en ej_busqueda"@es ;
+    cfkg:aNivelDominio cfr:avanzado ;
+    cfkg:conPeso 0.6 ;
+    cfkg:enEjercicio cfr:ej_busqueda ;
+    cfkg:sobreConcepto cfr:busqueda_binaria .
+
+cfr:evalact_01 a cfkg:EvaluacionActividad ;
+    rdfs:label "Activity assessment 01"@en,
+        "Evaluación de actividad 01"@es ;
+    cfkg:enFecha "2026-03-02"^^xsd:date ;
+    cfkg:evaluaA cfr:ej_suma_lista ;
+    cfkg:obtuvoNota 8.5 ;
+    cfkg:porEstudiante cfr:est_alicia .
+
+cfr:evalact_02 a cfkg:EvaluacionActividad ;
+    rdfs:label "Activity assessment 02"@en,
+        "Evaluación de actividad 02"@es ;
+    cfkg:enFecha "2026-03-09"^^xsd:date ;
+    cfkg:evaluaA cfr:ej_factorial ;
+    cfkg:obtuvoNota 6.0 ;
+    cfkg:porEstudiante cfr:est_borja .
+
+cfr:evalact_03 a cfkg:EvaluacionActividad ;
+    rdfs:label "Activity assessment 03"@en,
+        "Evaluación de actividad 03"@es ;
+    cfkg:enFecha "2026-03-16"^^xsd:date ;
+    cfkg:evaluaA cfr:ej_busqueda ;
+    cfkg:obtuvoNota 9.0 ;
+    cfkg:porEstudiante cfr:est_alicia .
+
+cfr:evalact_04 a cfkg:EvaluacionActividad ;
+    rdfs:label "Activity assessment 04"@en,
+        "Evaluación de actividad 04"@es ;
+    cfkg:enFecha "2026-03-23"^^xsd:date ;
+    cfkg:evaluaA cfr:ej_suma_lista ;
+    cfkg:obtuvoNota 7.5 ;
+    cfkg:porEstudiante cfr:est_borja .
+
+cfr:evalact_05 a cfkg:EvaluacionActividad ;
+    rdfs:label "Activity assessment 05"@en,
+        "Evaluación de actividad 05"@es ;
+    cfkg:enFecha "2026-03-30"^^xsd:date ;
+    cfkg:evaluaA cfr:ej_factorial ;
+    cfkg:obtuvoNota 5.5 ;
+    cfkg:porEstudiante cfr:est_alicia .
+
+cfr:evalact_06 a cfkg:EvaluacionActividad ;
+    rdfs:label "Activity assessment 06"@en,
+        "Evaluación de actividad 06"@es ;
+    cfkg:enFecha "2026-04-06"^^xsd:date ;
+    cfkg:evaluaA cfr:ej_busqueda ;
+    cfkg:obtuvoNota 10.0 ;
+    cfkg:porEstudiante cfr:est_borja .
+
+cfr:evalact_07 a cfkg:EvaluacionActividad ;
+    rdfs:label "Activity assessment 07"@en,
+        "Evaluación de actividad 07"@es ;
+    cfkg:enFecha "2026-04-13"^^xsd:date ;
+    cfkg:evaluaA cfr:ej_suma_lista ;
+    cfkg:obtuvoNota 6.5 ;
+    cfkg:porEstudiante cfr:est_alicia .
+
+cfr:evalact_08 a cfkg:EvaluacionActividad ;
+    rdfs:label "Activity assessment 08"@en,
+        "Evaluación de actividad 08"@es ;
+    cfkg:enFecha "2026-04-20"^^xsd:date ;
+    cfkg:evaluaA cfr:ej_factorial ;
+    cfkg:obtuvoNota 8.0 ;
+    cfkg:porEstudiante cfr:est_borja .
+
+cfr:evalact_09 a cfkg:EvaluacionActividad ;
+    rdfs:label "Activity assessment 09"@en,
+        "Evaluación de actividad 09"@es ;
+    cfkg:enFecha "2026-04-27"^^xsd:date ;
+    cfkg:evaluaA cfr:ej_busqueda ;
+    cfkg:obtuvoNota 7.0 ;
+    cfkg:porEstudiante cfr:est_alicia .
+
+cfr:evalact_10 a cfkg:EvaluacionActividad ;
+    rdfs:label "Activity assessment 10"@en,
+        "Evaluación de actividad 10"@es ;
+    cfkg:enFecha "2026-05-04"^^xsd:date ;
+    cfkg:evaluaA cfr:ej_suma_lista ;
+    cfkg:obtuvoNota 9.5 ;
+    cfkg:porEstudiante cfr:est_borja .
+
+cfr:excepcion_personalizada a cfkg:Paradigma ;
+    rdfs:label "Custom exception"@en,
+        "Excepción personalizada"@es ;
+    cfkg:aNivelDominio cfr:avanzado ;
+    cfkg:perteneceATema cfr:T_excepciones ;
+    cfkg:requierePrerrequisito cfr:excepcion,
+        cfr:herencia ;
+    cfkg:tieneDificultad 4 .
+
+cfr:filter_func a cfkg:FuncionIntegrada ;
+    rdfs:label "filter"@en,
+        "filter()"@es ;
+    cfkg:aNivelDominio cfr:intermedio ;
+    cfkg:perteneceATema cfr:T_funcional ;
+    cfkg:requierePrerrequisito cfr:funcion_orden_superior,
+        cfr:iterables ;
+    cfkg:tieneDificultad 3 .
+
+cfr:formato_str a cfkg:PrincipioTransversal ;
+    rdfs:label "String formatting"@en,
+        "Formateo de cadenas"@es ;
+    cfkg:aNivelDominio cfr:basico ;
+    cfkg:perteneceATema cfr:T_strings ;
+    cfkg:requierePrerrequisito cfr:tipo_str ;
+    cfkg:tieneDificultad 2 .
+
+cfr:from_import a cfkg:PrincipioTransversal ;
+    rdfs:label "from import"@en,
+        "from ... import"@es ;
+    cfkg:aNivelDominio cfr:basico ;
+    cfkg:perteneceATema cfr:T_modulos ;
+    cfkg:requierePrerrequisito cfr:import_mod ;
+    cfkg:tieneDificultad 2 .
+
+cfr:fstring a cfkg:PrincipioTransversal ;
+    rdfs:label "f-strings"@en,
+        "f-strings"@es ;
+    cfkg:aNivelDominio cfr:basico ;
+    cfkg:perteneceATema cfr:T_strings ;
+    cfkg:requierePrerrequisito cfr:tipo_str ;
+    cfkg:tieneDificultad 2 .
+
+cfr:funcion_lambda a cfkg:PrincipioTransversal ;
+    rdfs:label "Lambda"@en,
+        "Función lambda"@es ;
+    skos:exactMatch wd:Q567612 ;
+    cfkg:aNivelDominio cfr:intermedio ;
+    cfkg:perteneceATema cfr:T_funcional ;
+    cfkg:requierePrerrequisito cfr:funcion ;
+    cfkg:tieneDificultad 3 .
+
+cfr:functools_wraps a cfkg:ModuloLibreria ;
+    rdfs:label "functools.wraps"@en,
+        "functools.wraps"@es ;
+    cfkg:aNivelDominio cfr:avanzado ;
+    cfkg:perteneceATema cfr:T_funcional ;
+    cfkg:requierePrerrequisito cfr:decorador ;
+    cfkg:tieneDificultad 4 .
+
+cfr:heap a cfkg:EstructuraDeDatos ;
+    rdfs:label "Heap"@en,
+        "Montículo (heapq)"@es ;
+    cfkg:aNivelDominio cfr:avanzado ;
+    cfkg:perteneceATema cfr:T_estructuras ;
+    cfkg:requierePrerrequisito cfr:complejidad,
+        cfr:lista ;
+    cfkg:tieneDificultad 4 .
+
+cfr:identidad_objetos a cfkg:PrincipioTransversal ;
+    rdfs:label "Object identity"@en,
+        "Identidad de objetos (is)"@es ;
+    cfkg:aNivelDominio cfr:intermedio ;
+    cfkg:perteneceATema cfr:T_tipos ;
+    cfkg:requierePrerrequisito cfr:mutable_inmutable ;
+    cfkg:tieneDificultad 3 .
+
+cfr:itertools_mod a cfkg:ModuloLibreria ;
+    rdfs:label "itertools"@en,
+        "itertools"@es ;
+    cfkg:aNivelDominio cfr:avanzado ;
+    cfkg:perteneceATema cfr:T_funcional ;
+    cfkg:requierePrerrequisito cfr:iterables ;
+    cfkg:tieneDificultad 4 .
+
+cfr:json_mod a cfkg:ModuloLibreria ;
+    rdfs:label "json module"@en,
+        "Módulo json"@es ;
+    cfkg:aNivelDominio cfr:intermedio ;
+    cfkg:perteneceATema cfr:T_ficheros ;
+    cfkg:requierePrerrequisito cfr:diccionario ;
+    cfkg:tieneDificultad 3 .
+
+cfr:leer_fichero a cfkg:FuncionIntegrada ;
+    rdfs:label "File reading"@en,
+        "Lectura de ficheros"@es ;
+    cfkg:aNivelDominio cfr:intermedio ;
+    cfkg:perteneceATema cfr:T_ficheros ;
+    cfkg:requierePrerrequisito cfr:abrir_fichero ;
+    cfkg:tieneDificultad 3 .
+
+cfr:map_func a cfkg:FuncionIntegrada ;
+    rdfs:label "map"@en,
+        "map()"@es ;
+    cfkg:aNivelDominio cfr:intermedio ;
+    cfkg:perteneceATema cfr:T_funcional ;
+    cfkg:requierePrerrequisito cfr:funcion_orden_superior,
+        cfr:iterables ;
+    cfkg:tieneDificultad 3 .
+
+cfr:match_case a cfkg:EstructuraDeControl ;
+    rdfs:label "Structural pattern matching"@en,
+        "match-case"@es ;
+    cfkg:aNivelDominio cfr:avanzado ;
+    cfkg:perteneceATema cfr:T_control ;
+    cfkg:requierePrerrequisito cfr:condicional ;
+    cfkg:tieneDificultad 4 .
+
+cfr:metodos_str a cfkg:FuncionIntegrada ;
+    rdfs:label "String methods"@en,
+        "Métodos de cadena"@es ;
+    cfkg:aNivelDominio cfr:basico ;
+    cfkg:perteneceATema cfr:T_strings ;
+    cfkg:requierePrerrequisito cfr:tipo_str ;
+    cfkg:tieneDificultad 2 .
+
+cfr:mixin a cfkg:Paradigma ;
+    rdfs:label "Mixin"@en,
+        "Mixin"@es ;
+    cfkg:aNivelDominio cfr:avanzado ;
+    cfkg:perteneceATema cfr:T_poo ;
+    cfkg:requierePrerrequisito cfr:herencia_multiple ;
+    cfkg:tieneDificultad 5 .
+
+cfr:modulo_datetime a cfkg:ModuloLibreria ;
+    rdfs:label "datetime module"@en,
+        "Módulo datetime"@es ;
+    cfkg:aNivelDominio cfr:intermedio ;
+    cfkg:perteneceATema cfr:T_modulos ;
+    cfkg:requierePrerrequisito cfr:import_mod ;
+    cfkg:tieneDificultad 3 .
+
+cfr:modulo_math a cfkg:ModuloLibreria ;
+    rdfs:label "math module"@en,
+        "Módulo math"@es ;
+    cfkg:aNivelDominio cfr:basico ;
+    cfkg:perteneceATema cfr:T_modulos ;
+    cfkg:requierePrerrequisito cfr:import_mod ;
+    cfkg:tieneDificultad 2 .
+
+cfr:modulo_os a cfkg:ModuloLibreria ;
+    rdfs:label "os module"@en,
+        "Módulo os"@es ;
+    cfkg:aNivelDominio cfr:intermedio ;
+    cfkg:perteneceATema cfr:T_modulos ;
+    cfkg:requierePrerrequisito cfr:import_mod ;
+    cfkg:tieneDificultad 3 .
+
+cfr:modulo_random a cfkg:ModuloLibreria ;
+    rdfs:label "random module"@en,
+        "Módulo random"@es ;
+    cfkg:aNivelDominio cfr:basico ;
+    cfkg:perteneceATema cfr:T_modulos ;
+    cfkg:requierePrerrequisito cfr:import_mod ;
+    cfkg:tieneDificultad 2 .
+
+cfr:modulo_sys a cfkg:ModuloLibreria ;
+    rdfs:label "sys module"@en,
+        "Módulo sys"@es ;
+    cfkg:aNivelDominio cfr:intermedio ;
+    cfkg:perteneceATema cfr:T_modulos ;
+    cfkg:requierePrerrequisito cfr:import_mod ;
+    cfkg:tieneDificultad 3 .
+
+cfr:mro a cfkg:Paradigma ;
+    rdfs:label "Method resolution order"@en,
+        "Orden de resolución (MRO)"@es ;
+    cfkg:aNivelDominio cfr:avanzado ;
+    cfkg:perteneceATema cfr:T_poo ;
+    cfkg:requierePrerrequisito cfr:herencia_multiple ;
+    cfkg:tieneDificultad 5 .
+
+cfr:namedtuple a cfkg:EstructuraDeDatos ;
+    rdfs:label "Named tuple"@en,
+        "namedtuple"@es ;
+    cfkg:aNivelDominio cfr:intermedio ;
+    cfkg:perteneceATema cfr:T_tipos ;
+    cfkg:requierePrerrequisito cfr:tupla ;
+    cfkg:tieneDificultad 3 .
+
+cfr:partial a cfkg:ModuloLibreria ;
+    rdfs:label "partial"@en,
+        "functools.partial"@es ;
+    cfkg:aNivelDominio cfr:avanzado ;
+    cfkg:perteneceATema cfr:T_funcional ;
+    cfkg:requierePrerrequisito cfr:funcion_orden_superior ;
+    cfkg:tieneDificultad 4 .
+
+cfr:pathlib a cfkg:ModuloLibreria ;
+    rdfs:label "pathlib"@en,
+        "pathlib"@es ;
+    cfkg:aNivelDominio cfr:intermedio ;
+    cfkg:perteneceATema cfr:T_ficheros ;
+    cfkg:requierePrerrequisito cfr:abrir_fichero ;
+    cfkg:tieneDificultad 3 .
+
+cfr:pep8 a cfkg:PrincipioTransversal ;
+    rdfs:label "PEP 8"@en,
+        "PEP 8 (estilo)"@es ;
+    cfkg:aNivelDominio cfr:basico ;
+    cfkg:perteneceATema cfr:T_testing ;
+    cfkg:tieneDificultad 2 .
+
+cfr:pip_mod a cfkg:PrincipioTransversal ;
+    rdfs:label "pip"@en,
+        "Gestor de paquetes (pip)"@es ;
+    cfkg:aNivelDominio cfr:basico ;
+    cfkg:perteneceATema cfr:T_modulos ;
+    cfkg:requierePrerrequisito cfr:paquete ;
+    cfkg:tieneDificultad 2 .
+
+cfr:polimorfismo a cfkg:Paradigma ;
+    rdfs:label "Polymorphism"@en,
+        "Polimorfismo"@es ;
+    skos:exactMatch wd:Q3240252 ;
+    cfkg:aNivelDominio cfr:avanzado ;
+    cfkg:perteneceATema cfr:T_poo ;
+    cfkg:requierePrerrequisito cfr:herencia ;
+    cfkg:tieneDificultad 4 .
+
+cfr:prog_dinamica a cfkg:PrincipioTransversal ;
+    rdfs:label "Dynamic programming"@en,
+        "Programación dinámica"@es ;
+    cfkg:aNivelDominio cfr:avanzado ;
+    cfkg:perteneceATema cfr:T_algoritmos ;
+    cfkg:requierePrerrequisito cfr:memoizacion,
+        cfr:recursion ;
+    cfkg:tieneDificultad 5 .
+
+cfr:propiedad a cfkg:Paradigma ;
+    rdfs:label "Property"@en,
+        "Propiedad (@property)"@es ;
+    cfkg:aNivelDominio cfr:avanzado ;
+    cfkg:perteneceATema cfr:T_poo ;
+    cfkg:requierePrerrequisito cfr:decorador,
+        cfr:encapsulacion ;
+    cfkg:tieneDificultad 4 .
+
+cfr:pytest_mod a cfkg:ModuloLibreria ;
+    rdfs:label "pytest"@en,
+        "pytest"@es ;
+    cfkg:aNivelDominio cfr:avanzado ;
+    cfkg:perteneceATema cfr:T_testing ;
+    cfkg:requierePrerrequisito cfr:funcion ;
+    cfkg:tieneDificultad 4 .
+
+cfr:python a cfkg:PrincipioTransversal ;
+    rdfs:label "Python"@en,
+        "Python"@es ;
+    skos:exactMatch wd:Q28865 ;
+    skos:prefLabel "Python"@es ;
+    cfkg:perteneceATema cfr:T_fundamentos .
+
+cfr:range_f a cfkg:FuncionIntegrada ;
+    rdfs:label "range"@en,
+        "range()"@es ;
+    cfkg:aNivelDominio cfr:basico ;
+    cfkg:perteneceATema cfr:T_control ;
+    cfkg:requierePrerrequisito cfr:bucle_for ;
+    cfkg:tieneDificultad 1 .
+
+cfr:rec_doc_listas a schema:LearningResource,
+        cfkg:Recurso ;
+    rdfs:label "Official documentation: data structures"@en,
+        "Documentación oficial: estructuras de datos"@es ;
+    dcterms:creator "Python Software Foundation" ;
+    dcterms:title "Data Structures — The Python Tutorial"@en ;
+    schema:url "https://docs.python.org/3/tutorial/datastructures.html" ;
+    cfkg:ilustraConcepto cfr:diccionario,
+        cfr:lista .
+
+cfr:reduce_func a cfkg:FuncionIntegrada ;
+    rdfs:label "reduce"@en,
+        "functools.reduce()"@es ;
+    cfkg:aNivelDominio cfr:avanzado ;
+    cfkg:perteneceATema cfr:T_funcional ;
+    cfkg:requierePrerrequisito cfr:funcion_orden_superior ;
+    cfkg:tieneDificultad 4 .
+
+cfr:regex a cfkg:ModuloLibreria ;
+    rdfs:label "Regular expressions"@en,
+        "Expresiones regulares (re)"@es ;
+    skos:exactMatch wd:Q185612 ;
+    cfkg:aNivelDominio cfr:avanzado ;
+    cfkg:perteneceATema cfr:T_strings ;
+    cfkg:requierePrerrequisito cfr:tipo_str ;
+    cfkg:tieneDificultad 5 .
+
+cfr:retorno_multiple a cfkg:PrincipioTransversal ;
+    rdfs:label "Multiple return"@en,
+        "Retorno múltiple"@es ;
+    cfkg:aNivelDominio cfr:basico ;
+    cfkg:perteneceATema cfr:T_funciones ;
+    cfkg:requierePrerrequisito cfr:funcion,
+        cfr:tupla ;
+    cfkg:tieneDificultad 2 .
+
+cfr:self_param a cfkg:Paradigma ;
+    rdfs:label "self"@en,
+        "Parámetro self"@es ;
+    cfkg:aNivelDominio cfr:intermedio ;
+    cfkg:perteneceATema cfr:T_poo ;
+    cfkg:requierePrerrequisito cfr:metodo ;
+    cfkg:tieneDificultad 3 .
+
+cfr:sobrecarga_operadores a cfkg:Paradigma ;
+    rdfs:label "Operator overloading"@en,
+        "Sobrecarga de operadores"@es ;
+    cfkg:aNivelDominio cfr:avanzado ;
+    cfkg:perteneceATema cfr:T_poo ;
+    cfkg:requierePrerrequisito cfr:dunder ;
+    cfkg:tieneDificultad 5 .
+
+cfr:sorted_f a cfkg:FuncionIntegrada ;
+    rdfs:label "sorted/sort"@en,
+        "sorted() y sort()"@es ;
+    cfkg:aNivelDominio cfr:basico ;
+    cfkg:perteneceATema cfr:T_algoritmos ;
+    cfkg:requierePrerrequisito cfr:lista ;
+    cfkg:tieneDificultad 2 .
+
+cfr:stmt_offbyone a rdf:Statement ;
+    rdfs:label "Provenance (reification): off-by-one on indexing per Keuning et al."@en,
+        "Procedencia (reificación): off-by-one sobre indexación según Keuning et al."@es ;
+    dcterms:source cfr:ref_keuning2019 ;
+    rdf:object cfr:indexacion ;
+    rdf:predicate cfkg:errorSobreConcepto ;
+    rdf:subject cfr:err_off_by_one ;
+    rdfs:comment "Procedencia del enunciado (patrón de reificación del material docente)."@es .
+
+cfr:str_repr a cfkg:Paradigma ;
+    rdfs:label "str and repr"@en,
+        "__str__ y __repr__"@es ;
+    cfkg:aNivelDominio cfr:avanzado ;
+    cfkg:perteneceATema cfr:T_poo ;
+    cfkg:requierePrerrequisito cfr:dunder ;
+    cfkg:tieneDificultad 4 .
+
+cfr:super_call a cfkg:Paradigma ;
+    rdfs:label "super"@en,
+        "super()"@es ;
+    cfkg:aNivelDominio cfr:avanzado ;
+    cfkg:perteneceATema cfr:T_poo ;
+    cfkg:requierePrerrequisito cfr:herencia ;
+    cfkg:tieneDificultad 4 .
+
+cfr:tabla_hash a cfkg:EstructuraDeDatos ;
+    rdfs:label "Hash table"@en,
+        "Tabla hash"@es ;
+    skos:exactMatch wd:Q207440 ;
+    cfkg:aNivelDominio cfr:avanzado ;
+    cfkg:perteneceATema cfr:T_algoritmos ;
+    cfkg:requierePrerrequisito cfr:diccionario ;
+    cfkg:tieneDificultad 4 .
+
+cfr:ternario a cfkg:EstructuraDeControl ;
+    rdfs:label "Ternary operator"@en,
+        "Operador ternario"@es ;
+    cfkg:aNivelDominio cfr:basico ;
+    cfkg:perteneceATema cfr:T_control ;
+    cfkg:requierePrerrequisito cfr:condicional ;
+    cfkg:tieneDificultad 2 .
+
+cfr:tipo_complex a cfkg:TipoDeDato ;
+    rdfs:label "Complex"@en,
+        "Complejo (complex)"@es ;
+    cfkg:aNivelDominio cfr:intermedio ;
+    cfkg:perteneceATema cfr:T_tipos ;
+    cfkg:requierePrerrequisito cfr:tipo_float ;
+    cfkg:tieneDificultad 3 .
+
+cfr:truthiness a cfkg:PrincipioTransversal ;
+    rdfs:label "Truthiness"@en,
+        "Valores de verdad"@es ;
+    cfkg:aNivelDominio cfr:basico ;
+    cfkg:perteneceATema cfr:T_tipos ;
+    cfkg:requierePrerrequisito cfr:tipo_bool ;
+    cfkg:tieneDificultad 2 .
+
+cfr:try_except_else a cfkg:EstructuraDeControl ;
+    rdfs:label "try/except/else/finally"@en,
+        "try/except/else/finally"@es ;
+    cfkg:aNivelDominio cfr:intermedio ;
+    cfkg:perteneceATema cfr:T_excepciones ;
+    cfkg:requierePrerrequisito cfr:excepcion ;
+    cfkg:tieneDificultad 3 .
+
+cfr:type_checking a cfkg:PrincipioTransversal ;
+    rdfs:label "Type checking"@en,
+        "Comprobación de tipos (mypy)"@es ;
+    cfkg:aNivelDominio cfr:avanzado ;
+    cfkg:perteneceATema cfr:T_testing ;
+    cfkg:requierePrerrequisito cfr:anotaciones_tipo ;
+    cfkg:tieneDificultad 4 .
+
+cfr:typing_generics a cfkg:Paradigma ;
+    rdfs:label "Generics"@en,
+        "Genéricos (TypeVar)"@es ;
+    cfkg:aNivelDominio cfr:avanzado ;
+    cfkg:perteneceATema cfr:T_tipos ;
+    cfkg:requierePrerrequisito cfr:anotaciones_tipo,
+        cfr:clase ;
+    cfkg:tieneDificultad 4 .
+
+cfr:typing_optional a cfkg:PrincipioTransversal ;
+    rdfs:label "Optional"@en,
+        "typing.Optional"@es ;
+    cfkg:aNivelDominio cfr:intermedio ;
+    cfkg:perteneceATema cfr:T_tipos ;
+    cfkg:requierePrerrequisito cfr:anotaciones_tipo,
+        cfr:tipo_none ;
+    cfkg:tieneDificultad 3 .
+
+cfr:typing_union a cfkg:PrincipioTransversal ;
+    rdfs:label "Union"@en,
+        "typing.Union"@es ;
+    cfkg:aNivelDominio cfr:intermedio ;
+    cfkg:perteneceATema cfr:T_tipos ;
+    cfkg:requierePrerrequisito cfr:anotaciones_tipo ;
+    cfkg:tieneDificultad 3 .
+
+cfr:unittest_mod a cfkg:ModuloLibreria ;
+    rdfs:label "unittest"@en,
+        "unittest"@es ;
+    cfkg:aNivelDominio cfr:avanzado ;
+    cfkg:perteneceATema cfr:T_testing ;
+    cfkg:requierePrerrequisito cfr:clase,
+        cfr:funcion ;
+    cfkg:tieneDificultad 4 .
+
+cfr:valor_por_defecto a cfkg:PrincipioTransversal ;
+    rdfs:label "Default arguments"@en,
+        "Argumentos por defecto"@es ;
+    cfkg:aNivelDominio cfr:basico ;
+    cfkg:perteneceATema cfr:T_funciones ;
+    cfkg:requierePrerrequisito cfr:parametros ;
+    cfkg:tieneDificultad 2 .
+
+cfr:walrus a cfkg:PrincipioTransversal ;
+    rdfs:label "Walrus operator"@en,
+        "Operador morsa (:=)"@es ;
+    cfkg:aNivelDominio cfr:intermedio ;
+    cfkg:perteneceATema cfr:T_control ;
+    cfkg:requierePrerrequisito cfr:condicional ;
+    cfkg:tieneDificultad 3 .
+
+cfr:yield_from a cfkg:EstructuraDeControl ;
+    rdfs:label "yield from"@en,
+        "yield from"@es ;
+    cfkg:aNivelDominio cfr:avanzado ;
+    cfkg:perteneceATema cfr:T_funcional ;
+    cfkg:requierePrerrequisito cfr:generador ;
+    cfkg:tieneDificultad 5 .
+
+cfr:zip_f a cfkg:FuncionIntegrada ;
+    rdfs:label "zip"@en,
+        "zip()"@es ;
+    cfkg:aNivelDominio cfr:intermedio ;
+    cfkg:perteneceATema cfr:T_control ;
+    cfkg:requierePrerrequisito cfr:bucle_for,
+        cfr:iterables ;
+    cfkg:tieneDificultad 3 .
+
+cfkg: a owl:Ontology ;
+    dcterms:created "2026-06-18"^^xsd:date ;
+    dcterms:creator "Adrián Bueno Junquero" ;
+    dcterms:description "Ontología y grafo de conocimiento del dominio de la programación en Python, diseñado para anclar la generación de retroalimentación formativa automática (arquitectura EKG + RAG + LLM). Modela conceptos, sus prerrequisitos y contrastes, temas, ejercicios, errores conceptuales (misconceptions), recursos y perfiles de estudiante."@es ;
+    dcterms:license <https://creativecommons.org/licenses/by/4.0/> ;
+    dcterms:title "Educational Knowledge Graph for Python Programming (CodeFeedback-KG)"@en,
+        "Grafo de Conocimiento Educativo de Programación en Python (CodeFeedback-KG)"@es ;
+    owl:versionInfo "0.1.0" .
+
+cfkg:aNivelDominio a owl:ObjectProperty ;
+    rdfs:label "at mastery level"@en,
+        "a nivel de dominio"@es ;
+    rdfs:range cfkg:NivelDominio .
+
+cfkg:conPeso a owl:DatatypeProperty ;
+    rdfs:label "with weight"@en,
+        "con peso"@es ;
+    rdfs:domain cfkg:EvaluacionDeConcepto ;
+    rdfs:range xsd:decimal .
+
+cfkg:contrastaCon a owl:ObjectProperty,
+        owl:SymmetricProperty ;
+    rdfs:label "contrasts with"@en,
+        "contrasta con"@es ;
+    rdfs:comment "Conceptos frecuentemente confundidos que conviene explicar por oposición (p. ej. iteración / recursión). Simétrica."@es ;
+    rdfs:domain cfkg:Concepto ;
+    rdfs:range cfkg:Concepto ;
+    rdfs:subPropertyOf cfkg:relacionadoConceptualmenteCon .
+
+cfkg:cubreConcepto a owl:ObjectProperty ;
+    rdfs:label "covers concept"@en,
+        "cubre el concepto"@es ;
+    rdfs:domain cfkg:Ejercicio ;
+    rdfs:range cfkg:Concepto .
+
+cfkg:dominaConcepto a owl:ObjectProperty ;
+    rdfs:label "has mastered concept"@en,
+        "domina el concepto"@es ;
+    rdfs:domain cfkg:Estudiante ;
+    rdfs:range cfkg:Concepto .
+
+cfkg:enEjercicio a owl:ObjectProperty ;
+    rdfs:label "in exercise"@en,
+        "en el ejercicio"@es ;
+    rdfs:domain cfkg:EvaluacionDeConcepto ;
+    rdfs:range cfkg:Ejercicio .
+
+cfkg:enFecha a owl:DatatypeProperty ;
+    rdfs:label "on date"@en,
+        "en la fecha"@es ;
+    rdfs:domain cfkg:EvaluacionActividad ;
+    rdfs:range xsd:date .
+
+cfkg:enviadoPor a owl:ObjectProperty ;
+    rdfs:label "submitted by"@en,
+        "enviado por"@es ;
+    rdfs:domain cfkg:EnvioEstudiante ;
+    rdfs:range cfkg:Estudiante .
+
+cfkg:esPrerrequisitoDe a owl:ObjectProperty,
+        owl:TransitiveProperty ;
+    rdfs:label "is prerequisite of"@en,
+        "es prerrequisito de"@es ;
+    rdfs:comment "A esPrerrequisitoDe B significa que dominar A es condición previa para aprender B. Transitiva: habilita el cálculo de prerrequisitos indirectos por inferencia."@es ;
+    rdfs:domain cfkg:Concepto ;
+    rdfs:range cfkg:Concepto ;
+    rdfs:subPropertyOf cfkg:relacionadoConceptualmenteCon ;
+    owl:inverseOf cfkg:requierePrerrequisito .
+
+cfkg:evaluaA a owl:ObjectProperty ;
+    rdfs:label "assesses activity"@en,
+        "evalúa la actividad"@es ;
+    rdfs:domain cfkg:EvaluacionActividad ;
+    rdfs:range cfkg:Ejercicio .
+
+cfkg:evaluaCompetencia a owl:ObjectProperty ;
+    rdfs:label "assesses competency"@en,
+        "evalúa la competencia"@es ;
+    rdfs:domain cfkg:Ejercicio ;
+    rdfs:range cfkg:Competencia .
+
+cfkg:generaliza a owl:ObjectProperty ;
+    rdfs:label "generalises"@en,
+        "generaliza a"@es ;
+    rdfs:domain cfkg:Concepto ;
+    rdfs:range cfkg:Concepto ;
+    rdfs:subPropertyOf cfkg:relacionadoConceptualmenteCon ;
+    owl:inverseOf cfkg:especializa .
+
+cfkg:ilustraConcepto a owl:ObjectProperty ;
+    rdfs:label "illustrates concept"@en,
+        "ilustra el concepto"@es ;
+    rdfs:domain cfkg:Recurso ;
+    rdfs:range cfkg:Concepto .
+
+cfkg:manifiestaError a owl:ObjectProperty ;
+    rdfs:label "exhibits misconception"@en,
+        "manifiesta el error"@es ;
+    rdfs:domain cfkg:EnvioEstudiante ;
+    rdfs:range cfkg:ErrorConceptual .
+
+cfkg:numeroDeLineas a owl:DatatypeProperty ;
+    rdfs:label "number of lines"@en,
+        "número de líneas"@es ;
+    rdfs:domain cfkg:EnvioEstudiante ;
+    rdfs:range xsd:integer .
+
+cfkg:obtuvoNota a owl:DatatypeProperty ;
+    rdfs:label "obtained grade"@en,
+        "obtuvo nota"@es ;
+    rdfs:domain cfkg:EvaluacionActividad ;
+    rdfs:range xsd:decimal .
+
+cfkg:perteneceATema a owl:ObjectProperty ;
+    rdfs:label "belongs to topic"@en,
+        "pertenece al tema"@es ;
+    rdfs:domain cfkg:Concepto ;
+    rdfs:range cfkg:Tema .
+
+cfkg:porEstudiante a owl:ObjectProperty ;
+    rdfs:label "carried out by"@en,
+        "realizada por"@es ;
+    rdfs:domain cfkg:EvaluacionActividad ;
+    rdfs:range cfkg:Estudiante .
+
+cfkg:resuelveEjercicio a owl:ObjectProperty ;
+    rdfs:label "solves exercise"@en,
+        "resuelve el ejercicio"@es ;
+    rdfs:domain cfkg:EnvioEstudiante ;
+    rdfs:range cfkg:Ejercicio .
+
+cfkg:seAplicaA a owl:ObjectProperty ;
+    rdfs:label "applies to"@en,
+        "se aplica a"@es ;
+    rdfs:domain cfkg:Concepto ;
+    rdfs:range cfkg:Concepto ;
+    rdfs:subPropertyOf cfkg:relacionadoConceptualmenteCon .
+
+cfkg:sobreConcepto a owl:ObjectProperty ;
+    rdfs:label "about concept"@en,
+        "sobre el concepto"@es ;
+    rdfs:domain cfkg:EvaluacionDeConcepto ;
+    rdfs:range cfkg:Concepto .
+
+cfkg:tieneDificultad a owl:DatatypeProperty,
+        owl:FunctionalProperty ;
+    rdfs:label "has difficulty"@en,
+        "tiene dificultad"@es ;
+    rdfs:comment "Dificultad estimada en una escala entera 1–5."@es ;
+    rdfs:domain cfkg:EntidadEducativa ;
+    rdfs:range xsd:integer .
+
+cfkg:tieneEjemploCodigo a owl:DatatypeProperty ;
+    rdfs:label "has code example"@en,
+        "tiene ejemplo de código"@es ;
+    rdfs:range xsd:string .
+
+cfkg:tieneEnunciado a owl:DatatypeProperty ;
+    rdfs:label "has statement"@en,
+        "tiene enunciado"@es ;
+    rdfs:domain cfkg:Ejercicio ;
+    rdfs:range rdf:langString .
+
+cfr:atributo a cfkg:Paradigma ;
+    rdfs:label "Attribute"@en,
+        "Atributo de instancia"@es ;
+    cfkg:aNivelDominio cfr:intermedio ;
+    cfkg:perteneceATema cfr:T_poo ;
+    cfkg:requierePrerrequisito cfr:objeto ;
+    cfkg:tieneDificultad 3 .
+
+cfr:busqueda_lineal a cfkg:PrincipioTransversal ;
+    rdfs:label "Linear search"@en,
+        "Búsqueda lineal"@es ;
+    skos:exactMatch wd:Q787903 ;
+    skos:related cfr:busqueda_binaria ;
+    cfkg:aNivelDominio cfr:basico ;
+    cfkg:contrastaCon cfr:busqueda_binaria ;
+    cfkg:perteneceATema cfr:T_algoritmos ;
+    cfkg:requierePrerrequisito cfr:bucle_for ;
+    cfkg:tieneDificultad 2 .
+
+cfr:composicion a cfkg:Paradigma ;
+    rdfs:label "Composition"@en,
+        "Composición"@es ;
+    skos:related cfr:herencia ;
+    cfkg:aNivelDominio cfr:avanzado ;
+    cfkg:contrastaCon cfr:herencia ;
+    cfkg:perteneceATema cfr:T_poo ;
+    cfkg:requierePrerrequisito cfr:objeto ;
+    cfkg:tieneDificultad 4 .
+
+cfr:comprension_dicts a cfkg:EstructuraDeControl ;
+    rdfs:label "Dict comprehension"@en,
+        "Comprensión de diccionarios"@es ;
+    skos:broader cfr:comprension_listas ;
+    cfkg:aNivelDominio cfr:avanzado ;
+    cfkg:perteneceATema cfr:T_estructuras ;
+    cfkg:requierePrerrequisito cfr:comprension_listas,
+        cfr:diccionario ;
+    cfkg:tieneDificultad 4 .
+
+cfr:comprension_sets a cfkg:EstructuraDeControl ;
+    rdfs:label "Set comprehension"@en,
+        "Comprensión de conjuntos"@es ;
+    skos:broader cfr:comprension_listas ;
+    cfkg:aNivelDominio cfr:avanzado ;
+    cfkg:perteneceATema cfr:T_estructuras ;
+    cfkg:requierePrerrequisito cfr:comprension_listas,
+        cfr:conjunto ;
+    cfkg:tieneDificultad 4 .
+
+cfr:conversion_tipos a cfkg:PrincipioTransversal ;
+    rdfs:label "Type casting"@en,
+        "Conversión de tipos"@es ;
+    cfkg:aNivelDominio cfr:basico ;
+    cfkg:perteneceATema cfr:T_tipos ;
+    cfkg:requierePrerrequisito cfr:tipo_int,
+        cfr:tipo_str ;
+    cfkg:tieneDificultad 2 .
+
+cfr:desempaquetado a cfkg:PrincipioTransversal ;
+    rdfs:label "Unpacking"@en,
+        "Desempaquetado"@es ;
+    cfkg:aNivelDominio cfr:basico ;
+    cfkg:perteneceATema cfr:T_estructuras ;
+    cfkg:requierePrerrequisito cfr:lista,
+        cfr:tupla ;
+    cfkg:tieneDificultad 2 .
+
+cfr:encapsulacion a cfkg:Paradigma ;
+    rdfs:label "Encapsulation"@en,
+        "Encapsulación"@es ;
+    cfkg:aNivelDominio cfr:avanzado ;
+    cfkg:perteneceATema cfr:T_poo ;
+    cfkg:requierePrerrequisito cfr:atributo ;
+    cfkg:tieneDificultad 4 .
+
+cfr:err_iteracion_recursion a cfkg:ErrorConceptual ;
+    rdfs:label "Iteration vs recursion confusion"@en,
+        "Confusión iteración / recursión"@es ;
+    cfkg:errorSobreConcepto cfr:recursion .
+
+cfr:expresion_generadora a cfkg:EstructuraDeControl ;
+    rdfs:label "Generator expression"@en,
+        "Expresión generadora"@es ;
+    skos:broader cfr:comprension_listas ;
+    cfkg:aNivelDominio cfr:avanzado ;
+    cfkg:perteneceATema cfr:T_funcional ;
+    cfkg:requierePrerrequisito cfr:comprension_listas,
+        cfr:generador ;
+    cfkg:tieneDificultad 4 .
+
+cfr:indexacion_negativa a cfkg:PrincipioTransversal ;
+    rdfs:label "Negative indexing"@en,
+        "Indexación negativa"@es ;
+    skos:broader cfr:indexacion ;
+    cfkg:aNivelDominio cfr:basico ;
+    cfkg:perteneceATema cfr:T_estructuras ;
+    cfkg:requierePrerrequisito cfr:indexacion ;
+    cfkg:tieneDificultad 2 .
+
+cfr:init_method a cfkg:Paradigma ;
+    rdfs:label "Constructor"@en,
+        "Constructor __init__"@es ;
+    skos:broader cfr:metodo ;
+    cfkg:aNivelDominio cfr:intermedio ;
+    cfkg:perteneceATema cfr:T_poo ;
+    cfkg:requierePrerrequisito cfr:metodo ;
+    cfkg:tieneDificultad 3 .
+
+cfr:iterador a cfkg:PrincipioTransversal ;
+    rdfs:label "Iterator"@en,
+        "Iterador (iter, next)"@es ;
+    skos:exactMatch wd:Q1326388 ;
+    cfkg:aNivelDominio cfr:avanzado ;
+    cfkg:perteneceATema cfr:T_funcional ;
+    cfkg:requierePrerrequisito cfr:iterables ;
+    cfkg:tieneDificultad 4 .
+
+cfr:jerarquia_excepciones a cfkg:EstructuraDeControl ;
+    rdfs:label "Exception hierarchy"@en,
+        "Jerarquía de excepciones"@es ;
+    cfkg:aNivelDominio cfr:intermedio ;
+    cfkg:perteneceATema cfr:T_excepciones ;
+    cfkg:requierePrerrequisito cfr:excepcion,
+        cfr:herencia ;
+    cfkg:tieneDificultad 3 .
+
+cfr:memoizacion a cfkg:PrincipioTransversal ;
+    rdfs:label "Memoization"@en,
+        "Memoización (lru_cache)"@es ;
+    cfkg:aNivelDominio cfr:avanzado ;
+    cfkg:perteneceATema cfr:T_recursion ;
+    cfkg:requierePrerrequisito cfr:diccionario,
+        cfr:recursion ;
+    cfkg:tieneDificultad 4 .
+
+cfr:metodo_clase a cfkg:Paradigma ;
+    rdfs:label "Class method"@en,
+        "Método de clase"@es ;
+    skos:broader cfr:metodo ;
+    cfkg:aNivelDominio cfr:avanzado ;
+    cfkg:perteneceATema cfr:T_poo ;
+    cfkg:requierePrerrequisito cfr:decorador,
+        cfr:metodo ;
+    cfkg:tieneDificultad 4 .
+
+cfr:metodo_estatico a cfkg:Paradigma ;
+    rdfs:label "Static method"@en,
+        "Método estático"@es ;
+    skos:broader cfr:metodo ;
+    cfkg:aNivelDominio cfr:avanzado ;
+    cfkg:perteneceATema cfr:T_poo ;
+    cfkg:requierePrerrequisito cfr:decorador,
+        cfr:metodo ;
+    cfkg:tieneDificultad 4 .
+
+cfr:mutable_inmutable a cfkg:PrincipioTransversal ;
+    rdfs:label "Mutable vs immutable"@en,
+        "Mutable vs inmutable"@es ;
+    cfkg:aNivelDominio cfr:intermedio ;
+    cfkg:contrastaCon cfr:tupla ;
+    cfkg:perteneceATema cfr:T_tipos ;
+    cfkg:requierePrerrequisito cfr:mutabilidad ;
+    cfkg:tieneDificultad 3 .
+
+cfr:operador_estrella a cfkg:PrincipioTransversal ;
+    rdfs:label "Star operator"@en,
+        "Operador * y **"@es ;
+    cfkg:aNivelDominio cfr:intermedio ;
+    cfkg:perteneceATema cfr:T_estructuras ;
+    cfkg:requierePrerrequisito cfr:desempaquetado ;
+    cfkg:tieneDificultad 3 .
+
+cfr:ordenacion_burbuja a cfkg:PrincipioTransversal ;
+    rdfs:label "Bubble sort"@en,
+        "Ordenación de burbuja"@es ;
+    skos:broader cfr:notacion_o ;
+    skos:exactMatch wd:Q60864 ;
+    cfkg:aNivelDominio cfr:intermedio ;
+    cfkg:perteneceATema cfr:T_algoritmos ;
+    cfkg:requierePrerrequisito cfr:bucle_for ;
+    cfkg:tieneDificultad 3 .
+
+cfr:ordenacion_mezcla a cfkg:PrincipioTransversal ;
+    rdfs:label "Merge sort"@en,
+        "Ordenación por mezcla"@es ;
+    skos:broader cfr:notacion_o ;
+    skos:exactMatch wd:Q189057 ;
+    cfkg:aNivelDominio cfr:avanzado ;
+    cfkg:perteneceATema cfr:T_algoritmos ;
+    cfkg:requierePrerrequisito cfr:notacion_o,
+        cfr:recursion ;
+    cfkg:tieneDificultad 5 .
+
+cfr:ordenacion_rapida a cfkg:PrincipioTransversal ;
+    rdfs:label "Quicksort"@en,
+        "Ordenación rápida"@es ;
+    skos:broader cfr:notacion_o ;
+    skos:exactMatch wd:Q486598 ;
+    cfkg:aNivelDominio cfr:avanzado ;
+    cfkg:perteneceATema cfr:T_algoritmos ;
+    cfkg:requierePrerrequisito cfr:recursion ;
+    cfkg:tieneDificultad 5 .
+
+cfr:raise_excepcion a cfkg:EstructuraDeControl ;
+    rdfs:label "raise"@en,
+        "raise"@es ;
+    cfkg:aNivelDominio cfr:intermedio ;
+    cfkg:perteneceATema cfr:T_excepciones ;
+    cfkg:requierePrerrequisito cfr:excepcion ;
+    cfkg:tieneDificultad 3 .
+
+cfr:recursion_cola a cfkg:PrincipioTransversal ;
+    rdfs:label "Tail recursion"@en,
+        "Recursión de cola"@es ;
+    skos:broader cfr:recursion ;
+    cfkg:aNivelDominio cfr:avanzado ;
+    cfkg:perteneceATema cfr:T_recursion ;
+    cfkg:requierePrerrequisito cfr:recursion ;
+    cfkg:tieneDificultad 5 .
+
+cfr:ref_keuning2019 a cfkg:Recurso ;
+    rdfs:label "Keuning, Jeuring & Heeren (2019), A systematic literature review of automated feedback generation for programming exercises"@en,
+        "Keuning et al. (2019): revisión sistemática de generación automática de feedback"@es ;
+    dcterms:creator "Bastiaan Heeren",
+        "Hieke Keuning",
+        "Johan Jeuring" ;
+    dcterms:date "2019"^^xsd:gYear ;
+    dcterms:identifier "10.1145/3231711" ;
+    dcterms:title "A systematic literature review of automated feedback generation for programming exercises"@en .
+
+cfr:slicing_str a cfkg:PrincipioTransversal ;
+    rdfs:label "String slicing"@en,
+        "Slicing de cadenas"@es ;
+    skos:broader cfr:slicing ;
+    cfkg:aNivelDominio cfr:intermedio ;
+    cfkg:perteneceATema cfr:T_strings ;
+    cfkg:requierePrerrequisito cfr:slicing,
+        cfr:tipo_str ;
+    cfkg:tieneDificultad 3 .
+
+cfr:tipo_bytes a cfkg:TipoDeDato ;
+    rdfs:label "Bytes"@en,
+        "Bytes"@es ;
+    cfkg:aNivelDominio cfr:intermedio ;
+    cfkg:perteneceATema cfr:T_tipos ;
+    cfkg:requierePrerrequisito cfr:tipo_str ;
+    cfkg:tieneDificultad 3 .
+
+cfr:tipo_none a cfkg:TipoDeDato ;
+    rdfs:label "NoneType"@en,
+        "NoneType (None)"@es ;
+    cfkg:aNivelDominio cfr:basico ;
+    cfkg:perteneceATema cfr:T_tipos ;
+    cfkg:tieneDificultad 1 .
+
+cfkg:RutaAprendizaje a owl:Class ;
+    rdfs:label "Learning path"@en,
+        "Ruta de aprendizaje"@es ;
+    rdfs:subClassOf cfkg:EntidadEducativa .
+
+cfkg:errorSobreConcepto a owl:ObjectProperty ;
+    rdfs:label "is a misconception about"@en,
+        "es un error sobre el concepto"@es ;
+    rdfs:domain cfkg:ErrorConceptual ;
+    rdfs:range cfkg:Concepto .
+
+cfkg:especializa a owl:ObjectProperty ;
+    rdfs:label "specialises"@en,
+        "especializa a"@es ;
+    rdfs:domain cfkg:Concepto ;
+    rdfs:range cfkg:Concepto .
+
+cfkg:requierePrerrequisito a owl:ObjectProperty,
+        owl:TransitiveProperty ;
+    rdfs:label "requires prerequisite"@en,
+        "requiere como prerrequisito"@es ;
+    rdfs:domain cfkg:Concepto ;
+    rdfs:range cfkg:Concepto .
+
+cfr:T_complejidad a cfkg:Tema ;
+    rdfs:label "Algorithmic complexity"@en,
+        "Complejidad algorítmica"@es .
+
+cfr:ambito a cfkg:PrincipioTransversal ;
+    rdfs:label "Variable scope"@en,
+        "Ámbito de variables (scope)"@es ;
+    cfkg:perteneceATema cfr:T_funciones ;
+    cfkg:requierePrerrequisito cfr:funcion ;
+    cfkg:tieneDificultad 3 .
+
+cfr:async_await a cfkg:EstructuraDeControl ;
+    rdfs:label "async/await"@en,
+        "async/await"@es ;
+    cfkg:aNivelDominio cfr:avanzado ;
+    cfkg:perteneceATema cfr:T_concurrencia ;
+    cfkg:requierePrerrequisito cfr:funcion ;
+    cfkg:tieneDificultad 5 .
+
+cfr:bucle_while a cfkg:EstructuraDeControl ;
+    rdfs:label "While loop"@en,
+        "Bucle while"@es ;
+    cfkg:perteneceATema cfr:T_control ;
+    cfkg:requierePrerrequisito cfr:condicional ;
+    cfkg:tieneDificultad 2 .
+
+cfr:closure a cfkg:PrincipioTransversal ;
+    rdfs:label "Closure"@en,
+        "Clausura (closure)"@es ;
+    skos:exactMatch wd:Q535335 ;
+    cfkg:aNivelDominio cfr:avanzado ;
+    cfkg:perteneceATema cfr:T_funcional ;
+    cfkg:requierePrerrequisito cfr:ambito,
+        cfr:funcion ;
+    cfkg:tieneDificultad 4 .
+
+cfr:complejidad a cfkg:PrincipioTransversal ;
+    rdfs:label "Time complexity"@en,
+        "Complejidad temporal"@es ;
+    skos:exactMatch wd:Q2393193 ;
+    cfkg:aNivelDominio cfr:avanzado ;
+    cfkg:perteneceATema cfr:T_complejidad ;
+    cfkg:tieneDificultad 5 .
+
+cfr:conjunto a cfkg:EstructuraDeDatos ;
+    rdfs:label "Set"@en,
+        "Conjunto (set)"@es ;
+    skos:exactMatch wd:Q1514741 ;
+    skos:related cfr:lista ;
+    cfkg:perteneceATema cfr:T_estructuras ;
+    cfkg:tieneDificultad 3 .
+
+cfr:dunder a cfkg:Paradigma ;
+    rdfs:label "Dunder methods"@en,
+        "Métodos especiales (dunder)"@es ;
+    cfkg:aNivelDominio cfr:avanzado ;
+    cfkg:perteneceATema cfr:T_poo ;
+    cfkg:requierePrerrequisito cfr:metodo ;
+    cfkg:tieneDificultad 4 .
+
+cfr:err_off_by_one a cfkg:ErrorConceptual ;
+    rdfs:label "Off-by-one error"@en,
+        "Error de índice por uno (off-by-one)"@es ;
+    rdfs:comment "Confusión en la condición de parada de un bucle o en los límites de un rango/índice."@es ;
+    cfkg:errorSobreConcepto cfr:indexacion ;
+    cfkg:tieneDificultad 3 .
+
+cfr:hilos a cfkg:Paradigma ;
+    rdfs:label "Threads"@en,
+        "Hilos (threading)"@es ;
+    skos:related cfr:multiproceso ;
+    cfkg:aNivelDominio cfr:avanzado ;
+    cfkg:contrastaCon cfr:multiproceso ;
+    cfkg:perteneceATema cfr:T_concurrencia ;
+    cfkg:requierePrerrequisito cfr:gil ;
+    cfkg:tieneDificultad 5 .
+
+cfr:multiproceso a cfkg:Paradigma ;
+    rdfs:label "Multiprocessing"@en,
+        "Multiproceso"@es ;
+    skos:related cfr:hilos ;
+    cfkg:aNivelDominio cfr:avanzado ;
+    cfkg:contrastaCon cfr:hilos ;
+    cfkg:perteneceATema cfr:T_concurrencia ;
+    cfkg:requierePrerrequisito cfr:gil ;
+    cfkg:tieneDificultad 5 .
+
+cfr:objeto a cfkg:Paradigma ;
+    rdfs:label "Object"@en,
+        "Objeto / instancia"@es ;
+    cfkg:aNivelDominio cfr:intermedio ;
+    cfkg:perteneceATema cfr:T_poo ;
+    cfkg:requierePrerrequisito cfr:clase ;
+    cfkg:tieneDificultad 3 .
+
+cfr:paquete a cfkg:ModuloLibreria ;
+    rdfs:label "Package"@en,
+        "Paquete"@es ;
+    cfkg:aNivelDominio cfr:intermedio ;
+    cfkg:perteneceATema cfr:T_modulos ;
+    cfkg:requierePrerrequisito cfr:import_mod ;
+    cfkg:tieneDificultad 3 .
+
+cfr:tipo_float a cfkg:TipoDeDato ;
+    rdfs:label "Float"@en,
+        "Flotante (float)"@es ;
+    cfkg:aNivelDominio cfr:basico ;
+    cfkg:contrastaCon cfr:tipo_int ;
+    cfkg:perteneceATema cfr:T_tipos ;
+    cfkg:tieneDificultad 1 .
+
+cfr:tipo_int a cfkg:TipoDeDato ;
+    rdfs:label "Integer (int)"@en,
+        "Entero (int)"@es ;
+    cfkg:perteneceATema cfr:T_fundamentos ;
+    cfkg:tieneDificultad 1 .
+
+cfr:variable a cfkg:PrincipioTransversal ;
+    rdfs:label "Variable"@en,
+        "Variable"@es ;
+    rdfs:comment "Nombre asociado a un valor en memoria."@es ;
+    cfkg:aNivelDominio cfr:basico ;
+    cfkg:perteneceATema cfr:T_fundamentos ;
+    cfkg:tieneDificultad 1 ;
+    cfkg:tieneEjemploCodigo "x = 42" .
+
+cfr:with_context a cfkg:EstructuraDeControl ;
+    rdfs:label "with statement"@en,
+        "Sentencia with"@es ;
+    cfkg:aNivelDominio cfr:avanzado ;
+    cfkg:perteneceATema cfr:T_control ;
+    cfkg:requierePrerrequisito cfr:excepcion ;
+    cfkg:tieneDificultad 4 .
+
+cfkg:Competencia a owl:Class ;
+    rdfs:label "Competency"@en,
+        "Competencia"@es ;
+    rdfs:subClassOf cfkg:EntidadEducativa .
+
+cfr:T_recursion a cfkg:Tema ;
+    rdfs:label "Recursion"@en,
+        "Recursión"@es .
+
+cfr:abrir_fichero a cfkg:FuncionIntegrada ;
+    rdfs:label "File open"@en,
+        "Apertura de ficheros (open)"@es ;
+    cfkg:aNivelDominio cfr:intermedio ;
+    cfkg:perteneceATema cfr:T_ficheros ;
+    cfkg:requierePrerrequisito cfr:with_context ;
+    cfkg:tieneDificultad 3 .
+
+cfr:bfs a cfkg:PrincipioTransversal ;
+    rdfs:label "Breadth-first search"@en,
+        "Recorrido en anchura (BFS)"@es ;
+    skos:broader cfr:grafo_estr ;
+    skos:exactMatch wd:Q325904 ;
+    skos:related cfr:dfs ;
+    cfkg:aNivelDominio cfr:avanzado ;
+    cfkg:contrastaCon cfr:dfs ;
+    cfkg:perteneceATema cfr:T_algoritmos ;
+    cfkg:requierePrerrequisito cfr:cola,
+        cfr:grafo_estr ;
+    cfkg:tieneDificultad 5 .
+
+cfr:copia_superficial a cfkg:PrincipioTransversal ;
+    rdfs:label "Shallow copy"@en,
+        "Copia superficial"@es ;
+    cfkg:aNivelDominio cfr:avanzado ;
+    cfkg:perteneceATema cfr:T_tipos ;
+    cfkg:requierePrerrequisito cfr:lista,
+        cfr:mutabilidad ;
+    cfkg:tieneDificultad 4 .
+
+cfr:dfs a cfkg:PrincipioTransversal ;
+    rdfs:label "Depth-first search"@en,
+        "Recorrido en profundidad (DFS)"@es ;
+    skos:broader cfr:grafo_estr ;
+    skos:exactMatch wd:Q816319 ;
+    skos:related cfr:bfs ;
+    cfkg:aNivelDominio cfr:avanzado ;
+    cfkg:contrastaCon cfr:bfs ;
+    cfkg:perteneceATema cfr:T_algoritmos ;
+    cfkg:requierePrerrequisito cfr:grafo_estr,
+        cfr:recursion ;
+    cfkg:tieneDificultad 5 .
+
+cfr:gil a cfkg:PrincipioTransversal ;
+    rdfs:label "Global Interpreter Lock"@en,
+        "GIL"@es ;
+    skos:exactMatch wd:Q5570451 ;
+    cfkg:aNivelDominio cfr:avanzado ;
+    cfkg:perteneceATema cfr:T_concurrencia ;
+    cfkg:tieneDificultad 5 .
+
+cfr:herencia_multiple a cfkg:Paradigma ;
+    rdfs:label "Multiple inheritance"@en,
+        "Herencia múltiple"@es ;
+    skos:broader cfr:herencia ;
+    cfkg:aNivelDominio cfr:avanzado ;
+    cfkg:perteneceATema cfr:T_poo ;
+    cfkg:requierePrerrequisito cfr:herencia ;
+    cfkg:tieneDificultad 5 .
+
+cfr:mutabilidad a cfkg:PrincipioTransversal ;
+    rdfs:label "Mutability"@en,
+        "Mutabilidad"@es ;
+    rdfs:comment "Propiedad de los objetos cuyo estado puede cambiar tras su creación."@es ;
+    cfkg:aNivelDominio cfr:avanzado ;
+    cfkg:contrastaCon cfr:tupla ;
+    cfkg:perteneceATema cfr:T_estructuras ;
+    cfkg:tieneDificultad 4 .
+
+cfr:parametros a cfkg:PrincipioTransversal ;
+    rdfs:label "Parameters"@en,
+        "Parámetros y argumentos"@es ;
+    cfkg:aNivelDominio cfr:basico ;
+    cfkg:perteneceATema cfr:T_funciones ;
+    cfkg:requierePrerrequisito cfr:funcion ;
+    cfkg:tieneDificultad 2 .
+
+cfr:pila a cfkg:EstructuraDeDatos ;
+    rdfs:label "Stack"@en,
+        "Pila (stack)"@es ;
+    skos:broader cfr:lista ;
+    skos:related cfr:cola ;
+    cfkg:aNivelDominio cfr:basico ;
+    cfkg:contrastaCon cfr:cola ;
+    cfkg:perteneceATema cfr:T_estructuras ;
+    cfkg:requierePrerrequisito cfr:lista ;
+    cfkg:tieneDificultad 2 .
+
+cfr:slicing a cfkg:PrincipioTransversal ;
+    rdfs:label "Slicing"@en,
+        "Slicing (rebanado)"@es ;
+    skos:broader cfr:indexacion ;
+    skos:narrower cfr:slicing_str ;
+    cfkg:perteneceATema cfr:T_estructuras ;
+    cfkg:requierePrerrequisito cfr:indexacion ;
+    cfkg:tieneDificultad 3 .
+
+cfr:tipo_bool a cfkg:TipoDeDato ;
+    rdfs:label "Boolean (bool)"@en,
+        "Booleano (bool)"@es ;
+    cfkg:perteneceATema cfr:T_fundamentos ;
+    cfkg:tieneDificultad 1 .
+
+cfr:busqueda_binaria a cfkg:PrincipioTransversal ;
+    rdfs:label "Binary search"@en,
+        "Búsqueda binaria"@es ;
+    skos:exactMatch wd:Q243754 ;
+    skos:prefLabel "Búsqueda binaria"@es ;
+    skos:related cfr:busqueda_lineal ;
+    cfkg:perteneceATema cfr:T_complejidad ;
+    cfkg:requierePrerrequisito cfr:bucle_while,
+        cfr:indexacion ;
+    cfkg:seAplicaA cfr:lista ;
+    cfkg:tieneDificultad 4 .
+
+cfr:cola a cfkg:EstructuraDeDatos ;
+    rdfs:label "Queue"@en,
+        "Cola (queue)"@es ;
+    skos:broader cfr:lista ;
+    skos:related cfr:pila ;
+    cfkg:aNivelDominio cfr:basico ;
+    cfkg:contrastaCon cfr:pila ;
+    cfkg:perteneceATema cfr:T_estructuras ;
+    cfkg:requierePrerrequisito cfr:lista ;
+    cfkg:tieneDificultad 2 .
+
+cfr:ej_factorial a cfkg:Ejercicio ;
+    rdfs:label "Recursive factorial"@en,
+        "Factorial recursivo"@es ;
+    cfkg:cubreConcepto cfr:funcion,
+        cfr:recursion ;
+    cfkg:tieneDificultad 3 ;
+    cfkg:tieneEnunciado "Implementa el factorial de n de forma recursiva."@es .
+
+cfr:ej_suma_lista a cfkg:Ejercicio ;
+    rdfs:label "Sum the elements of a list"@en,
+        "Suma de los elementos de una lista"@es ;
+    cfkg:cubreConcepto cfr:bucle_for,
+        cfr:funcion,
+        cfr:lista ;
+    cfkg:tieneDificultad 2 ;
+    cfkg:tieneEnunciado "Escribe una función que reciba una lista de enteros y devuelva su suma usando un bucle."@es .
+
+cfr:generador a cfkg:EstructuraDeControl ;
+    rdfs:label "Generator"@en,
+        "Generador (yield)"@es ;
+    skos:exactMatch wd:Q2565187 ;
+    cfkg:aNivelDominio cfr:avanzado ;
+    cfkg:perteneceATema cfr:T_funcional ;
+    cfkg:requierePrerrequisito cfr:funcion,
+        cfr:iterador ;
+    cfkg:tieneDificultad 4 .
+
+cfr:grafo_estr a cfkg:EstructuraDeDatos ;
+    rdfs:label "Graph"@en,
+        "Grafo (estructura)"@es ;
+    skos:exactMatch wd:Q2479726 ;
+    skos:narrower cfr:bfs,
+        cfr:dfs ;
+    cfkg:aNivelDominio cfr:avanzado ;
+    cfkg:perteneceATema cfr:T_algoritmos ;
+    cfkg:requierePrerrequisito cfr:diccionario ;
+    cfkg:tieneDificultad 4 .
+
+cfr:notacion_o a cfkg:PrincipioTransversal ;
+    rdfs:label "Big-O notation"@en,
+        "Notación O grande"@es ;
+    skos:exactMatch wd:Q269878 ;
+    skos:narrower cfr:ordenacion_burbuja,
+        cfr:ordenacion_mezcla,
+        cfr:ordenacion_rapida ;
+    cfkg:aNivelDominio cfr:avanzado ;
+    cfkg:perteneceATema cfr:T_algoritmos ;
+    cfkg:requierePrerrequisito cfr:complejidad ;
+    cfkg:tieneDificultad 4 .
+
+cfkg:NivelDominio a owl:Class ;
+    rdfs:label "Mastery level"@en,
+        "Nivel de dominio"@es ;
+    rdfs:subClassOf skos:Concept .
+
+cfkg:Recurso a owl:Class ;
+    rdfs:label "Learning resource"@en,
+        "Recurso de aprendizaje"@es ;
+    rdfs:subClassOf cfkg:EntidadEducativa .
+
+cfkg:relacionadoConceptualmenteCon a owl:ObjectProperty ;
+    rdfs:label "conceptually related to"@en,
+        "relacionado conceptualmente con"@es ;
+    rdfs:comment "Superpropiedad genérica de las relaciones entre conceptos; permite consultas amplias por subsunción de subpropiedades."@es ;
+    rdfs:domain cfkg:Concepto ;
+    rdfs:range cfkg:Concepto .
+
+cfr:anotaciones_tipo a cfkg:PrincipioTransversal ;
+    rdfs:label "Type hints"@en,
+        "Anotaciones de tipo"@es ;
+    cfkg:aNivelDominio cfr:intermedio ;
+    cfkg:perteneceATema cfr:T_tipos ;
+    cfkg:requierePrerrequisito cfr:funcion ;
+    cfkg:tieneDificultad 3 .
+
+cfr:decorador a cfkg:Paradigma ;
+    rdfs:label "Decorator"@en,
+        "Decorador"@es ;
+    skos:exactMatch wd:Q110938941 ;
+    cfkg:aNivelDominio cfr:avanzado ;
+    cfkg:perteneceATema cfr:T_funcional ;
+    cfkg:requierePrerrequisito cfr:closure,
+        cfr:funcion_orden_superior ;
+    cfkg:tieneDificultad 5 .
+
+cfr:ej_busqueda a cfkg:Ejercicio ;
+    rdfs:label "Binary search on a sorted list"@en,
+        "Búsqueda binaria sobre lista ordenada"@es ;
+    cfkg:cubreConcepto cfr:bucle_while,
+        cfr:busqueda_binaria,
+        cfr:indexacion ;
+    cfkg:tieneDificultad 4 ;
+    cfkg:tieneEnunciado "Implementa la búsqueda binaria sobre una lista ordenada y devuelve el índice del elemento."@es .
+
+cfr:excepcion a cfkg:EstructuraDeControl ;
+    rdfs:label "Exception"@en,
+        "Excepción"@es ;
+    skos:exactMatch wd:Q471748 ;
+    cfkg:perteneceATema cfr:T_excepciones ;
+    cfkg:requierePrerrequisito cfr:condicional ;
+    cfkg:tieneDificultad 3 .
+
+cfr:funcion_orden_superior a cfkg:PrincipioTransversal ;
+    rdfs:label "Higher-order functions"@en,
+        "Funciones de orden superior"@es ;
+    cfkg:aNivelDominio cfr:avanzado ;
+    cfkg:perteneceATema cfr:T_funcional ;
+    cfkg:requierePrerrequisito cfr:funcion ;
+    cfkg:tieneDificultad 4 .
+
+cfr:iterables a cfkg:PrincipioTransversal ;
+    rdfs:label "Iterables"@en,
+        "Iterables"@es ;
+    cfkg:aNivelDominio cfr:basico ;
+    cfkg:perteneceATema cfr:T_estructuras ;
+    cfkg:requierePrerrequisito cfr:lista ;
+    cfkg:tieneDificultad 2 .
+
+cfkg:EvaluacionDeConcepto a owl:Class ;
+    rdfs:label "Concept assessment occurrence"@en,
+        "Evaluación de concepto"@es ;
+    rdfs:comment "Nodo intermedio que reifica la relación N-aria (ejercicio, concepto, peso, nivel) sin perder información, según el patrón de relaciones N-arias del material docente."@es ;
+    rdfs:subClassOf cfkg:EntidadEducativa .
+
+cfr:T_concurrencia a cfkg:Tema ;
+    rdfs:label "Concurrency"@en,
+        "Concurrencia"@es .
+
+cfr:T_excepciones a cfkg:Tema ;
+    rdfs:label "Exceptions"@en,
+        "Excepciones"@es .
+
+cfr:T_ficheros a cfkg:Tema ;
+    rdfs:label "Files and I/O"@en,
+        "Ficheros y E/S"@es .
+
+cfr:T_fundamentos a cfkg:Tema ;
+    rdfs:label "Fundamentals"@en,
+        "Fundamentos"@es .
+
+cfr:T_strings a cfkg:Tema ;
+    rdfs:label "Strings"@en,
+        "Cadenas de texto"@es .
+
+cfr:T_testing a cfkg:Tema ;
+    rdfs:label "Testing and style"@en,
+        "Pruebas y estilo"@es .
+
+cfr:est_alicia a foaf:Person,
+        cfkg:Estudiante ;
+    rdfs:label "Alice"@en,
+        "Alicia"@es ;
+    foaf:name "Alicia" ;
+    cfkg:dominaConcepto cfr:bucle_for,
+        cfr:funcion,
+        cfr:variable .
+
+cfr:est_borja a foaf:Person,
+        cfkg:Estudiante ;
+    rdfs:label "Borja"@en,
+        "Borja"@es ;
+    foaf:name "Borja" ;
+    cfkg:dominaConcepto cfr:condicional,
+        cfr:variable .
+
+cfr:tupla a cfkg:EstructuraDeDatos ;
+    rdfs:label "Tuple"@en,
+        "Tupla"@es ;
+    skos:exactMatch wd:Q2879072 ;
+    skos:related cfr:lista ;
+    cfkg:contrastaCon cfr:lista ;
+    cfkg:perteneceATema cfr:T_estructuras ;
+    cfkg:tieneDificultad 2 .
+
+cfkg:Estudiante a owl:Class ;
+    rdfs:label "Student"@en,
+        "Estudiante"@es ;
+    rdfs:subClassOf cfkg:EntidadEducativa .
+
+cfr:T_funciones a cfkg:Tema ;
+    rdfs:label "Functions"@en,
+        "Funciones"@es .
+
+cfr:condicional a cfkg:EstructuraDeControl ;
+    rdfs:label "Conditional (if)"@en,
+        "Condicional (if)"@es ;
+    cfkg:perteneceATema cfr:T_control ;
+    cfkg:requierePrerrequisito cfr:tipo_bool ;
+    cfkg:tieneDificultad 1 .
+
+cfkg:EnvioEstudiante a owl:Class ;
+    rdfs:label "Student submission"@en,
+        "Envío de estudiante"@es ;
+    rdfs:comment "Entrega de código de un estudiante en respuesta a un ejercicio."@es ;
+    rdfs:subClassOf cfkg:EntidadEducativa .
+
+cfkg:TipoDeDato a owl:Class ;
+    rdfs:label "Data type"@en,
+        "Tipo de dato"@es ;
+    rdfs:subClassOf cfkg:Concepto .
+
+cfr:clase a cfkg:Paradigma ;
+    rdfs:label "Class"@en,
+        "Clase"@es ;
+    skos:exactMatch wd:Q4479242 ;
+    cfkg:perteneceATema cfr:T_poo ;
+    cfkg:requierePrerrequisito cfr:funcion ;
+    cfkg:tieneDificultad 3 .
+
+cfr:comprension_listas a cfkg:EstructuraDeControl ;
+    rdfs:label "List comprehension"@en,
+        "Comprensión de listas"@es ;
+    skos:broader cfr:bucle_for ;
+    skos:exactMatch wd:Q795065 ;
+    skos:narrower cfr:comprension_dicts,
+        cfr:comprension_sets,
+        cfr:expresion_generadora ;
+    cfkg:aNivelDominio cfr:avanzado ;
+    cfkg:perteneceATema cfr:T_control ;
+    cfkg:requierePrerrequisito cfr:lista ;
+    cfkg:tieneDificultad 4 ;
+    cfkg:tieneEjemploCodigo "ys = [x*x for x in xs if x > 0]" .
+
+cfr:diccionario a cfkg:EstructuraDeDatos ;
+    rdfs:label "Dictionary"@en,
+        "Diccionario"@es ;
+    skos:exactMatch wd:Q80585 ;
+    cfkg:perteneceATema cfr:T_estructuras ;
+    cfkg:tieneDificultad 2 .
+
+cfr:import_mod a cfkg:PrincipioTransversal ;
+    rdfs:label "import"@en,
+        "import"@es ;
+    cfkg:aNivelDominio cfr:basico ;
+    cfkg:perteneceATema cfr:T_modulos ;
+    cfkg:tieneDificultad 2 .
+
+cfr:tipo_str a cfkg:TipoDeDato ;
+    rdfs:label "String (str)"@en,
+        "Cadena (str)"@es ;
+    cfkg:perteneceATema cfr:T_fundamentos ;
+    cfkg:tieneDificultad 1 .
+
+cfr:indexacion a cfkg:PrincipioTransversal ;
+    rdfs:label "Indexing"@en,
+        "Indexación"@es ;
+    skos:narrower cfr:indexacion_negativa,
+        cfr:slicing ;
+    cfkg:perteneceATema cfr:T_estructuras ;
+    cfkg:requierePrerrequisito cfr:lista ;
+    cfkg:seAplicaA cfr:lista ;
+    cfkg:tieneDificultad 2 .
+
+cfr:metodo a cfkg:Paradigma ;
+    rdfs:label "Method"@en,
+        "Método"@es ;
+    skos:narrower cfr:init_method,
+        cfr:metodo_clase,
+        cfr:metodo_estatico ;
+    cfkg:aNivelDominio cfr:intermedio ;
+    cfkg:perteneceATema cfr:T_poo ;
+    cfkg:requierePrerrequisito cfr:clase,
+        cfr:funcion ;
+    cfkg:tieneDificultad 3 .
+
+cfr:herencia a cfkg:Paradigma ;
+    rdfs:label "Inheritance"@en,
+        "Herencia"@es ;
+    skos:exactMatch wd:Q212542 ;
+    skos:narrower cfr:herencia_multiple ;
+    skos:related cfr:composicion ;
+    cfkg:perteneceATema cfr:T_poo ;
+    cfkg:requierePrerrequisito cfr:clase ;
+    cfkg:tieneDificultad 4 .
+
+cfkg:Ejercicio a owl:Class ;
+    rdfs:label "Exercise or assignment"@en,
+        "Ejercicio o enunciado"@es ;
+    rdfs:subClassOf cfkg:EntidadEducativa .
+
+cfr:T_modulos a cfkg:Tema ;
+    rdfs:label "Modules and packages"@en,
+        "Módulos y paquetes"@es .
+
+cfkg:FuncionIntegrada a owl:Class ;
+    rdfs:label "Built-in function"@en,
+        "Función integrada"@es ;
+    rdfs:subClassOf cfkg:Concepto .
+
+cfkg:EntidadEducativa a owl:Class ;
+    rdfs:label "Educational entity"@en,
+        "Entidad educativa"@es ;
+    rdfs:comment "Superclase abstracta de todas las entidades del grafo educativo."@es .
+
+cfr:T_algoritmos a cfkg:Tema ;
+    rdfs:label "Algorithms"@en,
+        "Algoritmos"@es .
+
+cfr:recursion a cfkg:PrincipioTransversal ;
+    rdfs:label "Recursion"@en,
+        "Recursión"@es ;
+    rdfs:comment "Definición de una función en términos de sí misma."@es ;
+    skos:exactMatch wd:Q264164 ;
+    skos:narrower cfr:recursion_cola ;
+    skos:prefLabel "Recursión"@es ;
+    skos:related cfr:bucle_for ;
+    cfkg:aNivelDominio cfr:avanzado ;
+    cfkg:contrastaCon cfr:bucle_for ;
+    cfkg:perteneceATema cfr:T_recursion ;
+    cfkg:requierePrerrequisito cfr:funcion ;
+    cfkg:tieneDificultad 4 .
+
+cfr:T_control a cfkg:Tema ;
+    rdfs:label "Control flow"@en,
+        "Control de flujo"@es .
+
+cfr:T_funcional a cfkg:Tema ;
+    rdfs:label "Functional programming"@en,
+        "Programación funcional"@es .
+
+cfr:bucle_for a cfkg:EstructuraDeControl ;
+    rdfs:label "For loop"@en,
+        "Bucle for"@es ;
+    skos:narrower cfr:comprension_listas ;
+    skos:prefLabel "Bucle for"@es ;
+    skos:related cfr:recursion ;
+    cfkg:aNivelDominio cfr:basico ;
+    cfkg:esPrerrequisitoDe cfr:comprension_listas ;
+    cfkg:perteneceATema cfr:T_control ;
+    cfkg:tieneDificultad 2 ;
+    cfkg:tieneEjemploCodigo """for x in xs:
+    print(x)""" .
+
+cfkg:EstructuraDeDatos a owl:Class ;
+    rdfs:label "Data structure"@en,
+        "Estructura de datos"@es ;
+    rdfs:subClassOf cfkg:Concepto .
+
+cfkg:EvaluacionActividad a owl:Class ;
+    rdfs:label "Activity assessment"@en,
+        "Evaluación de actividad"@es ;
+    rdfs:subClassOf cfkg:EntidadEducativa .
+
+cfr:T_tipos a cfkg:Tema ;
+    rdfs:label "Type system"@en,
+        "Sistema de tipos"@es .
+
+cfkg:ModuloLibreria a owl:Class ;
+    rdfs:label "Module or library"@en,
+        "Módulo o librería"@es ;
+    rdfs:subClassOf cfkg:Concepto .
+
+cfr:funcion a cfkg:PrincipioTransversal ;
+    rdfs:label "Function"@en,
+        "Función"@es ;
+    skos:prefLabel "Función"@es ;
+    cfkg:esPrerrequisitoDe cfr:recursion ;
+    cfkg:perteneceATema cfr:T_funciones ;
+    cfkg:tieneDificultad 2 ;
+    cfkg:tieneEjemploCodigo """def f(x):
+    return x + 1""" .
+
+cfkg:Tema a owl:Class ;
+    rdfs:label "Curricular topic"@en,
+        "Tema curricular"@es ;
+    rdfs:comment "Agrupación curricular de conceptos (unidad didáctica)."@es ;
+    rdfs:subClassOf cfkg:EntidadEducativa .
+
+cfr:T_estructuras a cfkg:Tema ;
+    rdfs:label "Data structures"@en,
+        "Estructuras de datos"@es .
+
+cfkg:ErrorConceptual a owl:Class ;
+    rdfs:label "Misconception"@en,
+        "Error conceptual (misconception)"@es ;
+    rdfs:comment "Malentendido recurrente documentado en la literatura de didáctica de la programación."@es ;
+    rdfs:subClassOf cfkg:EntidadEducativa .
+
+cfr:lista a cfkg:EstructuraDeDatos ;
+    rdfs:label "List"@en,
+        "Lista"@es ;
+    skos:exactMatch wd:Q27948 ;
+    skos:narrower cfr:cola,
+        cfr:pila ;
+    skos:prefLabel "Lista"@es ;
+    skos:related cfr:conjunto,
+        cfr:tupla ;
+    cfkg:aNivelDominio cfr:basico ;
+    cfkg:perteneceATema cfr:T_estructuras ;
+    cfkg:tieneDificultad 2 ;
+    cfkg:tieneEjemploCodigo "xs = [1, 2, 3]" .
+
+cfr:T_poo a cfkg:Tema ;
+    rdfs:label "Object-oriented programming"@en,
+        "Programación orientada a objetos"@es .
+
+cfkg:EstructuraDeControl a owl:Class ;
+    rdfs:label "Control structure"@en,
+        "Estructura de control"@es ;
+    rdfs:subClassOf cfkg:Concepto .
+
+cfkg:Concepto a owl:Class ;
+    rdfs:label "Programming concept"@en,
+        "Concepto de programación"@es ;
+    rdfs:comment "Unidad de conocimiento del dominio (p. ej. recursión, bucle for, mutabilidad). Al ser subclase de skos:Concept admite la red conceptual skos:broader/narrower/related."@es ;
+    rdfs:subClassOf skos:Concept,
+        cfkg:EntidadEducativa .
+
+cfkg:Paradigma a owl:Class ;
+    rdfs:label "Programming paradigm"@en,
+        "Paradigma de programación"@es ;
+    rdfs:subClassOf cfkg:Concepto .
+
+cfr:basico a cfkg:NivelDominio ;
+    rdfs:label "basic"@en,
+        "básico"@es ;
+    skos:notation "1" ;
+    skos:prefLabel "basic"@en,
+        "básico"@es .
+
+cfr:intermedio a cfkg:NivelDominio ;
+    rdfs:label "intermediate"@en,
+        "intermedio"@es ;
+    skos:notation "2" ;
+    skos:prefLabel "intermediate"@en,
+        "intermedio"@es .
+
+cfkg:PrincipioTransversal a owl:Class ;
+    rdfs:label "Cross-cutting principle"@en,
+        "Principio transversal"@es ;
+    rdfs:subClassOf cfkg:Concepto .
+
+cfr:avanzado a cfkg:NivelDominio ;
+    rdfs:label "advanced"@en,
+        "avanzado"@es ;
+    skos:notation "3" ;
+    skos:prefLabel "advanced"@en,
+        "avanzado"@es .
+
+[] a owl:AllDisjointClasses ;
+    owl:members ( cfkg:Concepto cfkg:Tema cfkg:Competencia cfkg:Ejercicio cfkg:EnvioEstudiante cfkg:ErrorConceptual cfkg:Recurso cfkg:Estudiante cfkg:RutaAprendizaje cfkg:EvaluacionDeConcepto ) .
+

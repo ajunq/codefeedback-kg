@@ -1,0 +1,46 @@
+@prefix void:    <http://rdfs.org/ns/void#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix foaf:    <http://xmlns.com/foaf/0.1/> .
+@prefix skos:    <http://www.w3.org/2004/02/skos/core#> .
+@prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix cfkg:   <https://w3id.org/codefeedback-kg/schema#> .
+@prefix wd:      <http://www.wikidata.org/entity/> .
+@prefix :        <https://w3id.org/codefeedback-kg/void#> .
+
+# Descripción VoID (Vocabulary of Interlinked Datasets) del CodeFeedback-KG — metadato FAIR.
+
+:codefeedback-kg a void:Dataset ;
+    dcterms:title "CodeFeedback-KG — Grafo de Conocimiento Educativo de programación en Python"@es ;
+    dcterms:description "Grafo de 157 conceptos de programación en Python en RDF/OWL 2 RL, validado con SHACL, enlazado a Wikidata con skos:exactMatch."@es ;
+    dcterms:creator [ a foaf:Person ; foaf:name "Adrián Bueno Junquero" ] ;
+    dcterms:license <https://creativecommons.org/licenses/by/4.0/> ;
+    dcterms:created "2026-06-18"^^<http://www.w3.org/2001/XMLSchema#date> ;
+    void:feature <http://www.w3.org/ns/formats/Turtle> ;
+    void:triples 1772 ;
+    void:entities 157 ;
+    void:classes 20 ;
+    void:properties 28 ;
+    void:vocabulary <http://www.w3.org/2000/01/rdf-schema#> ,
+                    <http://www.w3.org/2002/07/owl#> ,
+                    <http://www.w3.org/2004/02/skos/core#> ,
+                    <http://purl.org/dc/terms/> ,
+                    <http://xmlns.com/foaf/0.1/> ,
+                    <http://schema.org/> ;
+    void:uriSpace "https://w3id.org/codefeedback-kg/" ;
+    void:exampleResource <https://w3id.org/codefeedback-kg/id/python> ;
+    void:classPartition [ void:class cfkg:Concepto ; void:entities 157 ] ;
+    void:classPartition [ void:class cfkg:ErrorConceptual ; void:entities 16 ] ;
+    void:classPartition [ void:class cfkg:Tema ] ;
+    void:linkPredicate skos:exactMatch ;
+    void:subset :enlace-wikidata .
+
+# Linkset: correspondencias a Wikidata (skos:exactMatch, NO owl:sameAs: enlaza sin fusionar).
+:enlace-wikidata a void:Linkset ;
+    void:subjectsTarget :codefeedback-kg ;
+    void:objectsTarget :wikidata ;
+    void:linkPredicate skos:exactMatch ;
+    void:triples 30 .
+
+:wikidata a void:Dataset ;
+    dcterms:title "Wikidata" ;
+    void:uriSpace "http://www.wikidata.org/entity/" .

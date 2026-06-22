@@ -1,0 +1,23 @@
+Consulta federada 08 (skos:exactMatch -> Wikidata, descripcion ES)
+n=20 filas
+
+arbol_estr	Árbol	tipo abstracto de datos que imita la estructura jerárquica de un árbol
+polimorfismo	Polimorfismo	informática
+python	Python	lenguaje de programación de alto nivel
+regex	Expresiones regulares (re)	secuencia de caracteres que forma un patrón de búsqueda en cómputo teórico y teoría de lenguajes formales
+tabla_hash	Tabla hash	estructura de datos que asocia claves con valores, utilizando una función hash
+iterador	Iterador (iter, next)	En computación, un objeto que permite recorrer un contenedor.
+ordenacion_burbuja	Ordenación de burbuja	tipo de algoritmo de ordenamiento
+ordenacion_rapida	Ordenación rápida	algoritmo de ordenación
+closure	Clausura (closure)	función en informática que es evaluada en un entorno conteniendo una o más variables dependientes de otro entorno
+complejidad	Complejidad temporal	tiempo de ejecución que describe la demora de una máquina en procesar una tarea
+conjunto	Conjunto (set)	estructura de datos de tipo abstracto en informática
+recursion	Recursión	método en ciencias de computación
+bfs	Recorrido en anchura (BFS)	algoritmo de búsqueda no informada utilizado para recorrer o buscar elementos en un grafo (usado frecuentemente sobre árboles)
+busqueda_binaria	Búsqueda binaria	algoritmo de búsqueda
+generador	Generador (yield)	rutina especial en informática
+grafo_estr	Grafo (estructura)	tipo abstracto de datos que consiste en un conjunto de nodos
+clase	Clase	en programación orientada a objetos, plantilla para la creación de objetos de datos según un modelo predefinido
+diccionario	Diccionario	estructura de datos que asocia claves con valores
+herencia	Herencia	concepto en informática
+lista	Lista	dato abstracto que representa una secuencia ordenada de valores en ciencias de la computación

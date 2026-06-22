@@ -1,0 +1,258 @@
+{
+  "ontologia": "CodeFeedback-KG",
+  "version": "2.0.0",
+  "fecha": "2026-06-21",
+  "resumen": {
+    "dimensiones_total": 28,
+    "dimensiones_PASS": 28,
+    "dimensiones_FAIL": 0
+  },
+  "owl_rl": {
+    "triples_afirmados_v2": 3291,
+    "triples_cierre_v2": 8957,
+    "triples_inferidos_v2": 5666,
+    "conceptos_inferidos_v2": 222,
+    "owl_Nothing": 0,
+    "owl_sameAs_no_reflexivo": 0,
+    "consistente": true
+  },
+  "shacl": {
+    "formas": 18,
+    "conforms_grafo_valido": true,
+    "violaciones_grafo_valido": 0,
+    "violaciones_ejemplo_invalido": 9
+  },
+  "vocabularios_externos_v2": [
+    "DBpedia",
+    "DCTerms",
+    "FOAF",
+    "Wikidata",
+    "schema.org"
+  ],
+  "dimensiones": [
+    {
+      "dimension": "cfkg:Concepto (inferido OWL-RL)",
+      "v1.0": 157,
+      "v2.0": 222,
+      "target": ">=210",
+      "PASS": true,
+      "re-derivation": "owlrl DeductiveClosure; |{?s a cfkg:Concepto}|"
+    },
+    {
+      "dimension": "triples afirmados",
+      "v1.0": 1772,
+      "v2.0": 3291,
+      "target": ">=2500",
+      "PASS": true,
+      "re-derivation": "len(Graph) tras parse rdflib"
+    },
+    {
+      "dimension": "owl:Class",
+      "v1.0": 20,
+      "v2.0": 28,
+      "target": ">=28",
+      "PASS": true,
+      "re-derivation": "|{?s a owl:Class}|"
+    },
+    {
+      "dimension": "owl:ObjectProperty",
+      "v1.0": 21,
+      "v2.0": 26,
+      "target": ">=26",
+      "PASS": true,
+      "re-derivation": "|{?s a owl:ObjectProperty}|"
+    },
+    {
+      "dimension": "owl:DatatypeProperty",
+      "v1.0": 7,
+      "v2.0": 11,
+      "target": ">=10",
+      "PASS": true,
+      "re-derivation": "|{?s a owl:DatatypeProperty}|"
+    },
+    {
+      "dimension": "rdfs:subClassOf",
+      "v1.0": 20,
+      "v2.0": 42,
+      "target": ">=30",
+      "PASS": true,
+      "re-derivation": "|{?s rdfs:subClassOf ?o}|"
+    },
+    {
+      "dimension": "owl:TransitiveProperty",
+      "v1.0": 2,
+      "v2.0": 5,
+      "target": ">=4",
+      "PASS": true,
+      "re-derivation": "|{?s a owl:TransitiveProperty}|"
+    },
+    {
+      "dimension": "owl:SymmetricProperty",
+      "v1.0": 1,
+      "v2.0": 2,
+      "target": ">=1",
+      "PASS": true,
+      "re-derivation": "|{?s a owl:SymmetricProperty}|"
+    },
+    {
+      "dimension": "owl:FunctionalProperty",
+      "v1.0": 1,
+      "v2.0": 2,
+      "target": ">=2",
+      "PASS": true,
+      "re-derivation": "|{?s a owl:FunctionalProperty}|"
+    },
+    {
+      "dimension": "owl:inverseOf (pares)",
+      "v1.0": 2,
+      "v2.0": 4,
+      "target": ">=4",
+      "PASS": true,
+      "re-derivation": "|{?s owl:inverseOf ?o}|"
+    },
+    {
+      "dimension": "owl:disjointWith",
+      "v1.0": 0,
+      "v2.0": 10,
+      "target": ">=6",
+      "PASS": true,
+      "re-derivation": "|{?s owl:disjointWith ?o}|"
+    },
+    {
+      "dimension": "owl:Restriction",
+      "v1.0": 0,
+      "v2.0": 12,
+      "target": ">=10",
+      "PASS": true,
+      "re-derivation": "|{?s a owl:Restriction}|"
+    },
+    {
+      "dimension": "propiedades sin dominio",
+      "v1.0": 2,
+      "v2.0": 0,
+      "target": "==0",
+      "PASS": true,
+      "re-derivation": "props sin rdfs:domain"
+    },
+    {
+      "dimension": "propiedades sin rango",
+      "v1.0": 0,
+      "v2.0": 0,
+      "target": "==0",
+      "PASS": true,
+      "re-derivation": "props sin rdfs:range"
+    },
+    {
+      "dimension": "owl:Ontology header completo",
+      "v1.0": "parcial",
+      "v2.0": "completo",
+      "target": "completo",
+      "PASS": true,
+      "re-derivation": "title/creator/license/description/versionInfo/versionIRI presentes"
+    },
+    {
+      "dimension": "versionInfo",
+      "v1.0": "1.0.0",
+      "v2.0": "2.0.0",
+      "target": "2.0.0",
+      "PASS": true,
+      "re-derivation": "owl:versionInfo del owl:Ontology"
+    },
+    {
+      "dimension": "Formas SHACL",
+      "v1.0": 10,
+      "v2.0": 18,
+      "target": ">=16",
+      "PASS": true,
+      "re-derivation": "|{?s a sh:NodeShape}| en shapes-codefeedback-kg.ttl"
+    },
+    {
+      "dimension": "skos:broader",
+      "v1.0": 19,
+      "v2.0": 38,
+      "target": ">=30",
+      "PASS": true,
+      "re-derivation": "|{?s skos:broader ?o}|"
+    },
+    {
+      "dimension": "skos:narrower",
+      "v1.0": 19,
+      "v2.0": 38,
+      "target": ">=20",
+      "PASS": true,
+      "re-derivation": "|{?s skos:narrower ?o}|"
+    },
+    {
+      "dimension": "skos:related",
+      "v1.0": 16,
+      "v2.0": 70,
+      "target": ">=20",
+      "PASS": true,
+      "re-derivation": "|{?s skos:related ?o}|"
+    },
+    {
+      "dimension": "cobertura def+scopeNote+example",
+      "v1.0": "0/157",
+      "v2.0": "222/222",
+      "target": "==conceptos",
+      "PASS": true,
+      "re-derivation": "cada cfkg:Concepto con skos:definition+scopeNote+example"
+    },
+    {
+      "dimension": "skos:exactMatch Wikidata",
+      "v1.0": 30,
+      "v2.0": 48,
+      "target": ">=40",
+      "PASS": true,
+      "re-derivation": "exactMatch a wikidata.org (QIDs via API)"
+    },
+    {
+      "dimension": "vocabularios externos alineados",
+      "v1.0": 4,
+      "v2.0": "5 (DBpedia, DCTerms, FOAF, Wikidata, schema.org)",
+      "target": ">=4",
+      "PASS": true,
+      "re-derivation": "Wikidata+DBpedia+schema.org+DCTerms(+FOAF)"
+    },
+    {
+      "dimension": "owl:sameAs",
+      "v1.0": 0,
+      "v2.0": 0,
+      "target": "==0",
+      "PASS": true,
+      "re-derivation": "|{?s owl:sameAs ?o}| afirmados"
+    },
+    {
+      "dimension": "OWL-RL consistencia (owl:Nothing)",
+      "v1.0": "n/d",
+      "v2.0": 0,
+      "target": "==0",
+      "PASS": true,
+      "re-derivation": "miembros de owl:Nothing en el cierre"
+    },
+    {
+      "dimension": "OWL-RL sin fusion (sameAs no reflex.)",
+      "v1.0": "n/d",
+      "v2.0": 0,
+      "target": "==0",
+      "PASS": true,
+      "re-derivation": "owl:sameAs x!=y en el cierre"
+    },
+    {
+      "dimension": "SHACL Conforms (grafo valido)",
+      "v1.0": "True",
+      "v2.0": "True",
+      "target": "True",
+      "PASS": true,
+      "re-derivation": "pyshacl rdfs; violaciones=0"
+    },
+    {
+      "dimension": "SHACL viola en ejemplo-invalido",
+      "v1.0": "n/d",
+      "v2.0": 9,
+      "target": ">0",
+      "PASS": true,
+      "re-derivation": "pyshacl sobre grafo + ejemplo-invalido.ttl"
+    }
+  ]
+}

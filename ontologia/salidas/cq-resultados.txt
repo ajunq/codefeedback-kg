@@ -1,0 +1,16 @@
+Preguntas de competencia LOT — CodeFeedback-KG v2.0
+
+CQ1 Prerrequisitos (in)directos de la recursion [cierre OWL-RL]: 1 filas
+CQ2 Conceptos del tema POO: 29 filas
+CQ3 Errores sobre conceptos avanzados: 7 filas
+CQ4 Conceptos con alineamiento Wikidata: 48 filas
+CQ5 Conceptos SIN ejemplo (debe ser 0) [cierre OWL-RL]: 0 filas
+CQ6 Conceptos con mas prerrequisitos directos: 10 filas
+CQ7 Pares de conceptos que contrastan (confusiones): 8 filas
+CQ8 Ejercicios que cubren busqueda binaria y su dificultad: 1 filas
+CQ9 Recursos que ilustran un concepto: 2 filas
+CQ10 Conceptos introducidos en Python 3.10: 2 filas
+CQ11 Conceptos con complejidad O(log n): 6 filas
+CQ12 Especializaciones (broaderTransitive) de comprension de listas [cierre OWL-RL]: 3 filas
+CQ13 Envios que manifiestan un error y el concepto implicado: 2 filas
+CQ14 Conceptos avanzados de concurrencia: 12 filas

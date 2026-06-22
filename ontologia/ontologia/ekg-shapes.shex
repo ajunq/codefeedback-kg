@@ -1,0 +1,25 @@
+# Esquema ShEx equivalente a dos NodeShapes SHACL del EKG (Concepto y Ejercicio).
+# Validable en https://rdfshape.weso.es (pestaña ShEx) contra codefeedback-kg-150.ttl / ejemplo-invalido.ttl.
+# Se incluye como alternativa de validación de formas (ShEx ↔ SHACL);
+# la validación efectiva del entregable se hace con pyshacl (shapes-ekg.ttl).
+
+PREFIX cfkg: <https://w3id.org/codefeedback-kg/schema#>
+PREFIX skos:  <http://www.w3.org/2004/02/skos/core#>
+PREFIX rdfs:  <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX xsd:   <http://www.w3.org/2001/XMLSchema#>
+PREFIX wd:    <http://www.wikidata.org/entity/>
+
+start = @<ConceptoShape>
+
+<ConceptoShape> {
+  rdfs:label            rdfs:Literal+ ;            # al menos una etiqueta
+  cfkg:perteneceATema  IRI+ ;                     # al menos un tema
+  skos:broader          IRI* ;                     # jerarquía conceptual (opcional)
+  skos:exactMatch       [ wd:~ ]* ;                # enlaces a Wikidata (Q...) (opcional)
+}
+
+<EjercicioShape> {
+  cfkg:cubreConcepto   @<ConceptoShape> + ;       # cubre ≥1 concepto
+  cfkg:tieneDificultad xsd:integer MININCLUSIVE 1 MAXINCLUSIVE 5 ;
+  cfkg:tieneEnunciado  rdfs:Literal+ ;            # enunciado obligatorio
+}

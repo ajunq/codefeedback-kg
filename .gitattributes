@@ -1,0 +1,6 @@
+# Git LFS: los pesos del adaptador (≈154 MB) superan el límite de 100 MB de
+# GitHub para ficheros normales, así que se versionan con Large File Storage.
+*.safetensors filter=lfs diff=lfs merge=lfs -text
+
+# (El resto de binarios del repo —figuras PNG/SVG, serializaciones del grafo,
+#  tokenizer.json— están por debajo de 100 MB y no necesitan LFS.)

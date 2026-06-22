@@ -1,0 +1,58 @@
+Validation Report
+Conforms: False
+Results (9):
+Constraint Violation in MaxInclusiveConstraintComponent (http://www.w3.org/ns/shacl#MaxInclusiveConstraintComponent):
+	Severity: sh:Violation
+	Source Shape: [ sh:datatype xsd:integer ; sh:maxCount Literal("1", datatype=xsd:integer) ; sh:maxInclusive Literal("5", datatype=xsd:integer) ; sh:message Literal("La dificultad, si existe, debe ser un entero entre 1 y 5.", lang=es) ; sh:minInclusive Literal("1", datatype=xsd:integer) ; sh:path cfkg:tieneDificultad ]
+	Focus Node: cfr:mal_concepto
+	Value Node: Literal("8", datatype=xsd:integer)
+	Result Path: cfkg:tieneDificultad
+	Message: La dificultad, si existe, debe ser un entero entre 1 y 5.
+Constraint Violation in MinCountConstraintComponent (http://www.w3.org/ns/shacl#MinCountConstraintComponent):
+	Severity: sh:Violation
+	Source Shape: [ sh:class cfkg:Concepto ; sh:message Literal("Todo ejercicio debe cubrir al menos un concepto.", lang=es) ; sh:minCount Literal("1", datatype=xsd:integer) ; sh:path cfkg:cubreConcepto ]
+	Focus Node: cfr:mal_ejercicio
+	Result Path: cfkg:cubreConcepto
+	Message: Todo ejercicio debe cubrir al menos un concepto.
+Constraint Violation in MinCountConstraintComponent (http://www.w3.org/ns/shacl#MinCountConstraintComponent):
+	Severity: sh:Violation
+	Source Shape: [ sh:class cfkg:Tema ; sh:message Literal("Todo concepto debe pertenecer al menos a un tema.", lang=es) ; sh:minCount Literal("1", datatype=xsd:integer) ; sh:path cfkg:perteneceATema ]
+	Focus Node: cfr:mal_concepto
+	Result Path: cfkg:perteneceATema
+	Message: Todo concepto debe pertenecer al menos a un tema.
+Constraint Violation in MinCountConstraintComponent (http://www.w3.org/ns/shacl#MinCountConstraintComponent):
+	Severity: sh:Violation
+	Source Shape: [ sh:datatype rdf:langString ; sh:message Literal("Todo concepto debe tener al menos una skos:definition (con etiqueta de idioma).", lang=es) ; sh:minCount Literal("1", datatype=xsd:integer) ; sh:path skos:definition ]
+	Focus Node: cfr:mal_concepto
+	Result Path: skos:definition
+	Message: Todo concepto debe tener al menos una skos:definition (con etiqueta de idioma).
+Constraint Violation in MinCountConstraintComponent (http://www.w3.org/ns/shacl#MinCountConstraintComponent):
+	Severity: sh:Violation
+	Source Shape: [ sh:datatype xsd:integer ; sh:maxInclusive Literal("5", datatype=xsd:integer) ; sh:message Literal("Todo ejercicio debe declarar una dificultad entera de 1 a 5.", lang=es) ; sh:minCount Literal("1", datatype=xsd:integer) ; sh:minInclusive Literal("1", datatype=xsd:integer) ; sh:path cfkg:tieneDificultad ]
+	Focus Node: cfr:mal_ejercicio
+	Result Path: cfkg:tieneDificultad
+	Message: Todo ejercicio debe declarar una dificultad entera de 1 a 5.
+Constraint Violation in MinCountConstraintComponent (http://www.w3.org/ns/shacl#MinCountConstraintComponent):
+	Severity: sh:Violation
+	Source Shape: [ sh:message Literal("Todo concepto debe incluir al menos un skos:example (codigo).", lang=es) ; sh:minCount Literal("1", datatype=xsd:integer) ; sh:nodeKind sh:Literal ; sh:path skos:example ]
+	Focus Node: cfr:mal_concepto
+	Result Path: skos:example
+	Message: Todo concepto debe incluir al menos un skos:example (codigo).
+Constraint Violation in MinCountConstraintComponent (http://www.w3.org/ns/shacl#MinCountConstraintComponent):
+	Severity: sh:Violation
+	Source Shape: [ sh:message Literal("Todo concepto debe tener al menos una etiqueta rdfs:label.", lang=es) ; sh:minCount Literal("1", datatype=xsd:integer) ; sh:path rdfs:label ]
+	Focus Node: cfr:mal_concepto
+	Result Path: rdfs:label
+	Message: Todo concepto debe tener al menos una etiqueta rdfs:label.
+Constraint Violation in MinCountConstraintComponent (http://www.w3.org/ns/shacl#MinCountConstraintComponent):
+	Severity: sh:Violation
+	Source Shape: [ sh:message Literal("Todo concepto debe tener al menos una skos:scopeNote.", lang=es) ; sh:minCount Literal("1", datatype=xsd:integer) ; sh:path skos:scopeNote ]
+	Focus Node: cfr:mal_concepto
+	Result Path: skos:scopeNote
+	Message: Todo concepto debe tener al menos una skos:scopeNote.
+Constraint Violation in MinCountConstraintComponent (http://www.w3.org/ns/shacl#MinCountConstraintComponent):
+	Severity: sh:Violation
+	Source Shape: [ sh:message Literal("Todo ejercicio debe tener un enunciado.", lang=es) ; sh:minCount Literal("1", datatype=xsd:integer) ; sh:path cfkg:tieneEnunciado ]
+	Focus Node: cfr:mal_ejercicio
+	Result Path: cfkg:tieneEnunciado
+	Message: Todo ejercicio debe tener un enunciado.

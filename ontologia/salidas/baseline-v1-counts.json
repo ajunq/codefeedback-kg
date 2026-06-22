@@ -1,0 +1,19 @@
+{
+  "asserted_triples": 1772,
+  "owl:Class": 20,
+  "owl:ObjectProperty": 21,
+  "owl:DatatypeProperty": 7,
+  "rdfs:subClassOf": 20,
+  "owl:TransitiveProperty": 2,
+  "owl:SymmetricProperty": 1,
+  "owl:FunctionalProperty": 1,
+  "owl:disjointWith": 0,
+  "owl:Restriction": 0,
+  "owl:inverseOf": 2,
+  "skos:broader": 19,
+  "skos:narrower": 19,
+  "skos:related": 16,
+  "skos:exactMatch": 30,
+  "owl:sameAs": 0,
+  "skos:Concept_distinct": 0
+}

@@ -1,0 +1,4036 @@
+@prefix cc: <http://creativecommons.org/ns#> .
+@prefix cfkg: <https://w3id.org/codefeedback-kg/schema#> .
+@prefix cfr: <https://w3id.org/codefeedback-kg/id/> .
+@prefix dbr: <http://dbpedia.org/resource/> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix schema1: <http://schema.org/> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix vann: <http://purl.org/vocab/vann/> .
+@prefix wd: <http://www.wikidata.org/entity/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+skos:broader rdfs:subPropertyOf skos:broaderTransitive .
+
+cfr:abstract_class a cfkg:Paradigma ;
+    rdfs:label "Abstract base class"@en,
+        "Clase abstracta (ABC)"@es ;
+    skos:definition "Clase base abstracta (ABC) que define una interfaz comun y no puede instanciarse directamente."@es ;
+    skos:example """from abc import ABC, abstractmethod
+class Figura(ABC):
+    @abstractmethod
+    def area(self): ...""" ;
+    skos:scopeNote "Se declara heredando de abc.ABC y marcando metodos con @abstractmethod; obliga a las subclases a implementarlos."@es ;
+    cfkg:aNivelDominio cfr:avanzado ;
+    cfkg:perteneceATema cfr:T_poo ;
+    cfkg:requierePrerrequisito cfr:herencia ;
+    cfkg:tieneDificultad 5 .
+
+cfr:argparse_mod a cfkg:ModuloLibreria ;
+    rdfs:label "argparse"@en,
+        "Modulo argparse"@es ;
+    skos:definition "Modulo estandar para definir y analizar argumentos de la linea de comandos."@es ;
+    skos:example """import argparse
+p = argparse.ArgumentParser()
+p.add_argument('nombre')
+p.parse_args()""" ;
+    skos:related cfr:modulo_sys ;
+    skos:scopeNote "Genera ayuda automatica y valida tipos; mas robusto que leer sys.argv manualmente."@es ;
+    cfkg:aNivelDominio cfr:intermedio ;
+    cfkg:perteneceATema cfr:T_modulos ;
+    cfkg:requierePrerrequisito cfr:modulo_sys ;
+    cfkg:tieneDificultad 3 .
+
+cfr:args_kwargs a cfkg:PrincipioTransversal ;
+    rdfs:label "args and kwargs"@en,
+        "*args y **kwargs"@es ;
+    skos:definition "Sintaxis *args y **kwargs para aceptar un numero variable de argumentos posicionales y por nombre."@es ;
+    skos:example """def f(*args, **kwargs):
+    print(args, kwargs)
+f(1, 2, a=3)""" ;
+    skos:scopeNote "*args agrupa posicionales en una tupla y **kwargs los nombrados en un diccionario."@es ;
+    cfkg:aNivelDominio cfr:intermedio ;
+    cfkg:perteneceATema cfr:T_funciones ;
+    cfkg:requierePrerrequisito cfr:operador_estrella,
+        cfr:parametros ;
+    cfkg:tieneDificultad 3 .
+
+cfr:argumentos_nombrados a cfkg:PrincipioTransversal ;
+    rdfs:label "Keyword arguments"@en,
+        "Argumentos por nombre"@es ;
+    skos:definition "Argumentos que se pasan a una funcion indicando el nombre del parametro (clave=valor)."@es ;
+    skos:example """def conecta(host, puerto=80):
+    ...
+conecta('localhost', puerto=8080)""" ;
+    skos:scopeNote "Mejoran la legibilidad y permiten omitir el orden; deben ir despues de los posicionales."@es ;
+    cfkg:aNivelDominio cfr:basico ;
+    cfkg:perteneceATema cfr:T_funciones ;
+    cfkg:requierePrerrequisito cfr:parametros ;
+    cfkg:tieneDificultad 2 .
+
+cfr:assert_stmt a cfkg:EstructuraDeControl ;
+    rdfs:label "assert"@en,
+        "assert"@es ;
+    skos:definition "Sentencia assert que verifica una condicion y lanza AssertionError si es falsa."@es ;
+    skos:example """def media(xs):
+    assert len(xs) > 0, 'lista vacia'
+    return sum(xs) / len(xs)""" ;
+    skos:scopeNote "Util para comprobaciones internas y pruebas; se desactiva al ejecutar Python con la opcion -O."@es ;
+    cfkg:aNivelDominio cfr:intermedio ;
+    cfkg:perteneceATema cfr:T_testing ;
+    cfkg:requierePrerrequisito cfr:condicional ;
+    cfkg:tieneDificultad 3 .
+
+cfr:async_generator a cfkg:EstructuraDeControl ;
+    rdfs:label "Async generator"@en,
+        "Generador asincrono"@es ;
+    skos:definition "Funcion async def que produce valores con yield y se recorre con async for."@es ;
+    skos:example """async def numeros():
+    for i in range(3):
+        await asyncio.sleep(0)
+        yield i""" ;
+    skos:scopeNote "Combina produccion perezosa y espera asincrona; util para flujos de datos de red por lotes."@es ;
+    cfkg:aNivelDominio cfr:avanzado ;
+    cfkg:introducidoEnVersion "3.6"^^xsd:string ;
+    cfkg:perteneceATema cfr:T_concurrencia ;
+    cfkg:requierePrerrequisito cfr:async_await,
+        cfr:generador ;
+    cfkg:tieneDificultad 5 .
+
+cfr:atributo_clase a cfkg:Paradigma ;
+    rdfs:label "Class attribute"@en,
+        "Atributo de clase"@es ;
+    skos:definition "Atributo definido en la clase y compartido por todas sus instancias."@es ;
+    skos:example """class Contador:
+    total = 0  # atributo de clase compartido""" ;
+    skos:related cfr:atributo ;
+    skos:scopeNote "Cuidado al usar valores mutables: se comparten entre instancias; las asignaciones via self crean copias locales."@es ;
+    cfkg:aNivelDominio cfr:intermedio ;
+    cfkg:perteneceATema cfr:T_poo ;
+    cfkg:requierePrerrequisito cfr:atributo ;
+    cfkg:tieneDificultad 3 .
+
+cfr:backtracking a cfkg:PrincipioTransversal ;
+    rdfs:label "Backtracking"@en,
+        "Backtracking"@es ;
+    skos:closeMatch dbr:Backtracking ;
+    skos:definition "Tecnica algoritmica que construye soluciones de forma incremental y retrocede al detectar un callejon sin salida."@es ;
+    skos:example """def resolver(estado):
+    if completo(estado):
+        return estado
+    for mov in movimientos(estado):
+        if valido(mov):
+            r = resolver(aplicar(estado, mov))
+            if r:
+                return r
+    return None""" ;
+    skos:scopeNote "Tipica en problemas de combinatoria (N reinas, sudoku); se implementa con recursion y poda."@es ;
+    cfkg:aNivelDominio cfr:avanzado ;
+    cfkg:perteneceATema cfr:T_algoritmos ;
+    cfkg:requierePrerrequisito cfr:recursion ;
+    cfkg:tieneDificultad 5 .
+
+cfr:break_continue a cfkg:EstructuraDeControl ;
+    rdfs:label "break and continue"@en,
+        "break y continue"@es ;
+    skos:definition "Sentencias break (sale del bucle) y continue (salta a la siguiente iteracion)."@es ;
+    skos:example """for n in range(10):
+    if n == 5:
+        break
+    if n % 2 == 0:
+        continue
+    print(n)""" ;
+    skos:scopeNote "Afectan solo al bucle mas interno; un uso excesivo puede dificultar la lectura del codigo."@es ;
+    cfkg:aNivelDominio cfr:basico ;
+    cfkg:perteneceATema cfr:T_control ;
+    cfkg:requierePrerrequisito cfr:bucle_for ;
+    cfkg:tieneDificultad 2 .
+
+cfr:bytearray_tipo a cfkg:TipoDeDato ;
+    rdfs:label "bytearray"@en,
+        "bytearray"@es ;
+    skos:definition "Secuencia mutable de bytes que permite modificar su contenido en sitio."@es ;
+    skos:example """ba = bytearray(b'abc')
+ba[0] = 65  # b'Abc'""" ;
+    skos:related cfr:tipo_bytes ;
+    skos:scopeNote "Util para construir o transformar datos binarios sin crear copias; complementa al inmutable bytes."@es ;
+    cfkg:aNivelDominio cfr:intermedio ;
+    cfkg:perteneceATema cfr:T_tipos ;
+    cfkg:requierePrerrequisito cfr:tipo_bytes ;
+    cfkg:tieneDificultad 3 .
+
+cfr:cached_property_mod a cfkg:ModuloLibreria ;
+    rdfs:label "functools.cached_property"@en,
+        "functools.cached_property"@es ;
+    skos:definition "Decorador que convierte un metodo en una propiedad cuyo valor se calcula una vez y se cachea."@es ;
+    skos:example """from functools import cached_property
+class D:
+    @cached_property
+    def media(self):
+        return sum(self.xs) / len(self.xs)""" ;
+    skos:related cfr:propiedad ;
+    skos:scopeNote "Ideal para calculos costosos que no cambian; el resultado se guarda en el __dict__ de la instancia."@es ;
+    cfkg:aNivelDominio cfr:avanzado ;
+    cfkg:introducidoEnVersion "3.8"^^xsd:string ;
+    cfkg:perteneceATema cfr:T_poo ;
+    cfkg:requierePrerrequisito cfr:propiedad ;
+    cfkg:tieneDificultad 4 .
+
+cfr:callable_func a cfkg:FuncionIntegrada ;
+    rdfs:label "callable"@en,
+        "Funcion callable"@es ;
+    skos:definition "Funcion que indica si un objeto puede invocarse como una funcion."@es ;
+    skos:example """callable(len)   # True
+callable(42)    # False""" ;
+    skos:related cfr:funcion_orden_superior ;
+    skos:scopeNote "Son invocables las funciones, clases y objetos con __call__; util al recibir callbacks."@es ;
+    cfkg:aNivelDominio cfr:intermedio ;
+    cfkg:perteneceATema cfr:T_funcional ;
+    cfkg:requierePrerrequisito cfr:funcion ;
+    cfkg:tieneDificultad 3 .
+
+cfr:chainmap a cfkg:EstructuraDeDatos ;
+    rdfs:label "ChainMap"@en,
+        "collections.ChainMap"@es ;
+    skos:definition "Vista que agrupa varios diccionarios y los consulta como si fueran uno solo."@es ;
+    skos:example """from collections import ChainMap
+cfg = ChainMap({'a': 1}, {'a': 0, 'b': 2})
+cfg['a']  # 1""" ;
+    skos:related cfr:diccionario ;
+    skos:scopeNote "Util para gestionar capas de configuracion (por defecto, usuario, entorno) sin copiarlas."@es ;
+    cfkg:aNivelDominio cfr:intermedio ;
+    cfkg:perteneceATema cfr:T_estructuras ;
+    cfkg:requierePrerrequisito cfr:diccionario ;
+    cfkg:tieneDificultad 3 .
+
+cfr:cola_prioridad a cfkg:EstructuraDeDatos ;
+    rdfs:label "Priority queue"@en,
+        "Cola de prioridad"@es ;
+    skos:closeMatch dbr:Priority_queue ;
+    skos:definition "Cola en la que cada elemento tiene una prioridad y se extrae siempre el de mayor prioridad."@es ;
+    skos:exactMatch wd:Q629283 ;
+    skos:example """import heapq
+pq = []
+heapq.heappush(pq, (2, 'tarea B'))
+heapq.heappush(pq, (1, 'tarea A'))
+heapq.heappop(pq)  # (1, 'tarea A')""" ;
+    skos:related cfr:cola,
+        cfr:heap ;
+    skos:scopeNote "Se implementa eficientemente con un monticulo (heapq); base de algoritmos como Dijkstra."@es ;
+    cfkg:aNivelDominio cfr:avanzado ;
+    cfkg:perteneceATema cfr:T_estructuras ;
+    cfkg:requierePrerrequisito cfr:heap ;
+    cfkg:tieneComplejidadTemporal "O(log n)"^^xsd:string ;
+    cfkg:tieneDificultad 4 .
+
+cfr:collections_mod a cfkg:ModuloLibreria ;
+    rdfs:label "collections"@en,
+        "collections"@es ;
+    skos:definition "Modulo collections con tipos de contenedor especializados (deque, Counter, defaultdict, namedtuple)."@es ;
+    skos:example """from collections import Counter
+Counter('aabbbc')  # Counter({'b': 3, 'a': 2, 'c': 1})""" ;
+    skos:scopeNote "Ofrece alternativas mas eficientes o expresivas que las estructuras integradas para casos concretos."@es ;
+    cfkg:aNivelDominio cfr:intermedio ;
+    cfkg:perteneceATema cfr:T_modulos ;
+    cfkg:requierePrerrequisito cfr:import_mod ;
+    cfkg:tieneDificultad 3 ;
+    cfkg:tieneURLDocumentacion "https://docs.python.org/3/library/collections.html"^^xsd:anyURI .
+
+cfr:concatenacion_str a cfkg:PrincipioTransversal ;
+    rdfs:label "String concatenation"@en,
+        "Concatenacion de cadenas"@es ;
+    skos:definition "Union de varias cadenas en una sola mediante el operador + o por yuxtaposicion."@es ;
+    skos:example """'Hola' + ' ' + 'mundo'
+''.join(['a', 'b', 'c'])""" ;
+    skos:scopeNote "Para unir muchas cadenas en un bucle, str.join es mas eficiente que la concatenacion repetida."@es ;
+    cfkg:aNivelDominio cfr:basico ;
+    cfkg:perteneceATema cfr:T_strings ;
+    cfkg:requierePrerrequisito cfr:tipo_str ;
+    cfkg:tieneDificultad 1 .
+
+cfr:concurrent_futures a cfkg:ConceptoDeConcurrencia ;
+    rdfs:label "concurrent.futures"@en,
+        "concurrent.futures"@es ;
+    skos:definition "Interfaz de alto nivel para ejecutar tareas en grupos de hilos o procesos mediante Executors."@es ;
+    skos:example """from concurrent.futures import ThreadPoolExecutor
+with ThreadPoolExecutor() as ex:
+    list(ex.map(str, range(3)))""" ;
+    skos:related cfr:hilos,
+        cfr:multiproceso ;
+    skos:scopeNote "ThreadPoolExecutor para E/S y ProcessPoolExecutor para CPU; map() y submit() devuelven futuros."@es ;
+    cfkg:aNivelDominio cfr:avanzado ;
+    cfkg:perteneceATema cfr:T_concurrencia ;
+    cfkg:requierePrerrequisito cfr:hilos ;
+    cfkg:tieneDificultad 4 .
+
+cfr:condicion_carrera a cfkg:ConceptoDeConcurrencia ;
+    rdfs:label "Race condition"@en,
+        "Condicion de carrera"@es ;
+    skos:closeMatch dbr:Race_condition ;
+    skos:definition "Defecto en el que el resultado depende del orden imprevisible en que se intercalan los hilos."@es ;
+    skos:exactMatch wd:Q616554 ;
+    skos:example """# saldo += 1 no es atomico: dos hilos pueden
+# leer el mismo valor y perder una actualizacion""" ;
+    skos:related cfr:lock_threading ;
+    skos:scopeNote "Se evita sincronizando el acceso al estado compartido con cerrojos u otras primitivas."@es ;
+    cfkg:aNivelDominio cfr:avanzado ;
+    cfkg:perteneceATema cfr:T_concurrencia ;
+    cfkg:requierePrerrequisito cfr:hilos ;
+    cfkg:tieneDificultad 5 .
+
+cfr:conteo_referencias a cfkg:PrincipioTransversal ;
+    rdfs:label "Reference counting"@en,
+        "Conteo de referencias"@es ;
+    skos:closeMatch dbr:Reference_counting ;
+    skos:definition "Tecnica que libera un objeto cuando el numero de referencias que lo apuntan llega a cero."@es ;
+    skos:example """import sys
+x = []
+sys.getrefcount(x)  # numero de referencias""" ;
+    skos:related cfr:recoleccion_basura ;
+    skos:scopeNote "Es inmediata pero no detecta ciclos; por eso CPython la combina con un recolector de ciclos."@es ;
+    cfkg:aNivelDominio cfr:avanzado ;
+    cfkg:perteneceATema cfr:T_fundamentos ;
+    cfkg:requierePrerrequisito cfr:recoleccion_basura ;
+    cfkg:tieneDificultad 4 .
+
+cfr:contextlib_mod a cfkg:ModuloLibreria ;
+    rdfs:label "contextlib"@en,
+        "Modulo contextlib"@es ;
+    skos:definition "Modulo con utilidades para crear gestores de contexto, como el decorador @contextmanager."@es ;
+    skos:example """from contextlib import contextmanager
+@contextmanager
+def abierto(p):
+    f = open(p)
+    try:
+        yield f
+    finally:
+        f.close()""" ;
+    skos:related cfr:context_manager ;
+    skos:scopeNote "@contextmanager convierte un generador con un unico yield en un gestor de contexto."@es ;
+    cfkg:aNivelDominio cfr:avanzado ;
+    cfkg:perteneceATema cfr:T_control ;
+    cfkg:requierePrerrequisito cfr:context_manager ;
+    cfkg:tieneDificultad 4 .
+
+cfr:copia_profunda a cfkg:PrincipioTransversal ;
+    rdfs:label "Deep copy"@en,
+        "Copia profunda"@es ;
+    skos:definition "Copia que duplica recursivamente un objeto y todos los objetos anidados que contiene."@es ;
+    skos:example """import copy
+b = copy.deepcopy(a)""" ;
+    skos:scopeNote "Usa copy.deepcopy cuando modificar la copia no debe afectar al original anidado; es mas costosa que la superficial."@es ;
+    cfkg:aNivelDominio cfr:avanzado ;
+    cfkg:contrastaCon cfr:copia_superficial ;
+    cfkg:perteneceATema cfr:T_tipos ;
+    cfkg:requierePrerrequisito cfr:copia_superficial ;
+    cfkg:tieneDificultad 4 .
+
+cfr:csv_mod a cfkg:ModuloLibreria ;
+    rdfs:label "csv module"@en,
+        "Módulo csv"@es ;
+    skos:closeMatch dbr:Comma-separated_values ;
+    skos:definition "Modulo estandar csv para leer y escribir ficheros de valores separados por comas."@es ;
+    skos:example """import csv
+with open('d.csv', newline='') as f:
+    for fila in csv.reader(f):
+        print(fila)""" ;
+    skos:scopeNote "Maneja correctamente comillas y delimitadores; usa newline='' al abrir el fichero."@es ;
+    cfkg:aNivelDominio cfr:intermedio ;
+    cfkg:perteneceATema cfr:T_ficheros ;
+    cfkg:requierePrerrequisito cfr:lista ;
+    cfkg:tieneDificultad 3 ;
+    cfkg:tieneURLDocumentacion "https://docs.python.org/3/library/csv.html"^^xsd:anyURI .
+
+cfr:descriptor a cfkg:Paradigma ;
+    rdfs:label "Descriptor"@en,
+        "Descriptor"@es ;
+    skos:definition "Objeto que define __get__, __set__ o __delete__ para controlar el acceso a un atributo."@es ;
+    skos:example """class SoloLectura:
+    def __get__(self, obj, tipo=None):
+        return 42""" ;
+    skos:scopeNote "Es el mecanismo subyacente de property, los metodos y classmethod; protocolo avanzado de POO."@es ;
+    cfkg:aNivelDominio cfr:avanzado ;
+    cfkg:perteneceATema cfr:T_poo ;
+    cfkg:requierePrerrequisito cfr:propiedad ;
+    cfkg:tieneDificultad 5 .
+
+cfr:docstring a cfkg:PrincipioTransversal ;
+    rdfs:label "Docstring"@en,
+        "Docstring"@es ;
+    skos:definition "Cadena de documentacion situada al inicio de un modulo, clase o funcion."@es ;
+    skos:example """def suma(a, b):
+    \"\"\"Devuelve la suma de a y b.\"\"\"
+    return a + b""" ;
+    skos:scopeNote "Accesible mediante help() y __doc__; conviene seguir convenciones como PEP 257."@es ;
+    cfkg:aNivelDominio cfr:basico ;
+    cfkg:perteneceATema cfr:T_testing ;
+    cfkg:requierePrerrequisito cfr:funcion ;
+    cfkg:tieneDificultad 2 .
+
+cfr:duck_typing a cfkg:Paradigma ;
+    rdfs:label "Duck typing"@en,
+        "Duck typing"@es ;
+    skos:closeMatch dbr:Duck_typing ;
+    skos:definition "Estilo en el que la idoneidad de un objeto depende de los metodos que ofrece, no de su tipo."@es ;
+    skos:exactMatch wd:Q374282 ;
+    skos:example """def total(coleccion):
+    return sum(coleccion)  # vale cualquier iterable de numeros""" ;
+    skos:related cfr:polimorfismo ;
+    skos:scopeNote "'Si camina como un pato y grazna como un pato, es un pato'; favorece el polimorfismo flexible."@es ;
+    cfkg:aNivelDominio cfr:intermedio ;
+    cfkg:perteneceATema cfr:T_poo ;
+    cfkg:requierePrerrequisito cfr:polimorfismo ;
+    cfkg:tieneDificultad 3 .
+
+cfr:else_bucle a cfkg:EstructuraDeControl ;
+    rdfs:label "loop else"@en,
+        "else en bucles"@es ;
+    skos:definition "Clausula else de un bucle que se ejecuta solo si el bucle termina sin break."@es ;
+    skos:example """for x in xs:
+    if x == objetivo:
+        break
+else:
+    print('no encontrado')""" ;
+    skos:scopeNote "Util para detectar si una busqueda no encontro el elemento; suele confundir a los principiantes."@es ;
+    cfkg:aNivelDominio cfr:intermedio ;
+    cfkg:perteneceATema cfr:T_control ;
+    cfkg:requierePrerrequisito cfr:bucle_for ;
+    cfkg:tieneDificultad 3 .
+
+cfr:encoding a cfkg:PrincipioTransversal ;
+    rdfs:label "Text encoding"@en,
+        "Codificación de texto"@es ;
+    skos:definition "Esquema que asocia caracteres a secuencias de bytes (UTF-8, Latin-1) al codificar texto."@es ;
+    skos:example """datos = 'cana'.encode('utf-8')
+texto = datos.decode('utf-8')""" ;
+    skos:scopeNote "Especifica siempre encoding al abrir ficheros de texto; errores de codificacion causan UnicodeDecodeError."@es ;
+    cfkg:aNivelDominio cfr:avanzado ;
+    cfkg:perteneceATema cfr:T_strings ;
+    cfkg:requierePrerrequisito cfr:tipo_bytes,
+        cfr:tipo_str ;
+    cfkg:tieneDificultad 4 .
+
+cfr:entorno_virtual a cfkg:PrincipioTransversal ;
+    rdfs:label "Virtual environments"@en,
+        "Entornos virtuales (venv)"@es ;
+    skos:definition "Entorno aislado (venv) con su propio interprete y dependencias para un proyecto."@es ;
+    skos:example """python -m venv .venv
+source .venv/bin/activate""" ;
+    skos:scopeNote "Evita conflictos de versiones entre proyectos; se activa antes de instalar paquetes con pip."@es ;
+    cfkg:aNivelDominio cfr:intermedio ;
+    cfkg:perteneceATema cfr:T_modulos ;
+    cfkg:requierePrerrequisito cfr:paquete ;
+    cfkg:tieneDificultad 3 .
+
+cfr:enumerate_f a cfkg:FuncionIntegrada ;
+    rdfs:label "enumerate"@en,
+        "enumerate()"@es ;
+    skos:definition "Funcion enumerate() que produce pares (indice, elemento) al iterar un iterable."@es ;
+    skos:example """for i, v in enumerate(['a', 'b'], start=1):
+    print(i, v)""" ;
+    skos:scopeNote "Evita gestionar manualmente un contador; admite un indice inicial con start."@es ;
+    cfkg:aNivelDominio cfr:basico ;
+    cfkg:perteneceATema cfr:T_control ;
+    cfkg:requierePrerrequisito cfr:bucle_for,
+        cfr:indexacion ;
+    cfkg:tieneDificultad 2 .
+
+cfr:envio_001 a cfkg:EnvioEstudiante ;
+    rdfs:label "Submission 001"@en,
+        "Envío 001"@es ;
+    dcterms:created "2026-05-12"^^xsd:date ;
+    cfkg:enviadoPor cfr:est_alicia ;
+    cfkg:manifiestaError cfr:err_off_by_one ;
+    cfkg:numeroDeLineas 18 ;
+    cfkg:resuelveEjercicio cfr:ej_busqueda .
+
+cfr:envio_002 a cfkg:EnvioEstudiante ;
+    rdfs:label "Submission 002"@en,
+        "Envío 002"@es ;
+    dcterms:created "2026-05-14"^^xsd:date ;
+    cfkg:enviadoPor cfr:est_borja ;
+    cfkg:manifiestaError cfr:err_iteracion_recursion ;
+    cfkg:numeroDeLineas 11 ;
+    cfkg:resuelveEjercicio cfr:ej_factorial .
+
+cfr:err_concatenar_tipos a cfkg:ErrorConceptual ;
+    rdfs:label "Concatenating str and int"@en,
+        "Concatenar cadena y número (TypeError)"@es ;
+    cfkg:errorSobreConcepto cfr:conversion_tipos .
+
+cfr:err_decorador_wraps a cfkg:ErrorConceptual ;
+    rdfs:label "Decorator without wraps"@en,
+        "Decorador sin functools.wraps"@es ;
+    cfkg:errorSobreConcepto cfr:decorador .
+
+cfr:err_except_generico a cfkg:ErrorConceptual ;
+    rdfs:label "Overly broad except"@en,
+        "Capturar Exception de forma demasiado amplia"@es ;
+    cfkg:errorSobreConcepto cfr:jerarquia_excepciones .
+
+cfr:err_float_igualdad a cfkg:ErrorConceptual ;
+    rdfs:label "Float equality comparison"@en,
+        "Comparar flotantes con =="@es ;
+    cfkg:errorSobreConcepto cfr:tipo_float .
+
+cfr:err_generador_agotado a cfkg:ErrorConceptual ;
+    rdfs:label "Exhausted generator reuse"@en,
+        "Reutilizar un generador agotado"@es ;
+    cfkg:errorSobreConcepto cfr:generador .
+
+cfr:err_gil_paralelismo a cfkg:ErrorConceptual ;
+    rdfs:label "Expecting threads to parallelize"@en,
+        "Esperar paralelismo real con hilos (GIL)"@es ;
+    cfkg:errorSobreConcepto cfr:gil .
+
+cfr:err_global_local a cfkg:ErrorConceptual ;
+    rdfs:label "Global vs local confusion"@en,
+        "Confundir variable global y local"@es ;
+    cfkg:errorSobreConcepto cfr:ambito .
+
+cfr:err_identidad_igualdad a cfkg:ErrorConceptual ;
+    rdfs:label "Equality vs identity confusion"@en,
+        "Confusión == frente a is"@es ;
+    cfkg:errorSobreConcepto cfr:tipo_bool .
+
+cfr:err_late_binding a cfkg:ErrorConceptual ;
+    rdfs:label "Loop closure late binding"@en,
+        "Late binding en clausuras de bucle"@es ;
+    cfkg:errorSobreConcepto cfr:closure .
+
+cfr:err_mod_durante_iteracion a cfkg:ErrorConceptual ;
+    rdfs:label "Mutating list while iterating"@en,
+        "Modificar una lista mientras se itera"@es ;
+    cfkg:errorSobreConcepto cfr:bucle_for .
+
+cfr:err_paso_referencia a cfkg:ErrorConceptual ;
+    rdfs:label "Value vs reference confusion"@en,
+        "Confusión paso por valor / por referencia"@es ;
+    cfkg:errorSobreConcepto cfr:mutabilidad .
+
+cfr:err_self_olvidado a cfkg:ErrorConceptual ;
+    rdfs:label "Missing self parameter"@en,
+        "Olvidar self en un método"@es ;
+    cfkg:errorSobreConcepto cfr:metodo .
+
+cfr:err_shallow_copy a cfkg:ErrorConceptual ;
+    rdfs:label "Shallow when deep needed"@en,
+        "Copia superficial cuando se necesita profunda"@es ;
+    cfkg:errorSobreConcepto cfr:copia_superficial .
+
+cfr:err_super_olvidado a cfkg:ErrorConceptual ;
+    rdfs:label "Missing super() call"@en,
+        "No llamar a super() en la subclase"@es ;
+    cfkg:errorSobreConcepto cfr:herencia .
+
+cfr:escribir_fichero a cfkg:FuncionIntegrada ;
+    rdfs:label "File writing"@en,
+        "Escritura de ficheros"@es ;
+    skos:definition "Escritura de datos en un fichero mediante metodos como write() o writelines()."@es ;
+    skos:example """with open('s.txt', 'w', encoding='utf-8') as f:
+    f.write('hola')""" ;
+    skos:scopeNote "Abre en modo 'w' (sobrescribe) o 'a' (anade); usa with para cerrar y volcar el buffer."@es ;
+    cfkg:aNivelDominio cfr:intermedio ;
+    cfkg:perteneceATema cfr:T_ficheros ;
+    cfkg:requierePrerrequisito cfr:abrir_fichero ;
+    cfkg:tieneDificultad 3 .
+
+cfr:eval_busqueda_bb a cfkg:EvaluacionDeConcepto ;
+    rdfs:label "Binary-search assessment in ej_busqueda"@en,
+        "Evaluación de búsqueda binaria en ej_busqueda"@es ;
+    cfkg:aNivelDominio cfr:avanzado ;
+    cfkg:conPeso 0.6 ;
+    cfkg:enEjercicio cfr:ej_busqueda ;
+    cfkg:sobreConcepto cfr:busqueda_binaria .
+
+cfr:evalact_01 a cfkg:EvaluacionActividad ;
+    rdfs:label "Activity assessment 01"@en,
+        "Evaluación de actividad 01"@es ;
+    cfkg:enFecha "2026-03-02"^^xsd:date ;
+    cfkg:evaluaA cfr:ej_suma_lista ;
+    cfkg:obtuvoNota 8.5 ;
+    cfkg:porEstudiante cfr:est_alicia .
+
+cfr:evalact_02 a cfkg:EvaluacionActividad ;
+    rdfs:label "Activity assessment 02"@en,
+        "Evaluación de actividad 02"@es ;
+    cfkg:enFecha "2026-03-09"^^xsd:date ;
+    cfkg:evaluaA cfr:ej_factorial ;
+    cfkg:obtuvoNota 6.0 ;
+    cfkg:porEstudiante cfr:est_borja .
+
+cfr:evalact_03 a cfkg:EvaluacionActividad ;
+    rdfs:label "Activity assessment 03"@en,
+        "Evaluación de actividad 03"@es ;
+    cfkg:enFecha "2026-03-16"^^xsd:date ;
+    cfkg:evaluaA cfr:ej_busqueda ;
+    cfkg:obtuvoNota 9.0 ;
+    cfkg:porEstudiante cfr:est_alicia .
+
+cfr:evalact_04 a cfkg:EvaluacionActividad ;
+    rdfs:label "Activity assessment 04"@en,
+        "Evaluación de actividad 04"@es ;
+    cfkg:enFecha "2026-03-23"^^xsd:date ;
+    cfkg:evaluaA cfr:ej_suma_lista ;
+    cfkg:obtuvoNota 7.5 ;
+    cfkg:porEstudiante cfr:est_borja .
+
+cfr:evalact_05 a cfkg:EvaluacionActividad ;
+    rdfs:label "Activity assessment 05"@en,
+        "Evaluación de actividad 05"@es ;
+    cfkg:enFecha "2026-03-30"^^xsd:date ;
+    cfkg:evaluaA cfr:ej_factorial ;
+    cfkg:obtuvoNota 5.5 ;
+    cfkg:porEstudiante cfr:est_alicia .
+
+cfr:evalact_06 a cfkg:EvaluacionActividad ;
+    rdfs:label "Activity assessment 06"@en,
+        "Evaluación de actividad 06"@es ;
+    cfkg:enFecha "2026-04-06"^^xsd:date ;
+    cfkg:evaluaA cfr:ej_busqueda ;
+    cfkg:obtuvoNota 10.0 ;
+    cfkg:porEstudiante cfr:est_borja .
+
+cfr:evalact_07 a cfkg:EvaluacionActividad ;
+    rdfs:label "Activity assessment 07"@en,
+        "Evaluación de actividad 07"@es ;
+    cfkg:enFecha "2026-04-13"^^xsd:date ;
+    cfkg:evaluaA cfr:ej_suma_lista ;
+    cfkg:obtuvoNota 6.5 ;
+    cfkg:porEstudiante cfr:est_alicia .
+
+cfr:evalact_08 a cfkg:EvaluacionActividad ;
+    rdfs:label "Activity assessment 08"@en,
+        "Evaluación de actividad 08"@es ;
+    cfkg:enFecha "2026-04-20"^^xsd:date ;
+    cfkg:evaluaA cfr:ej_factorial ;
+    cfkg:obtuvoNota 8.0 ;
+    cfkg:porEstudiante cfr:est_borja .
+
+cfr:evalact_09 a cfkg:EvaluacionActividad ;
+    rdfs:label "Activity assessment 09"@en,
+        "Evaluación de actividad 09"@es ;
+    cfkg:enFecha "2026-04-27"^^xsd:date ;
+    cfkg:evaluaA cfr:ej_busqueda ;
+    cfkg:obtuvoNota 7.0 ;
+    cfkg:porEstudiante cfr:est_alicia .
+
+cfr:evalact_10 a cfkg:EvaluacionActividad ;
+    rdfs:label "Activity assessment 10"@en,
+        "Evaluación de actividad 10"@es ;
+    cfkg:enFecha "2026-05-04"^^xsd:date ;
+    cfkg:evaluaA cfr:ej_suma_lista ;
+    cfkg:obtuvoNota 9.5 ;
+    cfkg:porEstudiante cfr:est_borja .
+
+cfr:event_loop a cfkg:ConceptoDeConcurrencia ;
+    rdfs:label "Event loop"@en,
+        "Bucle de eventos"@es ;
+    skos:closeMatch dbr:Event_loop ;
+    skos:definition "Planificador que ejecuta y reanuda corrutinas a medida que sus operaciones de E/S se completan."@es ;
+    skos:exactMatch wd:Q1349935 ;
+    skos:example """import asyncio
+asyncio.run(main())  # arranca el bucle de eventos""" ;
+    skos:related cfr:asyncio_mod ;
+    skos:scopeNote "Es el nucleo de asyncio; asyncio.run() crea y gestiona el bucle por ti."@es ;
+    cfkg:aNivelDominio cfr:avanzado ;
+    cfkg:perteneceATema cfr:T_concurrencia ;
+    cfkg:requierePrerrequisito cfr:asyncio_mod ;
+    cfkg:tieneDificultad 5 .
+
+cfr:format_method a cfkg:FuncionIntegrada ;
+    rdfs:label "str.format"@en,
+        "Metodo str.format"@es ;
+    skos:definition "Metodo que inserta valores en una cadena usando campos de reemplazo con llaves."@es ;
+    skos:example "'{} tiene {} anos'.format('Ana', 30)" ;
+    skos:related cfr:fstring ;
+    skos:scopeNote "Anterior a las f-strings; sigue siendo util para plantillas reutilizables separadas de los datos."@es ;
+    cfkg:aNivelDominio cfr:basico ;
+    cfkg:perteneceATema cfr:T_strings ;
+    cfkg:requierePrerrequisito cfr:tipo_str ;
+    cfkg:tieneDificultad 2 .
+
+cfr:from_import a cfkg:PrincipioTransversal ;
+    rdfs:label "from import"@en,
+        "from ... import"@es ;
+    skos:definition "Variante del import que trae nombres concretos de un modulo al espacio de nombres actual."@es ;
+    skos:example """from math import sqrt
+sqrt(16)""" ;
+    skos:scopeNote "Evita el prefijo del modulo pero puede provocar colisiones; no abuses de from modulo import *."@es ;
+    cfkg:aNivelDominio cfr:basico ;
+    cfkg:perteneceATema cfr:T_modulos ;
+    cfkg:requierePrerrequisito cfr:import_mod ;
+    cfkg:tieneDificultad 2 .
+
+cfr:fstring_format_spec a cfkg:PrincipioTransversal ;
+    rdfs:label "Format specification"@en,
+        "Mini-lenguaje de formato"@es ;
+    skos:definition "Sintaxis tras los dos puntos en un campo de formato para controlar ancho, precision y alineacion."@es ;
+    skos:example """import math
+f'{math.pi:.2f}'  # '3.14'
+f'{42:05d}'        # '00042'""" ;
+    skos:related cfr:fstring ;
+    skos:scopeNote "Permite formatear numeros (:.2f), porcentajes (:.0%) o rellenar con ceros (:03d)."@es ;
+    cfkg:aNivelDominio cfr:intermedio ;
+    cfkg:perteneceATema cfr:T_strings ;
+    cfkg:requierePrerrequisito cfr:fstring ;
+    cfkg:tieneDificultad 3 .
+
+cfr:functools_wraps a cfkg:ModuloLibreria ;
+    rdfs:label "functools.wraps"@en,
+        "functools.wraps"@es ;
+    skos:definition "Decorador functools.wraps que copia los metadatos de la funcion original a la envoltura."@es ;
+    skos:example """import functools
+def d(f):
+    @functools.wraps(f)
+    def w(*a, **k): return f(*a, **k)
+    return w""" ;
+    skos:scopeNote "Conserva __name__ y __doc__ al crear decoradores; sin el se pierde la introspeccion."@es ;
+    cfkg:aNivelDominio cfr:avanzado ;
+    cfkg:perteneceATema cfr:T_funcional ;
+    cfkg:requierePrerrequisito cfr:decorador ;
+    cfkg:tieneDificultad 4 .
+
+cfr:future_annotations a cfkg:ConceptoDeTipado ;
+    rdfs:label "Postponed annotations"@en,
+        "from __future__ import annotations"@es ;
+    skos:definition "Directiva que evalua las anotaciones como cadenas, posponiendo su resolucion."@es ;
+    skos:example """from __future__ import annotations
+class Nodo:
+    sig: Nodo | None = None""" ;
+    skos:scopeNote "Evita referencias adelantadas y costes de importacion; conviene conocerla al usar tipos recursivos."@es ;
+    cfkg:aNivelDominio cfr:avanzado ;
+    cfkg:introducidoEnVersion "3.7"^^xsd:string ;
+    cfkg:perteneceATema cfr:T_tipos ;
+    cfkg:requierePrerrequisito cfr:anotaciones_tipo ;
+    cfkg:tieneDificultad 4 .
+
+cfr:getattr_setattr a cfkg:FuncionIntegrada ;
+    rdfs:label "getattr and setattr"@en,
+        "getattr y setattr"@es ;
+    skos:definition "Funciones que leen y escriben atributos de un objeto a partir de su nombre como cadena."@es ;
+    skos:example """getattr(obj, 'x', 0)
+setattr(obj, 'x', 10)""" ;
+    skos:related cfr:atributo ;
+    skos:scopeNote "Permiten acceso dinamico a atributos; getattr admite un valor por defecto para evitar AttributeError."@es ;
+    cfkg:aNivelDominio cfr:intermedio ;
+    cfkg:perteneceATema cfr:T_poo ;
+    cfkg:requierePrerrequisito cfr:atributo ;
+    cfkg:tieneDificultad 3 .
+
+cfr:interbloqueo a cfkg:ConceptoDeConcurrencia ;
+    rdfs:label "Deadlock"@en,
+        "Interbloqueo"@es ;
+    skos:closeMatch dbr:Deadlock ;
+    skos:definition "Situacion en la que dos o mas hilos se bloquean mutuamente esperando recursos que el otro retiene."@es ;
+    skos:exactMatch wd:Q623276 ;
+    skos:example """# Hilo 1: lock_a luego lock_b
+# Hilo 2: lock_b luego lock_a  -> interbloqueo""" ;
+    skos:related cfr:lock_threading ;
+    skos:scopeNote "Se previene adquiriendo los cerrojos siempre en el mismo orden o con tiempos de espera."@es ;
+    cfkg:aNivelDominio cfr:avanzado ;
+    cfkg:perteneceATema cfr:T_concurrencia ;
+    cfkg:requierePrerrequisito cfr:lock_threading ;
+    cfkg:tieneDificultad 5 .
+
+cfr:isinstance_func a cfkg:FuncionIntegrada ;
+    rdfs:label "isinstance"@en,
+        "Funcion isinstance"@es ;
+    skos:definition "Funcion que comprueba si un objeto es instancia de una clase o de alguna de varias clases."@es ;
+    skos:example "isinstance(3, (int, float))  # True" ;
+    skos:related cfr:herencia ;
+    skos:scopeNote "Respeta la herencia y es preferible a comparar type(x) directamente; acepta una tupla de tipos."@es ;
+    cfkg:aNivelDominio cfr:basico ;
+    cfkg:perteneceATema cfr:T_poo ;
+    cfkg:requierePrerrequisito cfr:clase ;
+    cfkg:tieneDificultad 2 .
+
+cfr:json_mod a cfkg:ModuloLibreria ;
+    rdfs:label "json module"@en,
+        "Módulo json"@es ;
+    skos:closeMatch dbr:JSON ;
+    skos:definition "Modulo json para serializar objetos Python a texto JSON y deserializarlos."@es ;
+    skos:exactMatch wd:Q2063 ;
+    skos:example """import json
+json.dumps({'a': 1})  # '{"a": 1}'""" ;
+    skos:scopeNote "dumps/loads trabajan con cadenas; dump/load con ficheros. No todos los tipos son serializables."@es ;
+    cfkg:aNivelDominio cfr:intermedio ;
+    cfkg:perteneceATema cfr:T_ficheros ;
+    cfkg:requierePrerrequisito cfr:diccionario ;
+    cfkg:tieneDificultad 3 ;
+    cfkg:tieneURLDocumentacion "https://docs.python.org/3/library/json.html"^^xsd:anyURI .
+
+cfr:leer_fichero a cfkg:FuncionIntegrada ;
+    rdfs:label "File reading"@en,
+        "Lectura de ficheros"@es ;
+    skos:definition "Lectura del contenido de un fichero con metodos como read(), readline() o iterando lineas."@es ;
+    skos:example """with open('d.txt', encoding='utf-8') as f:
+    for linea in f:
+        print(linea.rstrip())""" ;
+    skos:scopeNote "Iterar el objeto de fichero linea a linea es eficiente en memoria para ficheros grandes."@es ;
+    cfkg:aNivelDominio cfr:intermedio ;
+    cfkg:perteneceATema cfr:T_ficheros ;
+    cfkg:requierePrerrequisito cfr:abrir_fichero ;
+    cfkg:tieneDificultad 3 .
+
+cfr:lista_enlazada a cfkg:EstructuraDeDatos ;
+    rdfs:label "Linked list"@en,
+        "Lista enlazada"@es ;
+    skos:closeMatch dbr:Linked_list ;
+    skos:definition "Estructura lineal de nodos donde cada nodo guarda un valor y una referencia al siguiente."@es ;
+    skos:exactMatch wd:Q7003418 ;
+    skos:example """class Nodo:
+    def __init__(self, valor, sig=None):
+        self.valor = valor
+        self.sig = sig""" ;
+    skos:related cfr:lista ;
+    skos:scopeNote "Insertar al principio es O(1), pero el acceso por posicion es O(n); en Python suele bastar con list o deque."@es ;
+    cfkg:aNivelDominio cfr:intermedio ;
+    cfkg:perteneceATema cfr:T_estructuras ;
+    cfkg:requierePrerrequisito cfr:clase,
+        cfr:objeto ;
+    cfkg:tieneComplejidadTemporal "O(n)"^^xsd:string ;
+    cfkg:tieneDificultad 3 .
+
+cfr:logging_mod a cfkg:ModuloLibreria ;
+    rdfs:label "logging"@en,
+        "Modulo logging"@es ;
+    skos:definition "Modulo estandar para registrar mensajes con distintos niveles de severidad."@es ;
+    skos:example """import logging
+logging.basicConfig(level=logging.INFO)
+logging.info('iniciado')""" ;
+    skos:related cfr:pep8 ;
+    skos:scopeNote "Preferible a print en programas reales: permite niveles, formato y destinos configurables."@es ;
+    cfkg:aNivelDominio cfr:intermedio ;
+    cfkg:perteneceATema cfr:T_testing ;
+    cfkg:requierePrerrequisito cfr:import_mod ;
+    cfkg:tieneDificultad 3 .
+
+cfr:lru_cache a cfkg:ModuloLibreria ;
+    rdfs:label "functools.lru_cache"@en,
+        "functools.lru_cache"@es ;
+    skos:definition "Decorador que cachea los resultados de una funcion descartando los menos usados (LRU)."@es ;
+    skos:example """from functools import lru_cache
+@lru_cache(maxsize=None)
+def fib(n):
+    return n if n < 2 else fib(n-1) + fib(n-2)""" ;
+    skos:related cfr:memoizacion ;
+    skos:scopeNote "Acelera funciones puras y deterministas; los argumentos deben ser hashables."@es ;
+    cfkg:aNivelDominio cfr:avanzado ;
+    cfkg:perteneceATema cfr:T_funcional ;
+    cfkg:requierePrerrequisito cfr:decorador,
+        cfr:memoizacion ;
+    cfkg:tieneDificultad 4 .
+
+cfr:memoryview_tipo a cfkg:TipoDeDato ;
+    rdfs:label "memoryview"@en,
+        "memoryview"@es ;
+    skos:definition "Vista que expone el buffer de memoria de un objeto binario sin copiarlo."@es ;
+    skos:example """mv = memoryview(bytearray(b'abcdef'))
+bytes(mv[1:4])  # b'bcd'""" ;
+    skos:scopeNote "Permite manipular grandes bloques de bytes de forma eficiente, por ejemplo al hacer slicing."@es ;
+    cfkg:aNivelDominio cfr:avanzado ;
+    cfkg:perteneceATema cfr:T_tipos ;
+    cfkg:requierePrerrequisito cfr:tipo_bytes ;
+    cfkg:tieneDificultad 4 .
+
+cfr:metaclase a cfkg:Paradigma ;
+    rdfs:label "Metaclass"@en,
+        "Metaclase"@es ;
+    skos:closeMatch dbr:Metaclass ;
+    skos:definition "Clase cuyas instancias son a su vez clases, lo que permite personalizar como se crean."@es ;
+    skos:exactMatch wd:Q1924819 ;
+    skos:example """class Meta(type):
+    def __new__(mcs, n, b, d):
+        return super().__new__(mcs, n, b, d)""" ;
+    skos:scopeNote "type es la metaclase por defecto; rara vez necesarias, pero potentes para frameworks (ORM, ABC)."@es ;
+    cfkg:aNivelDominio cfr:avanzado ;
+    cfkg:perteneceATema cfr:T_poo ;
+    cfkg:requierePrerrequisito cfr:clase ;
+    cfkg:tieneDificultad 5 .
+
+cfr:metodo_split_join a cfkg:FuncionIntegrada ;
+    rdfs:label "split and join"@en,
+        "Metodos split y join"@es ;
+    skos:definition "split() divide una cadena en una lista y join() une una lista de cadenas con un separador."@es ;
+    skos:example """'a,b,c'.split(',')   # ['a', 'b', 'c']
+'-'.join(['a', 'b'])  # 'a-b'""" ;
+    skos:scopeNote "Son operaciones inversas habituales al procesar texto y ficheros delimitados."@es ;
+    cfkg:aNivelDominio cfr:basico ;
+    cfkg:perteneceATema cfr:T_strings ;
+    cfkg:requierePrerrequisito cfr:lista,
+        cfr:tipo_str ;
+    cfkg:tieneDificultad 2 .
+
+cfr:min_max a cfkg:FuncionIntegrada ;
+    rdfs:label "min and max"@en,
+        "Funciones min y max"@es ;
+    skos:definition "Funciones que devuelven el menor o mayor elemento de un iterable o de varios argumentos."@es ;
+    skos:example """max([3, 1, 2])             # 3
+max(palabras, key=len)""" ;
+    skos:scopeNote "Aceptan key para definir el criterio y default para iterables vacios."@es ;
+    cfkg:aNivelDominio cfr:basico ;
+    cfkg:perteneceATema cfr:T_algoritmos ;
+    cfkg:requierePrerrequisito cfr:iterables ;
+    cfkg:tieneDificultad 1 .
+
+cfr:mixin a cfkg:Paradigma ;
+    rdfs:label "Mixin"@en,
+        "Mixin"@es ;
+    skos:closeMatch dbr:Mixin ;
+    skos:definition "Clase pequena que aporta funcionalidad concreta para combinarse por herencia multiple."@es ;
+    skos:example """class SerializableMixin:
+    def to_dict(self):
+        return self.__dict__""" ;
+    skos:scopeNote "No se instancia por si sola; anade un comportamiento transversal a varias clases."@es ;
+    cfkg:aNivelDominio cfr:avanzado ;
+    cfkg:perteneceATema cfr:T_poo ;
+    cfkg:requierePrerrequisito cfr:herencia_multiple ;
+    cfkg:tieneDificultad 5 .
+
+cfr:modulo_datetime a cfkg:ModuloLibreria ;
+    rdfs:label "datetime module"@en,
+        "Módulo datetime"@es ;
+    skos:definition "Modulo datetime para representar y operar con fechas, horas y duraciones."@es ;
+    skos:example """from datetime import date
+date.today().isoformat()""" ;
+    skos:scopeNote "Distingue objetos 'naive' y 'aware' (con zona horaria); usa timedelta para aritmetica."@es ;
+    cfkg:aNivelDominio cfr:intermedio ;
+    cfkg:perteneceATema cfr:T_modulos ;
+    cfkg:requierePrerrequisito cfr:import_mod ;
+    cfkg:tieneDificultad 3 ;
+    cfkg:tieneURLDocumentacion "https://docs.python.org/3/library/datetime.html"^^xsd:anyURI .
+
+cfr:modulo_math a cfkg:ModuloLibreria ;
+    rdfs:label "math module"@en,
+        "Módulo math"@es ;
+    skos:definition "Modulo math con funciones y constantes matematicas para numeros reales."@es ;
+    skos:example """import math
+math.sqrt(2)""" ;
+    skos:scopeNote "Incluye sqrt, sin, factorial, pi y e; para vectores grandes considera numpy."@es ;
+    cfkg:aNivelDominio cfr:basico ;
+    cfkg:perteneceATema cfr:T_modulos ;
+    cfkg:requierePrerrequisito cfr:import_mod ;
+    cfkg:tieneDificultad 2 ;
+    cfkg:tieneURLDocumentacion "https://docs.python.org/3/library/math.html"^^xsd:anyURI .
+
+cfr:modulo_os a cfkg:ModuloLibreria ;
+    rdfs:label "os module"@en,
+        "Módulo os"@es ;
+    skos:definition "Modulo os con utilidades para interactuar con el sistema operativo y los ficheros."@es ;
+    skos:example """import os
+os.getcwd()""" ;
+    skos:scopeNote "Para rutas, os.path o, preferiblemente, pathlib; os.environ accede a las variables de entorno."@es ;
+    cfkg:aNivelDominio cfr:intermedio ;
+    cfkg:perteneceATema cfr:T_modulos ;
+    cfkg:requierePrerrequisito cfr:import_mod ;
+    cfkg:tieneDificultad 3 .
+
+cfr:modulo_random a cfkg:ModuloLibreria ;
+    rdfs:label "random module"@en,
+        "Módulo random"@es ;
+    skos:definition "Modulo random para generar numeros pseudoaleatorios y muestreos."@es ;
+    skos:example """import random
+random.randint(1, 6)""" ;
+    skos:scopeNote "No es criptograficamente seguro; usa el modulo secrets para contrasenas o tokens."@es ;
+    cfkg:aNivelDominio cfr:basico ;
+    cfkg:perteneceATema cfr:T_modulos ;
+    cfkg:requierePrerrequisito cfr:import_mod ;
+    cfkg:tieneDificultad 2 .
+
+cfr:mro a cfkg:Paradigma ;
+    rdfs:label "Method resolution order"@en,
+        "Orden de resolución (MRO)"@es ;
+    skos:definition "Orden de resolucion de metodos (MRO) que determina como Python busca atributos en herencia multiple."@es ;
+    skos:example """class C(A, B): ...
+C.mro()""" ;
+    skos:scopeNote "Se calcula con el algoritmo C3 y es consultable con NombreClase.mro()."@es ;
+    cfkg:aNivelDominio cfr:avanzado ;
+    cfkg:perteneceATema cfr:T_poo ;
+    cfkg:requierePrerrequisito cfr:herencia_multiple ;
+    cfkg:tieneDificultad 5 .
+
+cfr:multilinea_str a cfkg:PrincipioTransversal ;
+    rdfs:label "Triple-quoted strings"@en,
+        "Cadenas multilinea"@es ;
+    skos:definition "Cadena delimitada por triples comillas que puede abarcar varias lineas."@es ;
+    skos:example """texto = \"\"\"linea 1
+linea 2\"\"\"""" ;
+    skos:scopeNote "Tambien se usan como docstrings; conservan los saltos de linea y la sangria literal."@es ;
+    cfkg:aNivelDominio cfr:basico ;
+    cfkg:perteneceATema cfr:T_strings ;
+    cfkg:requierePrerrequisito cfr:tipo_str ;
+    cfkg:tieneDificultad 1 .
+
+cfr:operador_aritmetico a cfkg:OperadorDelLenguaje ;
+    rdfs:label "Arithmetic operators"@en,
+        "Operadores aritmeticos"@es ;
+    skos:definition "Operadores que realizan calculos numericos: +, -, *, /, //, % y **."@es ;
+    skos:example """7 // 2   # 3
+7 % 2    # 1
+2 ** 10  # 1024""" ;
+    skos:scopeNote "// es la division entera y / siempre devuelve float; ** eleva a una potencia."@es ;
+    cfkg:aNivelDominio cfr:basico ;
+    cfkg:perteneceATema cfr:T_fundamentos ;
+    cfkg:requierePrerrequisito cfr:variable ;
+    cfkg:tieneDificultad 1 .
+
+cfr:operador_asignacion_aumentada a cfkg:OperadorDelLenguaje ;
+    rdfs:label "Augmented assignment"@en,
+        "Asignacion aumentada"@es ;
+    skos:definition "Operadores como +=, -= o *= que combinan una operacion con la asignacion."@es ;
+    skos:example """total = 0
+total += 5  # total == 5""" ;
+    skos:scopeNote "En objetos mutables (listas) modifican en sitio; en inmutables crean un objeto nuevo."@es ;
+    cfkg:aNivelDominio cfr:basico ;
+    cfkg:perteneceATema cfr:T_fundamentos ;
+    cfkg:requierePrerrequisito cfr:asignacion ;
+    cfkg:tieneDificultad 1 .
+
+cfr:operador_bitwise a cfkg:OperadorDelLenguaje ;
+    rdfs:label "Bitwise operators"@en,
+        "Operadores a nivel de bits"@es ;
+    skos:definition "Operadores que manipulan los bits individuales de los enteros: &, |, ^, ~, << y >>."@es ;
+    skos:example """0b1100 & 0b1010  # 0b1000 (8)
+1 << 4           # 16""" ;
+    skos:scopeNote "Utiles para mascaras, banderas y optimizaciones; no confundir & con and."@es ;
+    cfkg:aNivelDominio cfr:intermedio ;
+    cfkg:perteneceATema cfr:T_fundamentos ;
+    cfkg:requierePrerrequisito cfr:tipo_int ;
+    cfkg:tieneDificultad 3 .
+
+cfr:operador_comparacion a cfkg:OperadorDelLenguaje ;
+    rdfs:label "Comparison operators"@en,
+        "Operadores de comparacion"@es ;
+    skos:definition "Operadores que comparan valores y devuelven un booleano: ==, !=, <, <=, >, >=."@es ;
+    skos:example "1 < 2 <= 2  # True" ;
+    skos:scopeNote "Pueden encadenarse (1 < x < 10); == compara valor mientras que is compara identidad."@es ;
+    cfkg:aNivelDominio cfr:basico ;
+    cfkg:perteneceATema cfr:T_fundamentos ;
+    cfkg:requierePrerrequisito cfr:variable ;
+    cfkg:tieneDificultad 1 .
+
+cfr:operador_identidad a cfkg:OperadorDelLenguaje ;
+    rdfs:label "Identity operators"@en,
+        "Operadores de identidad (is)"@es ;
+    skos:definition "Operadores is e is not que comprueban si dos nombres referencian el mismo objeto."@es ;
+    skos:example """x = None
+x is None  # True""" ;
+    skos:scopeNote "Reservalos para comparar con None; para igualdad de valor usa ==."@es ;
+    cfkg:aNivelDominio cfr:intermedio ;
+    cfkg:perteneceATema cfr:T_tipos ;
+    cfkg:requierePrerrequisito cfr:identidad_objetos ;
+    cfkg:tieneDificultad 2 .
+
+cfr:operador_logico a cfkg:OperadorDelLenguaje ;
+    rdfs:label "Logical operators"@en,
+        "Operadores logicos"@es ;
+    skos:definition "Operadores and, or y not que combinan o niegan expresiones booleanas."@es ;
+    skos:example """(x > 0) and (x < 10)
+nombre or 'anonimo'""" ;
+    skos:scopeNote "and/or evaluan de forma perezosa (cortocircuito) y devuelven uno de los operandos, no solo True/False."@es ;
+    cfkg:aNivelDominio cfr:basico ;
+    cfkg:perteneceATema cfr:T_fundamentos ;
+    cfkg:requierePrerrequisito cfr:tipo_bool ;
+    cfkg:tieneDificultad 1 .
+
+cfr:operador_pertenencia a cfkg:OperadorDelLenguaje ;
+    rdfs:label "Membership operators"@en,
+        "Operadores de pertenencia (in)"@es ;
+    skos:definition "Operadores in y not in que comprueban si un valor esta contenido en una coleccion."@es ;
+    skos:example """3 in [1, 2, 3]   # True
+'a' in 'casa'    # True""" ;
+    skos:scopeNote "En sets y dicts es O(1); en listas es O(n). Tambien busca subcadenas en strings."@es ;
+    cfkg:aNivelDominio cfr:basico ;
+    cfkg:perteneceATema cfr:T_estructuras ;
+    cfkg:requierePrerrequisito cfr:lista ;
+    cfkg:tieneDificultad 1 .
+
+cfr:ordered_dict a cfkg:EstructuraDeDatos ;
+    rdfs:label "OrderedDict"@en,
+        "collections.OrderedDict"@es ;
+    skos:definition "Diccionario que recuerda el orden de insercion y ofrece operaciones de reordenacion."@es ;
+    skos:example """from collections import OrderedDict
+d = OrderedDict(a=1, b=2)
+d.move_to_end('a')""" ;
+    skos:related cfr:diccionario ;
+    skos:scopeNote "Desde Python 3.7 dict ya conserva el orden, pero OrderedDict aporta move_to_end e igualdad sensible al orden."@es ;
+    cfkg:aNivelDominio cfr:intermedio ;
+    cfkg:perteneceATema cfr:T_estructuras ;
+    cfkg:requierePrerrequisito cfr:diccionario ;
+    cfkg:tieneDificultad 3 .
+
+cfr:partial a cfkg:ModuloLibreria ;
+    rdfs:label "partial"@en,
+        "functools.partial"@es ;
+    skos:definition "Funcion functools.partial que fija algunos argumentos de otra y devuelve una nueva."@es ;
+    skos:example """from functools import partial
+cubo = partial(pow, exp=3)""" ;
+    skos:scopeNote "Util para especializar funciones genericas y pasarlas como callbacks."@es ;
+    cfkg:aNivelDominio cfr:avanzado ;
+    cfkg:perteneceATema cfr:T_funcional ;
+    cfkg:requierePrerrequisito cfr:funcion_orden_superior ;
+    cfkg:tieneDificultad 4 .
+
+cfr:pathlib a cfkg:ModuloLibreria ;
+    rdfs:label "pathlib"@en,
+        "pathlib"@es ;
+    skos:definition "Modulo pathlib con una API orientada a objetos para rutas del sistema de ficheros."@es ;
+    skos:example """from pathlib import Path
+p = Path('datos') / 'fichero.txt'
+p.exists()""" ;
+    skos:scopeNote "Sustituye a os.path con codigo mas legible y portable; el operador / compone rutas."@es ;
+    cfkg:aNivelDominio cfr:intermedio ;
+    cfkg:perteneceATema cfr:T_ficheros ;
+    cfkg:requierePrerrequisito cfr:abrir_fichero ;
+    cfkg:tieneDificultad 3 ;
+    cfkg:tieneURLDocumentacion "https://docs.python.org/3/library/pathlib.html"^^xsd:anyURI .
+
+cfr:pip_mod a cfkg:PrincipioTransversal ;
+    rdfs:label "pip"@en,
+        "Gestor de paquetes (pip)"@es ;
+    skos:definition "Gestor de paquetes pip para instalar bibliotecas desde el indice PyPI."@es ;
+    skos:example """pip install requests
+pip freeze > requirements.txt""" ;
+    skos:scopeNote "Trabaja con requirements.txt e idealmente dentro de un entorno virtual."@es ;
+    cfkg:aNivelDominio cfr:basico ;
+    cfkg:perteneceATema cfr:T_modulos ;
+    cfkg:requierePrerrequisito cfr:paquete ;
+    cfkg:tieneDificultad 2 .
+
+cfr:prog_dinamica a cfkg:PrincipioTransversal ;
+    rdfs:label "Dynamic programming"@en,
+        "Programación dinámica"@es ;
+    skos:closeMatch dbr:Dynamic_programming ;
+    skos:definition "Tecnica que resuelve un problema combinando soluciones de subproblemas solapados, guardandolas."@es ;
+    skos:example """def fib(n, memo={}):
+    if n < 2: return n
+    if n not in memo:
+        memo[n] = fib(n-1) + fib(n-2)
+    return memo[n]""" ;
+    skos:scopeNote "Combina recursion con memoizacion o tablas; evita recalcular (p. ej. Fibonacci, mochila)."@es ;
+    cfkg:aNivelDominio cfr:avanzado ;
+    cfkg:perteneceATema cfr:T_algoritmos ;
+    cfkg:requierePrerrequisito cfr:memoizacion,
+        cfr:recursion ;
+    cfkg:tieneDificultad 5 .
+
+cfr:protocolo_typing a cfkg:ConceptoDeTipado ;
+    rdfs:label "Protocol (structural typing)"@en,
+        "typing.Protocol"@es ;
+    skos:definition "Tipo que describe una interfaz por su estructura (metodos y atributos), no por herencia explicita."@es ;
+    skos:example """from typing import Protocol
+class Dibujable(Protocol):
+    def dibujar(self) -> None: ...""" ;
+    skos:scopeNote "Formaliza el duck typing para los verificadores estaticos; una clase la satisface si tiene los miembros."@es ;
+    cfkg:aNivelDominio cfr:avanzado ;
+    cfkg:introducidoEnVersion "3.8"^^xsd:string ;
+    cfkg:perteneceATema cfr:T_tipos ;
+    cfkg:requierePrerrequisito cfr:anotaciones_tipo ;
+    cfkg:tieneDificultad 4 .
+
+cfr:pytest_mod a cfkg:ModuloLibreria ;
+    rdfs:label "pytest"@en,
+        "pytest"@es ;
+    skos:definition "Marco de pruebas pytest que descubre y ejecuta tests con asserts simples."@es ;
+    skos:example """def test_suma():
+    assert 1 + 1 == 2""" ;
+    skos:scopeNote "Ofrece fixtures, parametrizacion y mensajes de fallo detallados; estandar de facto en Python."@es ;
+    cfkg:aNivelDominio cfr:avanzado ;
+    cfkg:perteneceATema cfr:T_testing ;
+    cfkg:requierePrerrequisito cfr:funcion ;
+    cfkg:tieneDificultad 4 .
+
+cfr:python a cfkg:PrincipioTransversal ;
+    rdfs:label "Python"@en,
+        "Python"@es ;
+    skos:closeMatch dbr:Python_\(programming_language\) ;
+    skos:definition "Lenguaje de programacion interpretado, de alto nivel y tipado dinamico, con enfasis en la legibilidad."@es ;
+    skos:exactMatch wd:Q28865 ;
+    skos:example "print('Hola, mundo')" ;
+    skos:prefLabel "Python"@es ;
+    skos:scopeNote "Multiparadigma (imperativo, orientado a objetos y funcional); su filosofia se resume en el Zen de Python."@es ;
+    cfkg:perteneceATema cfr:T_fundamentos .
+
+cfr:range_f a cfkg:FuncionIntegrada ;
+    rdfs:label "range"@en,
+        "range()"@es ;
+    skos:definition "Funcion range() que genera una secuencia perezosa de enteros equiespaciados."@es ;
+    skos:example "list(range(2, 10, 2))  # [2, 4, 6, 8]" ;
+    skos:scopeNote "Define inicio, fin (excluido) y paso; no crea una lista, ahorra memoria."@es ;
+    cfkg:aNivelDominio cfr:basico ;
+    cfkg:perteneceATema cfr:T_control ;
+    cfkg:requierePrerrequisito cfr:bucle_for ;
+    cfkg:tieneDificultad 1 .
+
+cfr:raw_string a cfkg:PrincipioTransversal ;
+    rdfs:label "Raw strings"@en,
+        "Cadenas en bruto (raw)"@es ;
+    skos:definition "Cadena con prefijo r en la que la barra invertida no se interpreta como secuencia de escape."@es ;
+    skos:example """ruta = r'C:\\nuevo\\datos'
+patron = r'\\d+'""" ;
+    skos:related cfr:regex ;
+    skos:scopeNote "Imprescindible para patrones de expresiones regulares y rutas de Windows."@es ;
+    cfkg:aNivelDominio cfr:basico ;
+    cfkg:perteneceATema cfr:T_strings ;
+    cfkg:requierePrerrequisito cfr:tipo_str ;
+    cfkg:tieneDificultad 2 .
+
+cfr:rec_doc_listas a schema1:LearningResource,
+        cfkg:Recurso ;
+    rdfs:label "Official documentation: data structures"@en,
+        "Documentación oficial: estructuras de datos"@es ;
+    dcterms:creator "Python Software Foundation" ;
+    dcterms:title "Data Structures — The Python Tutorial"@en ;
+    schema1:url "https://docs.python.org/3/tutorial/datastructures.html" ;
+    cfkg:ilustraConcepto cfr:diccionario,
+        cfr:lista .
+
+cfr:retorno_multiple a cfkg:PrincipioTransversal ;
+    rdfs:label "Multiple return"@en,
+        "Retorno múltiple"@es ;
+    skos:definition "Devolucion de varios valores desde una funcion empaquetandolos en una tupla."@es ;
+    skos:example """def divmod2(a, b):
+    return a // b, a % b
+c, r = divmod2(7, 2)""" ;
+    skos:scopeNote "El receptor los desempaqueta en variables separadas; mejora la claridad frente a parametros de salida."@es ;
+    cfkg:aNivelDominio cfr:basico ;
+    cfkg:perteneceATema cfr:T_funciones ;
+    cfkg:requierePrerrequisito cfr:funcion,
+        cfr:tupla ;
+    cfkg:tieneDificultad 2 .
+
+cfr:self_param a cfkg:Paradigma ;
+    rdfs:label "self"@en,
+        "Parámetro self"@es ;
+    skos:definition "Primer parametro de los metodos de instancia que referencia al propio objeto."@es ;
+    skos:example """class C:
+    def m(self):
+        return self""" ;
+    skos:scopeNote "Es explicito por convencion (no palabra clave); olvidarlo causa un TypeError frecuente en principiantes."@es ;
+    cfkg:aNivelDominio cfr:intermedio ;
+    cfkg:perteneceATema cfr:T_poo ;
+    cfkg:requierePrerrequisito cfr:metodo ;
+    cfkg:tieneDificultad 3 .
+
+cfr:singledispatch a cfkg:ModuloLibreria ;
+    rdfs:label "functools.singledispatch"@en,
+        "functools.singledispatch"@es ;
+    skos:definition "Decorador que crea una funcion generica cuya implementacion se elige segun el tipo del primer argumento."@es ;
+    skos:example """from functools import singledispatch
+@singledispatch
+def mostrar(x): print(x)
+@mostrar.register
+def _(x: list): print('lista', x)""" ;
+    skos:related cfr:polimorfismo ;
+    skos:scopeNote "Aporta despacho multiple basico al estilo funcional, sin recurrir a una jerarquia de clases."@es ;
+    cfkg:aNivelDominio cfr:avanzado ;
+    cfkg:perteneceATema cfr:T_funcional ;
+    cfkg:requierePrerrequisito cfr:polimorfismo ;
+    cfkg:tieneDificultad 4 .
+
+cfr:slots a cfkg:Paradigma ;
+    rdfs:label "__slots__"@en,
+        "__slots__"@es ;
+    skos:definition "Declaracion que fija los atributos permitidos de una clase y evita el __dict__ por instancia."@es ;
+    skos:example """class Punto:
+    __slots__ = ('x', 'y')
+    def __init__(self, x, y):
+        self.x, self.y = x, y""" ;
+    skos:scopeNote "Reduce el consumo de memoria con muchas instancias, a costa de perder atributos dinamicos."@es ;
+    cfkg:aNivelDominio cfr:avanzado ;
+    cfkg:perteneceATema cfr:T_poo ;
+    cfkg:requierePrerrequisito cfr:atributo ;
+    cfkg:tieneDificultad 4 .
+
+cfr:sobrecarga_operadores a cfkg:Paradigma ;
+    rdfs:label "Operator overloading"@en,
+        "Sobrecarga de operadores"@es ;
+    skos:definition "Definicion del comportamiento de los operadores (+, ==, []) para objetos propios."@es ;
+    skos:example """class V:
+    def __init__(self, n): self.n = n
+    def __add__(self, o): return V(self.n + o.n)""" ;
+    skos:scopeNote "Se implementa con metodos dunder (__add__, __eq__); usala cuando aporte semantica natural."@es ;
+    cfkg:aNivelDominio cfr:avanzado ;
+    cfkg:perteneceATema cfr:T_poo ;
+    cfkg:requierePrerrequisito cfr:dunder ;
+    cfkg:tieneDificultad 5 .
+
+cfr:sorted_f a cfkg:FuncionIntegrada ;
+    rdfs:label "sorted/sort"@en,
+        "sorted() y sort()"@es ;
+    skos:definition "Funcion sorted() que devuelve una lista ordenada y metodo list.sort() que ordena en sitio."@es ;
+    skos:example """sorted([3, 1, 2])  # [1, 2, 3]
+sorted(palabras, key=len)""" ;
+    skos:scopeNote "Admiten key para criterio y reverse; el algoritmo Timsort es estable y O(n log n)."@es ;
+    cfkg:aNivelDominio cfr:basico ;
+    cfkg:perteneceATema cfr:T_algoritmos ;
+    cfkg:requierePrerrequisito cfr:lista ;
+    cfkg:tieneDificultad 2 .
+
+cfr:stmt_offbyone a rdf:Statement ;
+    rdfs:label "Provenance (reification): off-by-one on indexing per Keuning et al."@en,
+        "Procedencia (reificación): off-by-one sobre indexación según Keuning et al."@es ;
+    dcterms:source cfr:ref_keuning2019 ;
+    rdf:object cfr:indexacion ;
+    rdf:predicate cfkg:errorSobreConcepto ;
+    rdf:subject cfr:err_off_by_one ;
+    rdfs:comment "Procedencia del enunciado (patrón de reificación del material docente)."@es .
+
+cfr:str_repr a cfkg:Paradigma ;
+    rdfs:label "str and repr"@en,
+        "__str__ y __repr__"@es ;
+    skos:definition "Metodos __str__ (representacion legible) y __repr__ (representacion no ambigua) de un objeto."@es ;
+    skos:example """class P:
+    def __repr__(self):
+        return f'P({self.x!r})'""" ;
+    skos:scopeNote "__str__ se usa en print y __repr__ en la consola/depuracion; define __repr__ al menos."@es ;
+    cfkg:aNivelDominio cfr:avanzado ;
+    cfkg:perteneceATema cfr:T_poo ;
+    cfkg:requierePrerrequisito cfr:dunder ;
+    cfkg:tieneDificultad 4 .
+
+cfr:sum_func a cfkg:FuncionIntegrada ;
+    rdfs:label "sum"@en,
+        "Funcion sum"@es ;
+    skos:definition "Funcion que suma los elementos de un iterable numerico, con un valor inicial opcional."@es ;
+    skos:example """sum([1, 2, 3])      # 6
+sum([1, 2], 10)     # 13""" ;
+    skos:scopeNote "No la uses para concatenar cadenas (usa join); admite un segundo argumento como punto de partida."@es ;
+    cfkg:aNivelDominio cfr:basico ;
+    cfkg:perteneceATema cfr:T_control ;
+    cfkg:requierePrerrequisito cfr:iterables ;
+    cfkg:tieneDificultad 1 .
+
+cfr:super_call a cfkg:Paradigma ;
+    rdfs:label "super"@en,
+        "super()"@es ;
+    skos:definition "Funcion super() que invoca metodos de la clase base segun el MRO."@es ;
+    skos:example """class B(A):
+    def __init__(self):
+        super().__init__()""" ;
+    skos:scopeNote "Esencial para encadenar __init__ en herencia y cooperar correctamente con herencia multiple."@es ;
+    cfkg:aNivelDominio cfr:avanzado ;
+    cfkg:perteneceATema cfr:T_poo ;
+    cfkg:requierePrerrequisito cfr:herencia ;
+    cfkg:tieneDificultad 4 .
+
+cfr:suppress_context a cfkg:EstructuraDeControl ;
+    rdfs:label "contextlib.suppress"@en,
+        "contextlib.suppress"@es ;
+    skos:definition "Gestor de contexto que ignora silenciosamente las excepciones indicadas dentro del bloque."@es ;
+    skos:example """from contextlib import suppress
+with suppress(FileNotFoundError):
+    open('quiza.txt')""" ;
+    skos:related cfr:try_except_else ;
+    skos:scopeNote "Alternativa concisa a un try/except con pass; usalo solo cuando ignorar el error sea intencionado."@es ;
+    cfkg:aNivelDominio cfr:intermedio ;
+    cfkg:perteneceATema cfr:T_excepciones ;
+    cfkg:requierePrerrequisito cfr:try_except_else ;
+    cfkg:tieneDificultad 3 .
+
+cfr:ternario a cfkg:EstructuraDeControl ;
+    rdfs:label "Ternary operator"@en,
+        "Operador ternario"@es ;
+    skos:definition "Expresion condicional en una linea: valor_si_verdadero if condicion else valor_si_falso."@es ;
+    skos:example "signo = 'par' if n % 2 == 0 else 'impar'" ;
+    skos:scopeNote "Util para asignaciones breves; si la logica crece, un if/else completo es mas claro."@es ;
+    cfkg:aNivelDominio cfr:basico ;
+    cfkg:perteneceATema cfr:T_control ;
+    cfkg:requierePrerrequisito cfr:condicional ;
+    cfkg:tieneDificultad 2 .
+
+cfr:tipo_complex a cfkg:TipoDeDato ;
+    rdfs:label "Complex"@en,
+        "Complejo (complex)"@es ;
+    skos:definition "Tipo numerico para numeros complejos con parte real e imaginaria (sufijo j)."@es ;
+    skos:example """z = 2 + 3j
+z.real  # 2.0""" ;
+    skos:scopeNote "Soporta aritmetica compleja nativa; accede a .real y .imag."@es ;
+    cfkg:aNivelDominio cfr:intermedio ;
+    cfkg:perteneceATema cfr:T_tipos ;
+    cfkg:requierePrerrequisito cfr:tipo_float ;
+    cfkg:tieneDificultad 3 .
+
+cfr:type_checking a cfkg:PrincipioTransversal ;
+    rdfs:label "Type checking"@en,
+        "Comprobación de tipos (mypy)"@es ;
+    skos:definition "Comprobacion estatica de tipos a partir de las anotaciones, sin ejecutar el programa."@es ;
+    skos:example """# def f(x: int) -> int: return x + 1
+# mypy avisa si se llama f('a')""" ;
+    skos:scopeNote "Herramientas como mypy detectan incoherencias antes de la ejecucion; no afecta al rendimiento."@es ;
+    cfkg:aNivelDominio cfr:avanzado ;
+    cfkg:perteneceATema cfr:T_testing ;
+    cfkg:requierePrerrequisito cfr:anotaciones_tipo ;
+    cfkg:tieneDificultad 4 .
+
+cfr:typing_any a cfkg:ConceptoDeTipado ;
+    rdfs:label "typing.Any"@en,
+        "typing.Any"@es ;
+    skos:definition "Tipo comodin compatible con cualquier otro, que desactiva la comprobacion estatica."@es ;
+    skos:example """from typing import Any
+def registrar(valor: Any) -> None:
+    print(valor)""" ;
+    skos:scopeNote "Usalo con moderacion: cada Any es un agujero en el tipado; prefiere tipos concretos o genericos."@es ;
+    cfkg:aNivelDominio cfr:intermedio ;
+    cfkg:perteneceATema cfr:T_tipos ;
+    cfkg:requierePrerrequisito cfr:anotaciones_tipo ;
+    cfkg:tieneDificultad 2 .
+
+cfr:typing_callable a cfkg:ConceptoDeTipado ;
+    rdfs:label "typing.Callable"@en,
+        "typing.Callable"@es ;
+    skos:definition "Anotacion que describe el tipo de un objeto invocable indicando sus argumentos y retorno."@es ;
+    skos:example """from typing import Callable
+def aplica(f: Callable[[int], int], x: int) -> int:
+    return f(x)""" ;
+    skos:scopeNote "Util para anotar callbacks y funciones de orden superior; Callable[[int], str] toma un int y devuelve str."@es ;
+    cfkg:aNivelDominio cfr:intermedio ;
+    cfkg:perteneceATema cfr:T_tipos ;
+    cfkg:requierePrerrequisito cfr:anotaciones_tipo,
+        cfr:funcion_orden_superior ;
+    cfkg:tieneDificultad 3 .
+
+cfr:typing_final a cfkg:ConceptoDeTipado ;
+    rdfs:label "typing.Final"@en,
+        "typing.Final"@es ;
+    skos:definition "Anotacion que marca un nombre como constante que no debe reasignarse ni redefinirse."@es ;
+    skos:example """from typing import Final
+MAX: Final = 100""" ;
+    skos:scopeNote "El verificador estatico avisa si se intenta modificar; no impide el cambio en tiempo de ejecucion."@es ;
+    cfkg:aNivelDominio cfr:intermedio ;
+    cfkg:introducidoEnVersion "3.8"^^xsd:string ;
+    cfkg:perteneceATema cfr:T_tipos ;
+    cfkg:requierePrerrequisito cfr:anotaciones_tipo ;
+    cfkg:tieneDificultad 3 .
+
+cfr:typing_generics a cfkg:Paradigma ;
+    rdfs:label "Generics"@en,
+        "Genéricos (TypeVar)"@es ;
+    skos:definition "Tipos genericos parametrizados (TypeVar, Generic) que abstraen el tipo de los elementos."@es ;
+    skos:example """from typing import TypeVar
+T = TypeVar('T')
+def primero(xs: list[T]) -> T:
+    return xs[0]""" ;
+    skos:scopeNote "Permiten contenedores con seguridad de tipos reutilizables; el chequeo lo hace el verificador estatico."@es ;
+    cfkg:aNivelDominio cfr:avanzado ;
+    cfkg:introducidoEnVersion "3.5"^^xsd:string ;
+    cfkg:perteneceATema cfr:T_tipos ;
+    cfkg:requierePrerrequisito cfr:anotaciones_tipo,
+        cfr:clase ;
+    cfkg:tieneDificultad 4 .
+
+cfr:typing_literal a cfkg:ConceptoDeTipado ;
+    rdfs:label "typing.Literal"@en,
+        "typing.Literal"@es ;
+    skos:definition "Anotacion que restringe un valor a un conjunto concreto de constantes literales."@es ;
+    skos:example """from typing import Literal
+def mover(d: Literal['n', 's', 'e', 'o']) -> None: ...""" ;
+    skos:scopeNote "Documenta parametros que solo admiten ciertos valores; el verificador rechaza los demas."@es ;
+    cfkg:aNivelDominio cfr:intermedio ;
+    cfkg:introducidoEnVersion "3.8"^^xsd:string ;
+    cfkg:perteneceATema cfr:T_tipos ;
+    cfkg:requierePrerrequisito cfr:anotaciones_tipo ;
+    cfkg:tieneDificultad 3 .
+
+cfr:typing_optional a cfkg:PrincipioTransversal ;
+    rdfs:label "Optional"@en,
+        "typing.Optional"@es ;
+    skos:definition "Anotacion Optional[X] que indica un valor de tipo X o None."@es ;
+    skos:example """from typing import Optional
+def buscar(k) -> Optional[int]:
+    return None""" ;
+    skos:scopeNote "Equivale a Union[X, None]; documenta funciones que pueden no devolver un valor."@es ;
+    cfkg:aNivelDominio cfr:intermedio ;
+    cfkg:introducidoEnVersion "3.5"^^xsd:string ;
+    cfkg:perteneceATema cfr:T_tipos ;
+    cfkg:requierePrerrequisito cfr:anotaciones_tipo,
+        cfr:tipo_none ;
+    cfkg:tieneDificultad 3 .
+
+cfr:typing_typeddict a cfkg:ConceptoDeTipado ;
+    rdfs:label "TypedDict"@en,
+        "typing.TypedDict"@es ;
+    skos:definition "Tipo que especifica las claves esperadas de un diccionario y el tipo de cada valor."@es ;
+    skos:example """from typing import TypedDict
+class Usuario(TypedDict):
+    nombre: str
+    edad: int""" ;
+    skos:scopeNote "Aporta seguridad de tipos a los diccionarios tipo registro sin crear una clase."@es ;
+    cfkg:aNivelDominio cfr:avanzado ;
+    cfkg:introducidoEnVersion "3.8"^^xsd:string ;
+    cfkg:perteneceATema cfr:T_tipos ;
+    cfkg:requierePrerrequisito cfr:anotaciones_tipo,
+        cfr:diccionario ;
+    cfkg:tieneDificultad 4 .
+
+cfr:typing_union a cfkg:PrincipioTransversal ;
+    rdfs:label "Union"@en,
+        "typing.Union"@es ;
+    skos:definition "Anotacion Union[A, B] que indica que un valor puede ser de varios tipos."@es ;
+    skos:example """from typing import Union
+def f(x: Union[int, str]) -> str:
+    return str(x)""" ;
+    skos:scopeNote "Desde Python 3.10 se escribe A | B; usala con moderacion para no diluir el tipado."@es ;
+    cfkg:aNivelDominio cfr:intermedio ;
+    cfkg:introducidoEnVersion "3.5"^^xsd:string ;
+    cfkg:perteneceATema cfr:T_tipos ;
+    cfkg:requierePrerrequisito cfr:anotaciones_tipo ;
+    cfkg:tieneDificultad 3 .
+
+cfr:unittest_mod a cfkg:ModuloLibreria ;
+    rdfs:label "unittest"@en,
+        "unittest"@es ;
+    skos:definition "Marco de pruebas unittest de la biblioteca estandar, basado en clases TestCase."@es ;
+    skos:example """import unittest
+class T(unittest.TestCase):
+    def test_ok(self):
+        self.assertEqual(1 + 1, 2)""" ;
+    skos:scopeNote "Inspirado en xUnit; ofrece metodos assert y setUp/tearDown para preparar cada prueba."@es ;
+    cfkg:aNivelDominio cfr:avanzado ;
+    cfkg:perteneceATema cfr:T_testing ;
+    cfkg:requierePrerrequisito cfr:clase,
+        cfr:funcion ;
+    cfkg:tieneDificultad 4 ;
+    cfkg:tieneURLDocumentacion "https://docs.python.org/3/library/unittest.html"^^xsd:anyURI .
+
+cfr:valor_por_defecto a cfkg:PrincipioTransversal ;
+    rdfs:label "Default arguments"@en,
+        "Argumentos por defecto"@es ;
+    skos:definition "Valor asignado a un parametro cuando la llamada no proporciona ese argumento."@es ;
+    skos:example """def f(xs=None):
+    if xs is None:
+        xs = []""" ;
+    skos:scopeNote "Nunca uses objetos mutables como valor por defecto: se comparten entre llamadas. Usa None y crealo dentro."@es ;
+    cfkg:aNivelDominio cfr:basico ;
+    cfkg:perteneceATema cfr:T_funciones ;
+    cfkg:requierePrerrequisito cfr:parametros ;
+    cfkg:tieneDificultad 2 .
+
+cfr:variable_anotada a cfkg:ConceptoDeTipado ;
+    rdfs:label "Variable annotations"@en,
+        "Anotaciones de variable"@es ;
+    skos:definition "Sintaxis (PEP 526) para anotar el tipo de una variable, con o sin asignacion."@es ;
+    skos:example """conteo: int = 0
+nombres: list[str]""" ;
+    skos:scopeNote "Las anotaciones se guardan en __annotations__; documentan la intencion sin afectar a la ejecucion."@es ;
+    cfkg:aNivelDominio cfr:intermedio ;
+    cfkg:introducidoEnVersion "3.6"^^xsd:string ;
+    cfkg:perteneceATema cfr:T_tipos ;
+    cfkg:requierePrerrequisito cfr:anotaciones_tipo ;
+    cfkg:tieneDificultad 2 .
+
+cfr:walrus a cfkg:PrincipioTransversal ;
+    rdfs:label "Walrus operator"@en,
+        "Operador morsa (:=)"@es ;
+    skos:definition "Operador de asignacion en expresion := que asigna y devuelve un valor a la vez."@es ;
+    skos:example """if (n := len(datos)) > 10:
+    print(f'{n} elementos')""" ;
+    skos:scopeNote "Disponible desde Python 3.8; util para reutilizar un calculo dentro de una condicion sin repetirlo."@es ;
+    cfkg:aNivelDominio cfr:intermedio ;
+    cfkg:introducidoEnVersion "3.8"^^xsd:string ;
+    cfkg:perteneceATema cfr:T_control ;
+    cfkg:requierePrerrequisito cfr:condicional ;
+    cfkg:tieneDificultad 3 .
+
+cfr:with_multiple a cfkg:EstructuraDeControl ;
+    rdfs:label "Multiple context managers"@en,
+        "with multiple"@es ;
+    skos:definition "Sintaxis que gestiona varios recursos en una sola sentencia with separados por comas."@es ;
+    skos:example """with open('a') as a, open('b') as b:
+    b.write(a.read())""" ;
+    skos:related cfr:with_context ;
+    skos:scopeNote "Desde Python 3.10 admite parentesis para repartirlos en varias lineas de forma legible."@es ;
+    cfkg:aNivelDominio cfr:avanzado ;
+    cfkg:perteneceATema cfr:T_control ;
+    cfkg:requierePrerrequisito cfr:with_context ;
+    cfkg:tieneDificultad 4 .
+
+cfr:yield_from a cfkg:EstructuraDeControl ;
+    rdfs:label "yield from"@en,
+        "yield from"@es ;
+    skos:definition "Expresion yield from que delega la produccion de valores a otro generador o iterable."@es ;
+    skos:example """def aplanar(listas):
+    for l in listas:
+        yield from l""" ;
+    skos:scopeNote "Simplifica la composicion de generadores y transmite valores enviados y excepciones."@es ;
+    cfkg:aNivelDominio cfr:avanzado ;
+    cfkg:introducidoEnVersion "3.3"^^xsd:string ;
+    cfkg:perteneceATema cfr:T_funcional ;
+    cfkg:requierePrerrequisito cfr:generador ;
+    cfkg:tieneDificultad 5 .
+
+cfr:zip_f a cfkg:FuncionIntegrada ;
+    rdfs:label "zip"@en,
+        "zip()"@es ;
+    skos:definition "Funcion zip() que combina varios iterables en tuplas de elementos correspondientes."@es ;
+    skos:example "list(zip([1, 2], ['a', 'b']))  # [(1, 'a'), (2, 'b')]" ;
+    skos:scopeNote "Se detiene en el iterable mas corto; zip(*m) permite transponer; para rellenar usa itertools.zip_longest."@es ;
+    cfkg:aNivelDominio cfr:intermedio ;
+    cfkg:perteneceATema cfr:T_control ;
+    cfkg:requierePrerrequisito cfr:bucle_for,
+        cfr:iterables ;
+    cfkg:tieneDificultad 3 .
+
+cfkg: a owl:Ontology ;
+    cc:license <https://creativecommons.org/licenses/by/4.0/> ;
+    dcterms:created "2026-06-18"^^xsd:date ;
+    dcterms:creator "Adrián Bueno Junquero" ;
+    dcterms:description "Ontología y grafo de conocimiento del dominio de la programación en Python, diseñado para anclar la generación de retroalimentación formativa automática (arquitectura EKG + RAG + LLM). Modela conceptos, sus prerrequisitos y contrastes, temas, ejercicios, errores conceptuales (misconceptions), recursos y perfiles de estudiante."@es ;
+    dcterms:issued "2026-06-21"^^xsd:date ;
+    dcterms:license <https://creativecommons.org/licenses/by/4.0/> ;
+    dcterms:modified "2026-06-21"^^xsd:date ;
+    dcterms:title "CodeFeedback-KG: A Semantic Knowledge Graph of Python Concepts for Pedagogical Code Feedback"@en,
+        "Grafo de Conocimiento Educativo de Programación en Python (CodeFeedback-KG)"@es ;
+    vann:preferredNamespacePrefix "cfkg" ;
+    vann:preferredNamespaceUri "https://w3id.org/codefeedback-kg/schema#" ;
+    rdfs:seeAlso <https://w3id.org/codefeedback-kg/> ;
+    owl:versionIRI <https://w3id.org/codefeedback-kg/schema/2.0.0> ;
+    owl:versionInfo "2.0.0" .
+
+cfkg:Algoritmo a owl:Class ;
+    rdfs:label "Algorithm"@en,
+        "Algoritmo"@es ;
+    rdfs:comment "Procedimiento paso a paso bien definido para resolver un problema."@es ;
+    rdfs:subClassOf cfkg:Concepto .
+
+cfkg:CaracteristicaDelLenguaje a owl:Class ;
+    rdfs:label "Language feature"@en,
+        "Caracteristica del lenguaje"@es ;
+    rdfs:comment "Elemento sintactico o semantico propio del lenguaje Python."@es ;
+    rdfs:subClassOf cfkg:Concepto .
+
+cfkg:ConceptoDePruebas a owl:Class ;
+    rdfs:label "Testing concept"@en,
+        "Concepto de pruebas"@es ;
+    rdfs:comment "Concepto relacionado con la verificacion y las pruebas del codigo."@es ;
+    rdfs:subClassOf cfkg:Concepto .
+
+cfkg:HerramientaDeDesarrollo a owl:Class ;
+    rdfs:label "Development tool"@en,
+        "Herramienta de desarrollo"@es ;
+    rdfs:comment "Herramienta de apoyo al desarrollo (empaquetado, entornos, pruebas)."@es ;
+    rdfs:subClassOf cfkg:Concepto .
+
+cfkg:PatronDeDiseno a owl:Class ;
+    rdfs:label "Design pattern"@en,
+        "Patron de diseno"@es ;
+    rdfs:comment "Solucion reutilizable a un problema recurrente de diseno de software."@es ;
+    rdfs:subClassOf cfkg:Paradigma .
+
+cfkg:aNivelDominio a owl:ObjectProperty ;
+    rdfs:label "at mastery level"@en,
+        "a nivel de dominio"@es ;
+    rdfs:domain cfkg:EntidadEducativa ;
+    rdfs:range cfkg:NivelDominio .
+
+cfkg:conPeso a owl:DatatypeProperty ;
+    rdfs:label "with weight"@en,
+        "con peso"@es ;
+    rdfs:domain cfkg:EvaluacionDeConcepto ;
+    rdfs:range xsd:decimal .
+
+cfkg:contrastaCon a owl:ObjectProperty,
+        owl:SymmetricProperty ;
+    rdfs:label "contrasts with"@en,
+        "contrasta con"@es ;
+    rdfs:comment "Conceptos frecuentemente confundidos que conviene explicar por oposición (p. ej. iteración / recursión). Simétrica."@es ;
+    rdfs:domain cfkg:Concepto ;
+    rdfs:range cfkg:Concepto ;
+    rdfs:subPropertyOf cfkg:relacionadoConceptualmenteCon .
+
+cfkg:cubiertoPorEjercicio a owl:ObjectProperty ;
+    rdfs:label "is covered by exercise"@en,
+        "es cubierto por el ejercicio"@es ;
+    rdfs:comment "Inversa de cubreConcepto."@es ;
+    rdfs:domain cfkg:Concepto ;
+    rdfs:range cfkg:Ejercicio ;
+    owl:inverseOf cfkg:cubreConcepto .
+
+cfkg:dependeDe a owl:ObjectProperty,
+        owl:TransitiveProperty ;
+    rdfs:label "depends on"@en,
+        "depende de"@es ;
+    rdfs:comment "Dependencia conceptual generica y transitiva entre conceptos."@es ;
+    rdfs:domain cfkg:Concepto ;
+    rdfs:range cfkg:Concepto ;
+    rdfs:subPropertyOf cfkg:relacionadoConceptualmenteCon .
+
+cfkg:enFecha a owl:DatatypeProperty ;
+    rdfs:label "on date"@en,
+        "en la fecha"@es ;
+    rdfs:domain cfkg:EvaluacionActividad ;
+    rdfs:range xsd:date .
+
+cfkg:enviadoPor a owl:ObjectProperty ;
+    rdfs:label "submitted by"@en,
+        "enviado por"@es ;
+    rdfs:domain cfkg:EnvioEstudiante ;
+    rdfs:range cfkg:Estudiante .
+
+cfkg:esPrerrequisitoDe a owl:ObjectProperty,
+        owl:TransitiveProperty ;
+    rdfs:label "is prerequisite of"@en,
+        "es prerrequisito de"@es ;
+    rdfs:comment "A esPrerrequisitoDe B significa que dominar A es condición previa para aprender B. Transitiva: habilita el cálculo de prerrequisitos indirectos por inferencia."@es ;
+    rdfs:domain cfkg:Concepto ;
+    rdfs:range cfkg:Concepto ;
+    rdfs:subPropertyOf cfkg:relacionadoConceptualmenteCon ;
+    owl:inverseOf cfkg:requierePrerrequisito .
+
+cfkg:esVarianteDe a owl:ObjectProperty,
+        owl:SymmetricProperty ;
+    rdfs:label "is a variant of"@en,
+        "es una variante de"@es ;
+    rdfs:comment "Relacion simetrica entre variantes sintacticas o conceptuales de una misma idea."@es ;
+    rdfs:domain cfkg:Concepto ;
+    rdfs:range cfkg:Concepto ;
+    rdfs:subPropertyOf cfkg:relacionadoConceptualmenteCon .
+
+cfkg:evaluaCompetencia a owl:ObjectProperty ;
+    rdfs:label "assesses competency"@en,
+        "evalúa la competencia"@es ;
+    rdfs:domain cfkg:Ejercicio ;
+    rdfs:range cfkg:Competencia .
+
+cfkg:generaliza a owl:ObjectProperty,
+        owl:TransitiveProperty ;
+    rdfs:label "generalises"@en,
+        "generaliza a"@es ;
+    rdfs:domain cfkg:Concepto ;
+    rdfs:range cfkg:Concepto ;
+    rdfs:subPropertyOf cfkg:relacionadoConceptualmenteCon ;
+    owl:inverseOf cfkg:especializa .
+
+cfkg:ilustradoEnRecurso a owl:ObjectProperty ;
+    rdfs:label "is illustrated in resource"@en,
+        "se ilustra en el recurso"@es ;
+    rdfs:comment "Inversa de ilustraConcepto."@es ;
+    rdfs:domain cfkg:Concepto ;
+    rdfs:range cfkg:Recurso ;
+    owl:inverseOf cfkg:ilustraConcepto .
+
+cfkg:introduceConcepto a owl:ObjectProperty ;
+    rdfs:label "introduces concept"@en,
+        "introduce el concepto"@es ;
+    rdfs:comment "Un tema curricular introduce (presenta por primera vez) un concepto."@es ;
+    rdfs:domain cfkg:Tema ;
+    rdfs:range cfkg:Concepto .
+
+cfkg:introducidoEnVersion a owl:DatatypeProperty,
+        owl:FunctionalProperty ;
+    rdfs:label "introduced in version"@en,
+        "introducido en la version"@es ;
+    rdfs:comment "Version de Python que introdujo la caracteristica (p. ej. '3.10')."@es ;
+    rdfs:domain cfkg:Concepto ;
+    rdfs:range xsd:string .
+
+cfkg:numeroDeLineas a owl:DatatypeProperty ;
+    rdfs:label "number of lines"@en,
+        "número de líneas"@es ;
+    rdfs:domain cfkg:EnvioEstudiante ;
+    rdfs:range xsd:integer .
+
+cfkg:obtuvoNota a owl:DatatypeProperty ;
+    rdfs:label "obtained grade"@en,
+        "obtuvo nota"@es ;
+    rdfs:domain cfkg:EvaluacionActividad ;
+    rdfs:range xsd:decimal .
+
+cfkg:seAplicaA a owl:ObjectProperty ;
+    rdfs:label "applies to"@en,
+        "se aplica a"@es ;
+    rdfs:domain cfkg:Concepto ;
+    rdfs:range cfkg:Concepto ;
+    rdfs:subPropertyOf cfkg:relacionadoConceptualmenteCon .
+
+cfkg:tieneComplejidadTemporal a owl:DatatypeProperty ;
+    rdfs:label "has time complexity"@en,
+        "tiene complejidad temporal"@es ;
+    rdfs:comment "Complejidad temporal en notacion O grande (p. ej. 'O(log n)')."@es ;
+    rdfs:domain cfkg:Concepto ;
+    rdfs:range xsd:string .
+
+cfkg:tieneDificultad a owl:DatatypeProperty,
+        owl:FunctionalProperty ;
+    rdfs:label "has difficulty"@en,
+        "tiene dificultad"@es ;
+    rdfs:comment "Dificultad estimada en una escala entera 1–5."@es ;
+    rdfs:domain cfkg:EntidadEducativa ;
+    rdfs:range xsd:integer .
+
+cfkg:tieneEjemploCodigo a owl:DatatypeProperty ;
+    rdfs:label "has code example"@en,
+        "tiene ejemplo de código"@es ;
+    rdfs:domain cfkg:Concepto ;
+    rdfs:range xsd:string .
+
+cfkg:tieneEnunciado a owl:DatatypeProperty ;
+    rdfs:label "has statement"@en,
+        "tiene enunciado"@es ;
+    rdfs:domain cfkg:Ejercicio ;
+    rdfs:range rdf:langString .
+
+cfkg:tienePalabraClave a owl:DatatypeProperty ;
+    rdfs:label "has keyword"@en,
+        "tiene palabra clave"@es ;
+    rdfs:comment "Termino de busqueda o palabra clave asociada al concepto."@es ;
+    rdfs:domain cfkg:Concepto ;
+    rdfs:range xsd:string .
+
+cfkg:tieneURLDocumentacion a owl:DatatypeProperty ;
+    rdfs:label "has documentation URL"@en,
+        "tiene URL de documentacion"@es ;
+    rdfs:comment "Enlace a la documentacion oficial del concepto."@es ;
+    rdfs:domain cfkg:Concepto ;
+    rdfs:range xsd:anyURI .
+
+cfr:any_all a cfkg:FuncionIntegrada ;
+    rdfs:label "any and all"@en,
+        "Funciones any y all"@es ;
+    skos:definition "any() devuelve True si algun elemento es verdadero; all() si todos lo son."@es ;
+    skos:example """all(x > 0 for x in [1, 2, 3])  # True
+any(x < 0 for x in [1, 2, 3])  # False""" ;
+    skos:related cfr:truthiness ;
+    skos:scopeNote "Operan de forma perezosa con cortocircuito; sobre un iterable vacio, all es True y any es False."@es ;
+    cfkg:aNivelDominio cfr:basico ;
+    cfkg:perteneceATema cfr:T_control ;
+    cfkg:requierePrerrequisito cfr:iterables ;
+    cfkg:tieneDificultad 2 .
+
+cfr:arbol_busqueda_binaria a cfkg:EstructuraDeDatos ;
+    rdfs:label "Binary search tree"@en,
+        "Arbol de busqueda binaria"@es ;
+    skos:broader cfr:arbol_binario ;
+    skos:closeMatch dbr:Binary_search_tree ;
+    skos:definition "Arbol binario donde el subarbol izquierdo solo contiene valores menores y el derecho, mayores."@es ;
+    skos:example """def buscar(nodo, x):
+    if nodo is None or nodo.v == x:
+        return nodo
+    return buscar(nodo.izq if x < nodo.v else nodo.der, x)""" ;
+    skos:scopeNote "Permite busqueda, insercion y borrado en O(log n) si esta equilibrado; degenera a O(n) si no."@es ;
+    cfkg:aNivelDominio cfr:avanzado ;
+    cfkg:perteneceATema cfr:T_algoritmos ;
+    cfkg:requierePrerrequisito cfr:arbol_binario ;
+    cfkg:tieneComplejidadTemporal "O(log n)"^^xsd:string ;
+    cfkg:tieneDificultad 4 .
+
+cfr:asignacion a cfkg:PrincipioTransversal ;
+    rdfs:label "Assignment"@en,
+        "Asignación"@es ;
+    skos:definition "Operacion que vincula un nombre a un objeto en memoria mediante el operador =."@es ;
+    skos:example """x = [1, 2, 3]
+y = x  # y referencia la misma lista""" ;
+    skos:scopeNote "En Python la asignacion no copia el objeto: asocia una referencia; varios nombres pueden apuntar al mismo objeto."@es ;
+    cfkg:esPrerrequisitoDe cfr:bucle_for ;
+    cfkg:perteneceATema cfr:T_fundamentos ;
+    cfkg:tieneDificultad 1 .
+
+cfr:busqueda_lineal a cfkg:PrincipioTransversal ;
+    rdfs:label "Linear search"@en,
+        "Búsqueda lineal"@es ;
+    skos:closeMatch dbr:Linear_search ;
+    skos:definition "Algoritmo que recorre una secuencia elemento a elemento hasta encontrar el buscado."@es ;
+    skos:exactMatch wd:Q787903 ;
+    skos:example """def lineal(xs, x):
+    for i, v in enumerate(xs):
+        if v == x:
+            return i
+    return -1""" ;
+    skos:related cfr:busqueda_binaria ;
+    skos:scopeNote "Simple y sin requisitos de orden, pero ineficiente (O(n)) para colecciones grandes."@es ;
+    cfkg:aNivelDominio cfr:basico ;
+    cfkg:contrastaCon cfr:busqueda_binaria ;
+    cfkg:perteneceATema cfr:T_algoritmos ;
+    cfkg:requierePrerrequisito cfr:bucle_for ;
+    cfkg:tieneComplejidadTemporal "O(n)"^^xsd:string ;
+    cfkg:tieneDificultad 2 .
+
+cfr:composicion a cfkg:Paradigma ;
+    rdfs:label "Composition"@en,
+        "Composición"@es ;
+    skos:definition "Diseno en el que un objeto contiene instancias de otras clases para reutilizar su comportamiento."@es ;
+    skos:example """class Motor: ...
+class Coche:
+    def __init__(self):
+        self.motor = Motor()  # composicion""" ;
+    skos:related cfr:herencia ;
+    skos:scopeNote "Suele preferirse a la herencia ('composicion sobre herencia') por su menor acoplamiento."@es ;
+    cfkg:aNivelDominio cfr:avanzado ;
+    cfkg:contrastaCon cfr:herencia ;
+    cfkg:perteneceATema cfr:T_poo ;
+    cfkg:requierePrerrequisito cfr:objeto ;
+    cfkg:tieneDificultad 4 .
+
+cfr:comprension_dicts a cfkg:EstructuraDeControl ;
+    rdfs:label "Dict comprehension"@en,
+        "Comprensión de diccionarios"@es ;
+    skos:broader cfr:comprension_listas ;
+    skos:definition "Sintaxis concisa para construir diccionarios a partir de un iterable en una sola expresion."@es ;
+    skos:example "cuadrados = {n: n*n for n in range(5)}" ;
+    skos:scopeNote "Sigue el patron {clave: valor for ...}; mas legible que un bucle con asignaciones cuando es simple."@es ;
+    cfkg:aNivelDominio cfr:avanzado ;
+    cfkg:perteneceATema cfr:T_estructuras ;
+    cfkg:requierePrerrequisito cfr:comprension_listas,
+        cfr:diccionario ;
+    cfkg:tieneDificultad 4 .
+
+cfr:comprension_sets a cfkg:EstructuraDeControl ;
+    rdfs:label "Set comprehension"@en,
+        "Comprensión de conjuntos"@es ;
+    skos:broader cfr:comprension_listas ;
+    skos:definition "Sintaxis concisa para construir conjuntos eliminando duplicados a partir de un iterable."@es ;
+    skos:example "iniciales = {p[0] for p in ['ana', 'alba', 'bea']}" ;
+    skos:scopeNote "Sigue el patron {expr for ...}; util para obtener elementos unicos transformados."@es ;
+    cfkg:aNivelDominio cfr:avanzado ;
+    cfkg:perteneceATema cfr:T_estructuras ;
+    cfkg:requierePrerrequisito cfr:comprension_listas,
+        cfr:conjunto ;
+    cfkg:tieneDificultad 4 .
+
+cfr:conversion_tipos a cfkg:PrincipioTransversal ;
+    rdfs:label "Type casting"@en,
+        "Conversión de tipos"@es ;
+    skos:definition "Cambio explicito del tipo de un valor mediante constructores como int(), str() o float()."@es ;
+    skos:example """edad = int('42')
+texto = str(3.14)""" ;
+    skos:scopeNote "Evita errores de TypeError al combinar tipos incompatibles; puede lanzar ValueError si el formato no es valido."@es ;
+    cfkg:aNivelDominio cfr:basico ;
+    cfkg:perteneceATema cfr:T_tipos ;
+    cfkg:requierePrerrequisito cfr:tipo_int,
+        cfr:tipo_str ;
+    cfkg:tieneDificultad 2 .
+
+cfr:corrutina a cfkg:PrincipioTransversal ;
+    rdfs:label "Coroutine"@en,
+        "Corrutina"@es ;
+    skos:broader cfr:async_await ;
+    skos:definition "Funcion que puede suspender y reanudar su ejecucion, cooperando con un planificador."@es ;
+    skos:exactMatch wd:Q1339231 ;
+    skos:example """async def contador():
+    for i in range(3):
+        await asyncio.sleep(0)
+        yield i""" ;
+    skos:scopeNote "En Python moderno se definen con async def; las clasicas usaban generadores con yield."@es ;
+    cfkg:aNivelDominio cfr:avanzado ;
+    cfkg:perteneceATema cfr:T_concurrencia ;
+    cfkg:requierePrerrequisito cfr:async_await,
+        cfr:generador ;
+    cfkg:tieneDificultad 5 .
+
+cfr:counter a cfkg:EstructuraDeDatos ;
+    rdfs:label "Counter"@en,
+        "collections.Counter"@es ;
+    skos:broader cfr:diccionario ;
+    skos:definition "Subclase de diccionario (collections.Counter) que cuenta apariciones de elementos hashables."@es ;
+    skos:example """from collections import Counter
+c = Counter('banana')
+c.most_common(1)  # [('a', 3)]""" ;
+    skos:scopeNote "Ofrece most_common() y aritmetica de multiconjuntos; ideal para frecuencias."@es ;
+    cfkg:aNivelDominio cfr:intermedio ;
+    cfkg:perteneceATema cfr:T_estructuras ;
+    cfkg:requierePrerrequisito cfr:diccionario ;
+    cfkg:tieneDificultad 3 .
+
+cfr:dataclass_field a cfkg:Paradigma ;
+    rdfs:label "dataclasses.field"@en,
+        "dataclasses.field"@es ;
+    skos:broader cfr:dataclass ;
+    skos:definition "Funcion que personaliza un campo de una dataclass, por ejemplo con fabricas por defecto."@es ;
+    skos:example """from dataclasses import dataclass, field
+@dataclass
+class C:
+    items: list = field(default_factory=list)""" ;
+    skos:scopeNote "Usa default_factory=list para valores mutables por defecto y evitar compartirlos entre instancias."@es ;
+    cfkg:aNivelDominio cfr:intermedio ;
+    cfkg:perteneceATema cfr:T_tipos ;
+    cfkg:requierePrerrequisito cfr:dataclass ;
+    cfkg:tieneDificultad 3 .
+
+cfr:defaultdict a cfkg:EstructuraDeDatos ;
+    rdfs:label "defaultdict"@en,
+        "collections.defaultdict"@es ;
+    skos:broader cfr:diccionario ;
+    skos:definition "Diccionario (collections.defaultdict) que crea un valor por defecto al acceder a una clave inexistente."@es ;
+    skos:example """from collections import defaultdict
+d = defaultdict(list)
+d['a'].append(1)""" ;
+    skos:scopeNote "Evita comprobar la existencia de la clave; se inicializa con una fabrica (list, int, set)."@es ;
+    cfkg:aNivelDominio cfr:intermedio ;
+    cfkg:perteneceATema cfr:T_estructuras ;
+    cfkg:requierePrerrequisito cfr:diccionario ;
+    cfkg:tieneDificultad 3 .
+
+cfr:deque a cfkg:EstructuraDeDatos ;
+    rdfs:label "deque"@en,
+        "collections.deque"@es ;
+    skos:broader cfr:cola ;
+    skos:definition "Cola doblemente terminada (collections.deque) con insercion y extraccion O(1) por ambos extremos."@es ;
+    skos:example """from collections import deque
+d = deque([1, 2])
+d.appendleft(0); d.pop()""" ;
+    skos:scopeNote "Preferible a list para colas y pilas; permite limitar su tamano con maxlen."@es ;
+    cfkg:aNivelDominio cfr:intermedio ;
+    cfkg:perteneceATema cfr:T_estructuras ;
+    cfkg:requierePrerrequisito cfr:lista ;
+    cfkg:tieneDificultad 3 .
+
+cfr:desempaquetado a cfkg:PrincipioTransversal ;
+    rdfs:label "Unpacking"@en,
+        "Desempaquetado"@es ;
+    skos:definition "Asignacion simultanea de los elementos de un iterable a varias variables."@es ;
+    skos:example "a, b, *resto = [1, 2, 3, 4]" ;
+    skos:scopeNote "Admite el comodin * para capturar el resto; util para intercambios y retorno multiple."@es ;
+    cfkg:aNivelDominio cfr:basico ;
+    cfkg:perteneceATema cfr:T_estructuras ;
+    cfkg:requierePrerrequisito cfr:lista,
+        cfr:tupla ;
+    cfkg:tieneDificultad 2 .
+
+cfr:encadenar_excepciones a cfkg:EstructuraDeControl ;
+    rdfs:label "Exception chaining"@en,
+        "Encadenar excepciones"@es ;
+    skos:broader cfr:jerarquia_excepciones ;
+    skos:definition "Mecanismo (raise ... from ...) que vincula una excepcion con la causa original."@es ;
+    skos:example """try:
+    int('x')
+except ValueError as e:
+    raise RuntimeError('dato invalido') from e""" ;
+    skos:scopeNote "Preserva la traza completa y aclara el origen del error; from None oculta la causa intencionadamente."@es ;
+    cfkg:aNivelDominio cfr:avanzado ;
+    cfkg:perteneceATema cfr:T_excepciones ;
+    cfkg:requierePrerrequisito cfr:raise_excepcion ;
+    cfkg:tieneDificultad 4 .
+
+cfr:encapsulacion a cfkg:Paradigma ;
+    rdfs:label "Encapsulation"@en,
+        "Encapsulación"@es ;
+    skos:closeMatch dbr:Encapsulation_\(computer_programming\) ;
+    skos:definition "Principio de ocultar el estado interno de un objeto exponiendo solo una interfaz controlada."@es ;
+    skos:example """class Cuenta:
+    def __init__(self):
+        self.__saldo = 0  # 'privado'""" ;
+    skos:scopeNote "Python usa convenciones (_protegido, __privado con name mangling) en lugar de modificadores estrictos."@es ;
+    cfkg:aNivelDominio cfr:avanzado ;
+    cfkg:perteneceATema cfr:T_poo ;
+    cfkg:requierePrerrequisito cfr:atributo ;
+    cfkg:tieneDificultad 4 .
+
+cfr:enum_tipo a cfkg:Paradigma ;
+    rdfs:label "Enum"@en,
+        "Enumeración (Enum)"@es ;
+    skos:definition "Tipo enumerado (enum.Enum) que define un conjunto de constantes simbolicas con nombre."@es ;
+    skos:exactMatch wd:Q760170 ;
+    skos:example """from enum import Enum
+class Color(Enum):
+    ROJO = 1
+    VERDE = 2""" ;
+    skos:related cfr:clase ;
+    skos:scopeNote "Mejora la legibilidad frente a constantes sueltas; los miembros son unicos y comparables por identidad."@es ;
+    cfkg:aNivelDominio cfr:intermedio ;
+    cfkg:perteneceATema cfr:T_tipos ;
+    cfkg:requierePrerrequisito cfr:clase ;
+    cfkg:tieneDificultad 3 .
+
+cfr:err_iteracion_recursion a cfkg:ErrorConceptual ;
+    rdfs:label "Iteration vs recursion confusion"@en,
+        "Confusión iteración / recursión"@es ;
+    cfkg:errorSobreConcepto cfr:recursion .
+
+cfr:excepcion_personalizada a cfkg:Paradigma ;
+    rdfs:label "Custom exception"@en,
+        "Excepción personalizada"@es ;
+    skos:broader cfr:jerarquia_excepciones ;
+    skos:definition "Clase de excepcion propia que hereda de Exception para representar errores del dominio."@es ;
+    skos:example """class SaldoInsuficienteError(Exception):
+    pass""" ;
+    skos:scopeNote "Permite capturar selectivamente y anadir contexto; nombra la clase terminando en Error por convencion."@es ;
+    cfkg:aNivelDominio cfr:avanzado ;
+    cfkg:perteneceATema cfr:T_excepciones ;
+    cfkg:requierePrerrequisito cfr:excepcion,
+        cfr:herencia ;
+    cfkg:tieneDificultad 4 .
+
+cfr:expresion_generadora a cfkg:EstructuraDeControl ;
+    rdfs:label "Generator expression"@en,
+        "Expresión generadora"@es ;
+    skos:broader cfr:comprension_listas ;
+    skos:definition "Expresion perezosa, similar a una comprension, que produce valores bajo demanda con parentesis."@es ;
+    skos:example "suma = sum(x*x for x in range(1000))" ;
+    skos:scopeNote "Ahorra memoria frente a una lista cuando solo se itera una vez; no se puede indexar."@es ;
+    cfkg:aNivelDominio cfr:avanzado ;
+    cfkg:perteneceATema cfr:T_funcional ;
+    cfkg:requierePrerrequisito cfr:comprension_listas,
+        cfr:generador ;
+    cfkg:tieneDificultad 4 .
+
+cfr:finally_clause a cfkg:EstructuraDeControl ;
+    rdfs:label "finally clause"@en,
+        "Clausula finally"@es ;
+    skos:broader cfr:try_except_else ;
+    skos:definition "Bloque finally que se ejecuta siempre tras un try, haya o no excepcion."@es ;
+    skos:example """try:
+    f = open('d')
+finally:
+    print('siempre se ejecuta')""" ;
+    skos:scopeNote "Ideal para liberar recursos; se ejecuta incluso si hay return dentro del try."@es ;
+    cfkg:aNivelDominio cfr:intermedio ;
+    cfkg:perteneceATema cfr:T_excepciones ;
+    cfkg:requierePrerrequisito cfr:try_except_else ;
+    cfkg:tieneDificultad 2 .
+
+cfr:frozen_dataclass a cfkg:Paradigma ;
+    rdfs:label "Frozen dataclass"@en,
+        "Dataclass inmutable"@es ;
+    skos:broader cfr:dataclass ;
+    skos:definition "Dataclass declarada con frozen=True cuyas instancias son inmutables y hashables."@es ;
+    skos:example """from dataclasses import dataclass
+@dataclass(frozen=True)
+class Punto:
+    x: int
+    y: int""" ;
+    skos:scopeNote "Intentar modificar un campo lanza FrozenInstanceError; util para objetos de valor."@es ;
+    cfkg:aNivelDominio cfr:avanzado ;
+    cfkg:perteneceATema cfr:T_tipos ;
+    cfkg:requierePrerrequisito cfr:dataclass ;
+    cfkg:tieneDificultad 4 .
+
+cfr:frozenset_tipo a cfkg:EstructuraDeDatos ;
+    rdfs:label "frozenset"@en,
+        "Conjunto inmutable (frozenset)"@es ;
+    skos:definition "Version inmutable y hashable del conjunto, que no admite anadir ni quitar elementos."@es ;
+    skos:example """fs = frozenset({1, 2, 3})
+{fs: 'valor'}  # valido como clave""" ;
+    skos:related cfr:conjunto ;
+    skos:scopeNote "Al ser hashable puede usarse como clave de diccionario o elemento de otro conjunto."@es ;
+    cfkg:aNivelDominio cfr:intermedio ;
+    cfkg:perteneceATema cfr:T_estructuras ;
+    cfkg:requierePrerrequisito cfr:conjunto ;
+    cfkg:tieneDificultad 3 .
+
+cfr:funcion_lambda a cfkg:PrincipioTransversal ;
+    rdfs:label "Lambda"@en,
+        "Función lambda"@es ;
+    skos:broader cfr:funcion ;
+    skos:closeMatch dbr:Anonymous_function ;
+    skos:definition "Funcion anonima de una sola expresion definida con la palabra clave lambda."@es ;
+    skos:exactMatch wd:Q567612 ;
+    skos:example "ordenar = sorted(pares, key=lambda p: p[1])" ;
+    skos:scopeNote "Util como argumento breve (key de sorted); si crece, mejor una funcion con def."@es ;
+    cfkg:aNivelDominio cfr:intermedio ;
+    cfkg:perteneceATema cfr:T_funcional ;
+    cfkg:requierePrerrequisito cfr:funcion ;
+    cfkg:tieneDificultad 3 .
+
+cfr:global_kw a cfkg:PrincipioTransversal ;
+    rdfs:label "global"@en,
+        "Palabra clave global"@es ;
+    skos:definition "Declaracion que permite a una funcion reasignar una variable del ambito global."@es ;
+    skos:example """contador = 0
+def inc():
+    global contador
+    contador += 1""" ;
+    skos:related cfr:ambito,
+        cfr:nonlocal_kw ;
+    skos:scopeNote "Su uso suele indicar un diseno mejorable; prefiere devolver valores o encapsular el estado."@es ;
+    cfkg:aNivelDominio cfr:intermedio ;
+    cfkg:perteneceATema cfr:T_funciones ;
+    cfkg:requierePrerrequisito cfr:ambito ;
+    cfkg:tieneDificultad 3 .
+
+cfr:identidad_objetos a cfkg:PrincipioTransversal ;
+    rdfs:label "Object identity"@en,
+        "Identidad de objetos (is)"@es ;
+    skos:definition "Comprobacion (is) de si dos nombres referencian exactamente el mismo objeto en memoria."@es ;
+    skos:example """a = [1]
+b = a
+a is b  # True
+a is [1]  # False""" ;
+    skos:scopeNote "is compara identidad y == compara valor; reserva is para None y centinelas."@es ;
+    cfkg:aNivelDominio cfr:intermedio ;
+    cfkg:perteneceATema cfr:T_tipos ;
+    cfkg:requierePrerrequisito cfr:mutable_inmutable ;
+    cfkg:tieneDificultad 3 .
+
+cfr:indexacion_negativa a cfkg:PrincipioTransversal ;
+    rdfs:label "Negative indexing"@en,
+        "Indexación negativa"@es ;
+    skos:broader cfr:indexacion ;
+    skos:definition "Acceso a elementos contando desde el final con indices negativos (-1 es el ultimo)."@es ;
+    skos:example """xs = [1, 2, 3]
+xs[-1]  # 3""" ;
+    skos:scopeNote "Evita calcular len(x)-1; tambien aplica al slicing."@es ;
+    cfkg:aNivelDominio cfr:basico ;
+    cfkg:perteneceATema cfr:T_estructuras ;
+    cfkg:requierePrerrequisito cfr:indexacion ;
+    cfkg:tieneDificultad 2 .
+
+cfr:init_method a cfkg:Paradigma ;
+    rdfs:label "Constructor"@en,
+        "Constructor __init__"@es ;
+    skos:broader cfr:metodo ;
+    skos:definition "Metodo especial __init__ que inicializa el estado de una instancia recien creada."@es ;
+    skos:example """class Punto:
+    def __init__(self, x, y):
+        self.x, self.y = x, y""" ;
+    skos:scopeNote "Recibe self y los argumentos del constructor; no devuelve valor (debe retornar None)."@es ;
+    cfkg:aNivelDominio cfr:intermedio ;
+    cfkg:perteneceATema cfr:T_poo ;
+    cfkg:requierePrerrequisito cfr:metodo ;
+    cfkg:tieneDificultad 3 .
+
+cfr:iterador a cfkg:PrincipioTransversal ;
+    rdfs:label "Iterator"@en,
+        "Iterador (iter, next)"@es ;
+    skos:closeMatch dbr:Iterator ;
+    skos:definition "Objeto que produce los elementos de un iterable de uno en uno mediante next()."@es ;
+    skos:exactMatch wd:Q1326388 ;
+    skos:example """it = iter([1, 2])
+next(it)  # 1""" ;
+    skos:scopeNote "Implementa __iter__ y __next__; lanza StopIteration al agotarse."@es ;
+    cfkg:aNivelDominio cfr:avanzado ;
+    cfkg:perteneceATema cfr:T_funcional ;
+    cfkg:requierePrerrequisito cfr:iterables ;
+    cfkg:tieneDificultad 4 .
+
+cfr:itertools_chain a cfkg:ModuloLibreria ;
+    rdfs:label "itertools.chain"@en,
+        "itertools.chain"@es ;
+    skos:broader cfr:itertools_mod ;
+    skos:definition "Funcion que encadena varios iterables y los recorre como una unica secuencia."@es ;
+    skos:example """from itertools import chain
+list(chain([1, 2], [3, 4]))  # [1, 2, 3, 4]""" ;
+    skos:scopeNote "Evita crear listas intermedias al concatenar; chain.from_iterable aplana un iterable de iterables."@es ;
+    cfkg:aNivelDominio cfr:intermedio ;
+    cfkg:perteneceATema cfr:T_funcional ;
+    cfkg:requierePrerrequisito cfr:itertools_mod ;
+    cfkg:tieneDificultad 3 .
+
+cfr:itertools_product a cfkg:ModuloLibreria ;
+    rdfs:label "itertools.product"@en,
+        "itertools.product"@es ;
+    skos:broader cfr:itertools_mod ;
+    skos:definition "Funcion que genera el producto cartesiano de varios iterables."@es ;
+    skos:example """from itertools import product
+list(product([0, 1], repeat=2))  # [(0,0),(0,1),(1,0),(1,1)]""" ;
+    skos:scopeNote "Equivale a bucles for anidados; util para explorar combinaciones de parametros."@es ;
+    cfkg:aNivelDominio cfr:intermedio ;
+    cfkg:perteneceATema cfr:T_funcional ;
+    cfkg:requierePrerrequisito cfr:itertools_mod ;
+    cfkg:tieneDificultad 3 .
+
+cfr:map_func a cfkg:FuncionIntegrada ;
+    rdfs:label "map"@en,
+        "map()"@es ;
+    skos:definition "Funcion map() que aplica una funcion a cada elemento de uno o varios iterables."@es ;
+    skos:example "dobles = list(map(lambda x: x*2, [1, 2, 3]))" ;
+    skos:related cfr:filter_func ;
+    skos:scopeNote "Devuelve un iterador perezoso; una comprension suele ser mas legible."@es ;
+    cfkg:aNivelDominio cfr:intermedio ;
+    cfkg:perteneceATema cfr:T_funcional ;
+    cfkg:requierePrerrequisito cfr:funcion_orden_superior,
+        cfr:iterables ;
+    cfkg:tieneDificultad 3 .
+
+cfr:metodo_estatico a cfkg:Paradigma ;
+    rdfs:label "Static method"@en,
+        "Método estático"@es ;
+    skos:broader cfr:metodo ;
+    skos:definition "Metodo (@staticmethod) que no recibe ni instancia ni clase, agrupado por afinidad logica."@es ;
+    skos:example """class Mat:
+    @staticmethod
+    def suma(a, b):
+        return a + b""" ;
+    skos:scopeNote "Se comporta como una funcion normal dentro del espacio de nombres de la clase."@es ;
+    cfkg:aNivelDominio cfr:avanzado ;
+    cfkg:perteneceATema cfr:T_poo ;
+    cfkg:requierePrerrequisito cfr:decorador,
+        cfr:metodo ;
+    cfkg:tieneDificultad 4 .
+
+cfr:metodos_str a cfkg:FuncionIntegrada ;
+    rdfs:label "String methods"@en,
+        "Métodos de cadena"@es ;
+    skos:definition "Conjunto de metodos del tipo str para manipular texto (upper, strip, replace, find)."@es ;
+    skos:example "'  Hola  '.strip().lower()  # 'hola'" ;
+    skos:related cfr:formato_str ;
+    skos:scopeNote "Las cadenas son inmutables: estos metodos devuelven una cadena nueva, no modifican la original."@es ;
+    cfkg:aNivelDominio cfr:basico ;
+    cfkg:perteneceATema cfr:T_strings ;
+    cfkg:requierePrerrequisito cfr:tipo_str ;
+    cfkg:tieneDificultad 2 .
+
+cfr:mutable_inmutable a cfkg:PrincipioTransversal ;
+    rdfs:label "Mutable vs immutable"@en,
+        "Mutable vs inmutable"@es ;
+    skos:definition "Distincion entre objetos modificables (mutables) y no modificables (inmutables)."@es ;
+    skos:example """t = (1, 2)   # inmutable
+l = [1, 2]   # mutable""" ;
+    skos:scopeNote "Los inmutables son hashables y seguros como claves; evita usar mutables como valores por defecto."@es ;
+    cfkg:aNivelDominio cfr:intermedio ;
+    cfkg:contrastaCon cfr:tupla ;
+    cfkg:perteneceATema cfr:T_tipos ;
+    cfkg:requierePrerrequisito cfr:mutabilidad ;
+    cfkg:tieneDificultad 3 .
+
+cfr:nonlocal_kw a cfkg:PrincipioTransversal ;
+    rdfs:label "nonlocal"@en,
+        "Palabra clave nonlocal"@es ;
+    skos:definition "Declaracion que permite a una funcion anidada reasignar una variable del ambito envolvente."@es ;
+    skos:example """def contador():
+    n = 0
+    def inc():
+        nonlocal n
+        n += 1
+        return n
+    return inc""" ;
+    skos:related cfr:ambito,
+        cfr:closure,
+        cfr:global_kw ;
+    skos:scopeNote "Sin ella, una asignacion crearia una variable local; clave en clausuras que mantienen estado."@es ;
+    cfkg:aNivelDominio cfr:avanzado ;
+    cfkg:perteneceATema cfr:T_funciones ;
+    cfkg:requierePrerrequisito cfr:closure ;
+    cfkg:tieneDificultad 4 .
+
+cfr:operador_estrella a cfkg:PrincipioTransversal ;
+    rdfs:label "Star operator"@en,
+        "Operador * y **"@es ;
+    skos:definition "Operadores * y ** para empaquetar y desempaquetar argumentos e iterables."@es ;
+    skos:example """def f(a, b, c): ...
+args = [1, 2, 3]
+f(*args)""" ;
+    skos:scopeNote "* expande secuencias y ** diccionarios; permiten reenviar argumentos entre funciones."@es ;
+    cfkg:aNivelDominio cfr:intermedio ;
+    cfkg:perteneceATema cfr:T_estructuras ;
+    cfkg:requierePrerrequisito cfr:desempaquetado ;
+    cfkg:tieneDificultad 3 .
+
+cfr:ordenacion_burbuja a cfkg:PrincipioTransversal ;
+    rdfs:label "Bubble sort"@en,
+        "Ordenación de burbuja"@es ;
+    skos:broader cfr:notacion_o ;
+    skos:closeMatch dbr:Bubble_sort ;
+    skos:definition "Algoritmo de ordenacion que intercambia repetidamente elementos adyacentes desordenados."@es ;
+    skos:exactMatch wd:Q60864 ;
+    skos:example """def burbuja(xs):
+    for i in range(len(xs)):
+        for j in range(len(xs)-1-i):
+            if xs[j] > xs[j+1]:
+                xs[j], xs[j+1] = xs[j+1], xs[j]""" ;
+    skos:scopeNote "Didactico pero ineficiente (O(n^2)); en la practica usa sorted() (Timsort)."@es ;
+    cfkg:aNivelDominio cfr:intermedio ;
+    cfkg:perteneceATema cfr:T_algoritmos ;
+    cfkg:requierePrerrequisito cfr:bucle_for ;
+    cfkg:tieneComplejidadTemporal "O(n^2)"^^xsd:string ;
+    cfkg:tieneDificultad 3 .
+
+cfr:ordenacion_mezcla a cfkg:PrincipioTransversal ;
+    rdfs:label "Merge sort"@en,
+        "Ordenación por mezcla"@es ;
+    skos:broader cfr:notacion_o ;
+    skos:closeMatch dbr:Merge_sort ;
+    skos:definition "Algoritmo de ordenacion por division y conquista que fusiona sublistas ordenadas."@es ;
+    skos:exactMatch wd:Q189057 ;
+    skos:example """def mezcla(xs):
+    if len(xs) <= 1: return xs
+    m = len(xs)//2
+    return fusion(mezcla(xs[:m]), mezcla(xs[m:]))""" ;
+    skos:scopeNote "Estable y O(n log n) en el peor caso, pero usa memoria adicional O(n)."@es ;
+    cfkg:aNivelDominio cfr:avanzado ;
+    cfkg:perteneceATema cfr:T_algoritmos ;
+    cfkg:requierePrerrequisito cfr:notacion_o,
+        cfr:recursion ;
+    cfkg:tieneComplejidadTemporal "O(n log n)"^^xsd:string ;
+    cfkg:tieneDificultad 5 .
+
+cfr:ordenacion_rapida a cfkg:PrincipioTransversal ;
+    rdfs:label "Quicksort"@en,
+        "Ordenación rápida"@es ;
+    skos:broader cfr:notacion_o ;
+    skos:closeMatch dbr:Quicksort ;
+    skos:definition "Algoritmo de ordenacion por division y conquista que particiona en torno a un pivote."@es ;
+    skos:exactMatch wd:Q486598 ;
+    skos:example """def rapida(xs):
+    if len(xs) <= 1: return xs
+    p = xs[0]
+    return rapida([x for x in xs[1:] if x < p]) + [p] + rapida([x for x in xs[1:] if x >= p])""" ;
+    skos:scopeNote "O(n log n) en promedio y O(n^2) en el peor caso; la eleccion del pivote es clave."@es ;
+    cfkg:aNivelDominio cfr:avanzado ;
+    cfkg:perteneceATema cfr:T_algoritmos ;
+    cfkg:requierePrerrequisito cfr:recursion ;
+    cfkg:tieneComplejidadTemporal "O(n log n)"^^xsd:string ;
+    cfkg:tieneDificultad 5 .
+
+cfr:patron_captura a cfkg:EstructuraDeControl ;
+    rdfs:label "Capture patterns"@en,
+        "Patrones de captura"@es ;
+    skos:broader cfr:match_case ;
+    skos:definition "Patrones de match que extraen partes de una estructura y las vinculan a variables."@es ;
+    skos:example """match punto:
+    case (x, y) if x == y:
+        print('diagonal')
+    case (x, y):
+        print(x, y)""" ;
+    skos:scopeNote "Permiten desestructurar secuencias y objetos; combinados con guardas (if) afinan la coincidencia."@es ;
+    cfkg:aNivelDominio cfr:avanzado ;
+    cfkg:introducidoEnVersion "3.10"^^xsd:string ;
+    cfkg:perteneceATema cfr:T_control ;
+    cfkg:requierePrerrequisito cfr:match_case ;
+    cfkg:tieneDificultad 4 .
+
+cfr:pep8 a cfkg:PrincipioTransversal ;
+    rdfs:label "PEP 8"@en,
+        "PEP 8 (estilo)"@es ;
+    skos:definition "Guia de estilo oficial PEP 8 con convenciones de formato del codigo Python."@es ;
+    skos:example """# correcto
+def calcular_total(precio, cantidad):
+    return precio * cantidad""" ;
+    skos:scopeNote "Recomienda sangria de 4 espacios, snake_case y lineas de hasta 79 caracteres; herramientas como flake8 la verifican."@es ;
+    cfkg:aNivelDominio cfr:basico ;
+    cfkg:perteneceATema cfr:T_testing ;
+    cfkg:tieneDificultad 2 .
+
+cfr:raise_excepcion a cfkg:EstructuraDeControl ;
+    rdfs:label "raise"@en,
+        "raise"@es ;
+    skos:definition "Sentencia raise que lanza una excepcion de forma explicita."@es ;
+    skos:example """if x < 0:
+    raise ValueError('x debe ser positivo')""" ;
+    skos:scopeNote "Permite senalar errores del dominio; puede relanzar la actual con raise a secas dentro de un except."@es ;
+    cfkg:aNivelDominio cfr:intermedio ;
+    cfkg:perteneceATema cfr:T_excepciones ;
+    cfkg:requierePrerrequisito cfr:excepcion ;
+    cfkg:tieneDificultad 3 .
+
+cfr:recursion_cola a cfkg:PrincipioTransversal ;
+    rdfs:label "Tail recursion"@en,
+        "Recursión de cola"@es ;
+    skos:broader cfr:recursion ;
+    skos:closeMatch dbr:Tail_call ;
+    skos:definition "Recursion en la que la llamada recursiva es la ultima operacion de la funcion."@es ;
+    skos:exactMatch wd:Q1340959 ;
+    skos:example """def suma(xs, acc=0):
+    if not xs: return acc
+    return suma(xs[1:], acc + xs[0])""" ;
+    skos:scopeNote "Otros lenguajes la optimizan, pero CPython no elimina la recursion de cola: puede desbordar la pila."@es ;
+    cfkg:aNivelDominio cfr:avanzado ;
+    cfkg:perteneceATema cfr:T_recursion ;
+    cfkg:requierePrerrequisito cfr:recursion ;
+    cfkg:tieneDificultad 5 .
+
+cfr:reduce_func a cfkg:FuncionIntegrada ;
+    rdfs:label "reduce"@en,
+        "functools.reduce()"@es ;
+    skos:definition "Funcion functools.reduce que combina los elementos de un iterable en un unico valor."@es ;
+    skos:example """from functools import reduce
+reduce(lambda a, b: a*b, [1, 2, 3, 4])  # 24""" ;
+    skos:related cfr:filter_func ;
+    skos:scopeNote "Aplica una funcion binaria acumulando; para sumas o productos hay alternativas mas claras (sum, math.prod)."@es ;
+    cfkg:aNivelDominio cfr:avanzado ;
+    cfkg:perteneceATema cfr:T_funcional ;
+    cfkg:requierePrerrequisito cfr:funcion_orden_superior ;
+    cfkg:tieneDificultad 4 .
+
+cfr:ref_keuning2019 a cfkg:Recurso ;
+    rdfs:label "Keuning, Jeuring & Heeren (2019), A systematic literature review of automated feedback generation for programming exercises"@en,
+        "Keuning et al. (2019): revisión sistemática de generación automática de feedback"@es ;
+    dcterms:creator "Bastiaan Heeren",
+        "Hieke Keuning",
+        "Johan Jeuring" ;
+    dcterms:date "2019"^^xsd:gYear ;
+    dcterms:identifier "10.1145/3231711" ;
+    dcterms:title "A systematic literature review of automated feedback generation for programming exercises"@en .
+
+cfr:regex a cfkg:ModuloLibreria ;
+    rdfs:label "Regular expressions"@en,
+        "Expresiones regulares (re)"@es ;
+    skos:closeMatch dbr:Regular_expression ;
+    skos:definition "Expresiones regulares (modulo re) para buscar y manipular texto segun patrones."@es ;
+    skos:exactMatch wd:Q185612 ;
+    skos:example """import re
+re.findall(r'\\d+', 'a12b3')  # ['12', '3']""" ;
+    skos:scopeNote "Compila patrones con re.compile; usa cadenas raw (r'...') para las barras invertidas."@es ;
+    cfkg:aNivelDominio cfr:avanzado ;
+    cfkg:perteneceATema cfr:T_strings ;
+    cfkg:requierePrerrequisito cfr:tipo_str ;
+    cfkg:tieneDificultad 5 ;
+    cfkg:tieneURLDocumentacion "https://docs.python.org/3/library/re.html"^^xsd:anyURI .
+
+cfr:slicing_str a cfkg:PrincipioTransversal ;
+    rdfs:label "String slicing"@en,
+        "Slicing de cadenas"@es ;
+    skos:broader cfr:slicing ;
+    skos:definition "Aplicacion del slicing a cadenas para obtener subcadenas."@es ;
+    skos:example "'Python'[0:3]  # 'Pyt'" ;
+    skos:scopeNote "Las cadenas son inmutables: el slicing devuelve una nueva cadena. xs[::-1] la invierte."@es ;
+    cfkg:aNivelDominio cfr:intermedio ;
+    cfkg:perteneceATema cfr:T_strings ;
+    cfkg:requierePrerrequisito cfr:slicing,
+        cfr:tipo_str ;
+    cfkg:tieneDificultad 3 .
+
+cfr:tabla_hash a cfkg:EstructuraDeDatos ;
+    rdfs:label "Hash table"@en,
+        "Tabla hash"@es ;
+    skos:broader cfr:diccionario ;
+    skos:closeMatch dbr:Hash_table ;
+    skos:definition "Estructura que asocia claves a valores usando una funcion hash para acceso medio O(1)."@es ;
+    skos:exactMatch wd:Q207440 ;
+    skos:example """d = {}
+d['clave'] = 'valor'  # respaldado por una tabla hash""" ;
+    skos:scopeNote "Es la base interna de dict y set; las colisiones se resuelven internamente."@es ;
+    cfkg:aNivelDominio cfr:avanzado ;
+    cfkg:perteneceATema cfr:T_algoritmos ;
+    cfkg:requierePrerrequisito cfr:diccionario ;
+    cfkg:tieneComplejidadTemporal "O(1)"^^xsd:string ;
+    cfkg:tieneDificultad 4 .
+
+cfr:tipo_none a cfkg:TipoDeDato ;
+    rdfs:label "NoneType"@en,
+        "NoneType (None)"@es ;
+    skos:definition "Tipo con un unico valor, None, que representa la ausencia de valor."@es ;
+    skos:example """def f():
+    pass
+f() is None  # True""" ;
+    skos:scopeNote "Es el retorno por defecto de las funciones; comparalo con is None, no con ==."@es ;
+    cfkg:aNivelDominio cfr:basico ;
+    cfkg:perteneceATema cfr:T_tipos ;
+    cfkg:tieneDificultad 1 .
+
+cfr:truthiness a cfkg:PrincipioTransversal ;
+    rdfs:label "Truthiness"@en,
+        "Valores de verdad"@es ;
+    skos:definition "Evaluacion de un objeto como verdadero o falso en un contexto booleano."@es ;
+    skos:example """if not lista:
+    print('vacia')""" ;
+    skos:related cfr:any_all ;
+    skos:scopeNote "Colecciones vacias, 0, None y '' son falsy; el resto es truthy. Aprovechalo en condiciones idiomaticas."@es ;
+    cfkg:aNivelDominio cfr:basico ;
+    cfkg:perteneceATema cfr:T_tipos ;
+    cfkg:requierePrerrequisito cfr:tipo_bool ;
+    cfkg:tieneDificultad 2 .
+
+cfkg:RutaAprendizaje a owl:Class ;
+    rdfs:label "Learning path"@en,
+        "Ruta de aprendizaje"@es ;
+    rdfs:subClassOf cfkg:EntidadEducativa .
+
+cfkg:dominaConcepto a owl:ObjectProperty ;
+    rdfs:label "has mastered concept"@en,
+        "domina el concepto"@es ;
+    rdfs:domain cfkg:Estudiante ;
+    rdfs:range cfkg:Concepto .
+
+cfkg:enEjercicio a owl:ObjectProperty ;
+    rdfs:label "in exercise"@en,
+        "en el ejercicio"@es ;
+    rdfs:domain cfkg:EvaluacionDeConcepto ;
+    rdfs:range cfkg:Ejercicio .
+
+cfkg:especializa a owl:ObjectProperty,
+        owl:TransitiveProperty ;
+    rdfs:label "specialises"@en,
+        "especializa a"@es ;
+    rdfs:domain cfkg:Concepto ;
+    rdfs:range cfkg:Concepto .
+
+cfkg:evaluaA a owl:ObjectProperty ;
+    rdfs:label "assesses activity"@en,
+        "evalúa la actividad"@es ;
+    rdfs:domain cfkg:EvaluacionActividad ;
+    rdfs:range cfkg:Ejercicio .
+
+cfkg:manifiestaError a owl:ObjectProperty ;
+    rdfs:label "exhibits misconception"@en,
+        "manifiesta el error"@es ;
+    rdfs:domain cfkg:EnvioEstudiante ;
+    rdfs:range cfkg:ErrorConceptual .
+
+cfkg:perteneceATema a owl:ObjectProperty ;
+    rdfs:label "belongs to topic"@en,
+        "pertenece al tema"@es ;
+    rdfs:domain cfkg:Concepto ;
+    rdfs:range cfkg:Tema .
+
+cfkg:porEstudiante a owl:ObjectProperty ;
+    rdfs:label "carried out by"@en,
+        "realizada por"@es ;
+    rdfs:domain cfkg:EvaluacionActividad ;
+    rdfs:range cfkg:Estudiante .
+
+cfkg:resuelveEjercicio a owl:ObjectProperty ;
+    rdfs:label "solves exercise"@en,
+        "resuelve el ejercicio"@es ;
+    rdfs:domain cfkg:EnvioEstudiante ;
+    rdfs:range cfkg:Ejercicio .
+
+cfkg:sobreConcepto a owl:ObjectProperty ;
+    rdfs:label "about concept"@en,
+        "sobre el concepto"@es ;
+    rdfs:domain cfkg:EvaluacionDeConcepto ;
+    rdfs:range cfkg:Concepto .
+
+cfr:T_complejidad a cfkg:Tema ;
+    rdfs:label "Algorithmic complexity"@en,
+        "Complejidad algorítmica"@es .
+
+cfr:arbol_estr a cfkg:EstructuraDeDatos ;
+    rdfs:label "Tree"@en,
+        "Árbol"@es ;
+    skos:closeMatch dbr:Tree_\(data_structure\) ;
+    skos:definition "Estructura de datos jerarquica formada por nodos con un nodo raiz y subarboles hijos."@es ;
+    skos:exactMatch wd:Q223655 ;
+    skos:example "nodo = {'valor': 1, 'hijos': [{'valor': 2, 'hijos': []}]}" ;
+    skos:narrower cfr:arbol_binario ;
+    skos:scopeNote "Es la base de arboles binarios, de busqueda y montículos; se recorre habitualmente de forma recursiva."@es ;
+    cfkg:aNivelDominio cfr:avanzado ;
+    cfkg:perteneceATema cfr:T_algoritmos ;
+    cfkg:requierePrerrequisito cfr:recursion ;
+    cfkg:tieneDificultad 4 .
+
+cfr:asyncio_mod a cfkg:ModuloLibreria ;
+    rdfs:label "asyncio"@en,
+        "asyncio"@es ;
+    skos:definition "Modulo estandar asyncio para escribir codigo concurrente con corrutinas y un bucle de eventos."@es ;
+    skos:example """import asyncio
+async def tarea():
+    return 42
+asyncio.run(tarea())""" ;
+    skos:scopeNote "Adecuado para E/S concurrente (red, ficheros); no acelera calculo intensivo de CPU."@es ;
+    cfkg:aNivelDominio cfr:avanzado ;
+    cfkg:perteneceATema cfr:T_concurrencia ;
+    cfkg:requierePrerrequisito cfr:async_await ;
+    cfkg:tieneDificultad 5 ;
+    cfkg:tieneURLDocumentacion "https://docs.python.org/3/library/asyncio.html"^^xsd:anyURI .
+
+cfr:bucle_while a cfkg:EstructuraDeControl ;
+    rdfs:label "While loop"@en,
+        "Bucle while"@es ;
+    skos:definition "Bucle que repite un bloque mientras una condicion sea verdadera."@es ;
+    skos:example """i = 0
+while i < 3:
+    print(i)
+    i += 1""" ;
+    skos:scopeNote "Adecuado cuando no se conoce de antemano el numero de iteraciones; cuida la condicion de parada para evitar bucles infinitos."@es ;
+    cfkg:perteneceATema cfr:T_control ;
+    cfkg:requierePrerrequisito cfr:condicional ;
+    cfkg:tieneDificultad 2 .
+
+cfr:complejidad a cfkg:PrincipioTransversal ;
+    rdfs:label "Time complexity"@en,
+        "Complejidad temporal"@es ;
+    skos:closeMatch dbr:Time_complexity ;
+    skos:definition "Estimacion del crecimiento del tiempo o memoria de un algoritmo segun el tamano de la entrada."@es ;
+    skos:exactMatch wd:Q2393193 ;
+    skos:example """# Recorrer una lista es O(n)
+for x in xs:
+    procesar(x)""" ;
+    skos:scopeNote "Se expresa con notacion O grande; guia la eleccion de algoritmos y estructuras de datos."@es ;
+    cfkg:aNivelDominio cfr:avanzado ;
+    cfkg:perteneceATema cfr:T_complejidad ;
+    cfkg:tieneDificultad 5 .
+
+cfr:context_manager a cfkg:Paradigma ;
+    rdfs:label "Context manager"@en,
+        "Gestor de contexto"@es ;
+    skos:definition "Objeto que define la entrada (__enter__) y salida (__exit__) de un bloque with para gestionar recursos."@es ;
+    skos:example """class Recurso:
+    def __enter__(self): return self
+    def __exit__(self, *a): print('cerrado')""" ;
+    skos:scopeNote "Garantiza la liberacion del recurso incluso si ocurre una excepcion; contextlib facilita crearlos."@es ;
+    cfkg:aNivelDominio cfr:avanzado ;
+    cfkg:perteneceATema cfr:T_control ;
+    cfkg:requierePrerrequisito cfr:clase,
+        cfr:with_context ;
+    cfkg:tieneDificultad 5 .
+
+cfr:dunder a cfkg:Paradigma ;
+    rdfs:label "Dunder methods"@en,
+        "Métodos especiales (dunder)"@es ;
+    skos:definition "Metodos especiales con doble guion bajo (__init__, __len__, __eq__) que integran objetos con el lenguaje."@es ;
+    skos:example """class Vec:
+    def __init__(self, n): self.n = n
+    def __add__(self, o): return Vec(self.n + o.n)""" ;
+    skos:scopeNote "Permiten personalizar operadores, iteracion o representacion; tambien llamados metodos magicos."@es ;
+    cfkg:aNivelDominio cfr:avanzado ;
+    cfkg:perteneceATema cfr:T_poo ;
+    cfkg:requierePrerrequisito cfr:metodo ;
+    cfkg:tieneDificultad 4 .
+
+cfr:err_off_by_one a cfkg:ErrorConceptual ;
+    rdfs:label "Off-by-one error"@en,
+        "Error de índice por uno (off-by-one)"@es ;
+    rdfs:comment "Confusión en la condición de parada de un bucle o en los límites de un rango/índice."@es ;
+    cfkg:errorSobreConcepto cfr:indexacion ;
+    cfkg:tieneDificultad 3 .
+
+cfr:filter_func a cfkg:FuncionIntegrada ;
+    rdfs:label "filter"@en,
+        "filter()"@es ;
+    skos:definition "Funcion filter() que selecciona los elementos de un iterable que cumplen un predicado."@es ;
+    skos:example "pares = list(filter(lambda x: x % 2 == 0, range(10)))" ;
+    skos:related cfr:map_func,
+        cfr:reduce_func ;
+    skos:scopeNote "Devuelve un iterador perezoso; a menudo una comprension con if resulta mas legible."@es ;
+    cfkg:aNivelDominio cfr:intermedio ;
+    cfkg:perteneceATema cfr:T_funcional ;
+    cfkg:requierePrerrequisito cfr:funcion_orden_superior,
+        cfr:iterables ;
+    cfkg:tieneDificultad 3 .
+
+cfr:formato_str a cfkg:PrincipioTransversal ;
+    rdfs:label "String formatting"@en,
+        "Formateo de cadenas"@es ;
+    skos:definition "Conjunto de tecnicas para insertar valores en cadenas (f-strings, str.format, %)."@es ;
+    skos:example """n = 3
+f'hay {n} elementos'""" ;
+    skos:related cfr:fstring,
+        cfr:metodos_str ;
+    skos:scopeNote "Las f-strings son la opcion recomendada por su claridad y rendimiento desde Python 3.6."@es ;
+    cfkg:aNivelDominio cfr:basico ;
+    cfkg:perteneceATema cfr:T_strings ;
+    cfkg:requierePrerrequisito cfr:tipo_str ;
+    cfkg:tieneDificultad 2 .
+
+cfr:heap a cfkg:EstructuraDeDatos ;
+    rdfs:label "Heap"@en,
+        "Montículo (heapq)"@es ;
+    skos:closeMatch dbr:Heap_\(data_structure\) ;
+    skos:definition "Arbol binario parcialmente ordenado que da acceso O(1) al minimo o maximo (modulo heapq)."@es ;
+    skos:example """import heapq
+h = [3, 1, 2]
+heapq.heapify(h)
+heapq.heappop(h)  # 1""" ;
+    skos:scopeNote "heapq implementa un min-heap sobre una lista; util para colas de prioridad y los k mayores."@es ;
+    cfkg:aNivelDominio cfr:avanzado ;
+    cfkg:perteneceATema cfr:T_estructuras ;
+    cfkg:requierePrerrequisito cfr:complejidad,
+        cfr:lista ;
+    cfkg:tieneComplejidadTemporal "O(log n)"^^xsd:string ;
+    cfkg:tieneDificultad 4 .
+
+cfr:match_case a cfkg:EstructuraDeControl ;
+    rdfs:label "Structural pattern matching"@en,
+        "match-case"@es ;
+    skos:definition "Coincidencia estructural de patrones (match/case) que compara un valor con varias formas."@es ;
+    skos:example """match punto:
+    case (0, 0):
+        print('origen')
+    case (x, y):
+        print(x, y)""" ;
+    skos:narrower cfr:patron_captura ;
+    skos:scopeNote "Disponible desde Python 3.10; permite desestructurar y usar guardas, mas potente que una cadena de if."@es ;
+    cfkg:aNivelDominio cfr:avanzado ;
+    cfkg:introducidoEnVersion "3.10"^^xsd:string ;
+    cfkg:perteneceATema cfr:T_control ;
+    cfkg:requierePrerrequisito cfr:condicional ;
+    cfkg:tieneDificultad 4 .
+
+cfr:metodo_clase a cfkg:Paradigma ;
+    rdfs:label "Class method"@en,
+        "Método de clase"@es ;
+    skos:broader cfr:decorador,
+        cfr:metodo ;
+    skos:definition "Metodo (@classmethod) que recibe la clase (cls) en lugar de la instancia."@es ;
+    skos:example """class Fecha:
+    @classmethod
+    def hoy(cls):
+        return cls()""" ;
+    skos:scopeNote "Util para constructores alternativos (fabricas) que devuelven instancias configuradas."@es ;
+    cfkg:aNivelDominio cfr:avanzado ;
+    cfkg:perteneceATema cfr:T_poo ;
+    cfkg:requierePrerrequisito cfr:decorador,
+        cfr:metodo ;
+    cfkg:tieneDificultad 4 .
+
+cfr:modulo_sys a cfkg:ModuloLibreria ;
+    rdfs:label "sys module"@en,
+        "Módulo sys"@es ;
+    skos:definition "Modulo sys con acceso a parametros y funciones del interprete (argv, path, exit)."@es ;
+    skos:example """import sys
+print(sys.argv)""" ;
+    skos:scopeNote "sys.argv recibe los argumentos de linea de comandos; sys.exit termina el programa."@es ;
+    cfkg:aNivelDominio cfr:intermedio ;
+    cfkg:perteneceATema cfr:T_modulos ;
+    cfkg:requierePrerrequisito cfr:import_mod ;
+    cfkg:tieneDificultad 3 .
+
+cfr:namedtuple a cfkg:EstructuraDeDatos ;
+    rdfs:label "Named tuple"@en,
+        "namedtuple"@es ;
+    skos:broader cfr:tupla ;
+    skos:definition "Tupla con campos nombrados (collections.namedtuple) accesibles por atributo."@es ;
+    skos:example """from collections import namedtuple
+Punto = namedtuple('Punto', 'x y')
+Punto(1, 2).x""" ;
+    skos:related cfr:dataclass ;
+    skos:scopeNote "Ligera e inmutable; mejora la legibilidad frente a tuplas posicionales. Para datos mutables usa dataclass."@es ;
+    cfkg:aNivelDominio cfr:intermedio ;
+    cfkg:perteneceATema cfr:T_tipos ;
+    cfkg:requierePrerrequisito cfr:tupla ;
+    cfkg:tieneDificultad 3 .
+
+cfr:paquete a cfkg:ModuloLibreria ;
+    rdfs:label "Package"@en,
+        "Paquete"@es ;
+    skos:definition "Directorio que agrupa modulos relacionados y se importa como una unidad."@es ;
+    skos:example "from paquete.subpaquete import modulo" ;
+    skos:scopeNote "Tradicionalmente contiene __init__.py; permite organizar proyectos en jerarquias de espacios de nombres."@es ;
+    cfkg:aNivelDominio cfr:intermedio ;
+    cfkg:perteneceATema cfr:T_modulos ;
+    cfkg:requierePrerrequisito cfr:import_mod ;
+    cfkg:tieneDificultad 3 .
+
+cfr:recoleccion_basura a cfkg:PrincipioTransversal ;
+    rdfs:label "Garbage collection"@en,
+        "Recoleccion de basura"@es ;
+    skos:closeMatch dbr:Garbage_collection_\(computer_science\) ;
+    skos:definition "Gestion automatica de la memoria que libera los objetos que ya no son alcanzables."@es ;
+    skos:exactMatch wd:Q322202 ;
+    skos:example """import gc
+gc.collect()  # fuerza una recoleccion""" ;
+    skos:scopeNote "CPython usa conteo de referencias mas un recolector ciclico (modulo gc) para los ciclos de referencias."@es ;
+    cfkg:aNivelDominio cfr:avanzado ;
+    cfkg:perteneceATema cfr:T_fundamentos ;
+    cfkg:requierePrerrequisito cfr:objeto ;
+    cfkg:tieneDificultad 4 .
+
+cfr:tipo_float a cfkg:TipoDeDato ;
+    rdfs:label "Float"@en,
+        "Flotante (float)"@es ;
+    skos:definition "Tipo numerico de coma flotante de doble precision (IEEE 754)."@es ;
+    skos:example "0.1 + 0.2  # 0.30000000000000004" ;
+    skos:scopeNote "Tiene precision limitada: evita comparar floats con == y usa math.isclose."@es ;
+    cfkg:aNivelDominio cfr:basico ;
+    cfkg:contrastaCon cfr:tipo_int ;
+    cfkg:perteneceATema cfr:T_tipos ;
+    cfkg:tieneDificultad 1 .
+
+cfkg:Competencia a owl:Class ;
+    rdfs:label "Competency"@en,
+        "Competencia"@es ;
+    rdfs:subClassOf cfkg:EntidadEducativa .
+
+cfkg:cubreConcepto a owl:ObjectProperty ;
+    rdfs:label "covers concept"@en,
+        "cubre el concepto"@es ;
+    rdfs:domain cfkg:Ejercicio ;
+    rdfs:range cfkg:Concepto .
+
+cfkg:errorSobreConcepto a owl:ObjectProperty ;
+    rdfs:label "is a misconception about"@en,
+        "es un error sobre el concepto"@es ;
+    rdfs:domain cfkg:ErrorConceptual ;
+    rdfs:range cfkg:Concepto .
+
+cfkg:ilustraConcepto a owl:ObjectProperty ;
+    rdfs:label "illustrates concept"@en,
+        "ilustra el concepto"@es ;
+    rdfs:domain cfkg:Recurso ;
+    rdfs:range cfkg:Concepto .
+
+cfkg:requierePrerrequisito a owl:ObjectProperty,
+        owl:TransitiveProperty ;
+    rdfs:label "requires prerequisite"@en,
+        "requiere como prerrequisito"@es ;
+    rdfs:domain cfkg:Concepto ;
+    rdfs:range cfkg:Concepto .
+
+cfr:T_recursion a cfkg:Tema ;
+    rdfs:label "Recursion"@en,
+        "Recursión"@es .
+
+cfr:abrir_fichero a cfkg:FuncionIntegrada ;
+    rdfs:label "File open"@en,
+        "Apertura de ficheros (open)"@es ;
+    skos:definition "Funcion open() que abre un fichero y devuelve un objeto de fichero para leer o escribir."@es ;
+    skos:example """with open('datos.txt', 'r', encoding='utf-8') as f:
+    contenido = f.read()""" ;
+    skos:scopeNote "Usala siempre dentro de una sentencia with para garantizar el cierre del recurso y evitar fugas de descriptores."@es ;
+    cfkg:aNivelDominio cfr:intermedio ;
+    cfkg:perteneceATema cfr:T_ficheros ;
+    cfkg:requierePrerrequisito cfr:with_context ;
+    cfkg:tieneDificultad 3 .
+
+cfr:arbol_binario a cfkg:EstructuraDeDatos ;
+    rdfs:label "Binary tree"@en,
+        "Arbol binario"@es ;
+    skos:broader cfr:arbol_estr ;
+    skos:closeMatch dbr:Binary_tree ;
+    skos:definition "Arbol en el que cada nodo tiene como maximo dos hijos, izquierdo y derecho."@es ;
+    skos:exactMatch wd:Q380172 ;
+    skos:example """class NodoB:
+    def __init__(self, v):
+        self.v = v
+        self.izq = self.der = None""" ;
+    skos:narrower cfr:arbol_busqueda_binaria ;
+    skos:scopeNote "Base de los arboles de busqueda y los montículos; se recorre en preorden, inorden o postorden."@es ;
+    cfkg:aNivelDominio cfr:avanzado ;
+    cfkg:perteneceATema cfr:T_algoritmos ;
+    cfkg:requierePrerrequisito cfr:arbol_estr ;
+    cfkg:tieneDificultad 4 .
+
+cfr:bfs a cfkg:PrincipioTransversal ;
+    rdfs:label "Breadth-first search"@en,
+        "Recorrido en anchura (BFS)"@es ;
+    skos:broader cfr:grafo_estr ;
+    skos:closeMatch dbr:Breadth-first_search ;
+    skos:definition "Recorrido en anchura de un grafo que visita los nodos por niveles desde el origen usando una cola."@es ;
+    skos:exactMatch wd:Q325904 ;
+    skos:example """from collections import deque
+def bfs(g, inicio):
+    visto, cola = {inicio}, deque([inicio])
+    while cola:
+        n = cola.popleft()
+        for v in g[n]:
+            if v not in visto:
+                visto.add(v); cola.append(v)""" ;
+    skos:related cfr:dfs ;
+    skos:scopeNote "Encuentra el camino mas corto en grafos no ponderados; contrasta con DFS que usa pila/recursion."@es ;
+    cfkg:aNivelDominio cfr:avanzado ;
+    cfkg:contrastaCon cfr:dfs ;
+    cfkg:perteneceATema cfr:T_algoritmos ;
+    cfkg:requierePrerrequisito cfr:cola,
+        cfr:grafo_estr ;
+    cfkg:tieneComplejidadTemporal "O(V + E)"^^xsd:string ;
+    cfkg:tieneDificultad 5 .
+
+cfr:copia_superficial a cfkg:PrincipioTransversal ;
+    rdfs:label "Shallow copy"@en,
+        "Copia superficial"@es ;
+    skos:definition "Copia que duplica el contenedor externo pero comparte las referencias a los objetos internos."@es ;
+    skos:example """import copy
+b = copy.copy(a)  # superficial""" ;
+    skos:scopeNote "list(x), x[:] o copy.copy crean copias superficiales; modificar elementos anidados afecta a ambas copias."@es ;
+    cfkg:aNivelDominio cfr:avanzado ;
+    cfkg:perteneceATema cfr:T_tipos ;
+    cfkg:requierePrerrequisito cfr:lista,
+        cfr:mutabilidad ;
+    cfkg:tieneDificultad 4 .
+
+cfr:dfs a cfkg:PrincipioTransversal ;
+    rdfs:label "Depth-first search"@en,
+        "Recorrido en profundidad (DFS)"@es ;
+    skos:broader cfr:grafo_estr ;
+    skos:closeMatch dbr:Depth-first_search ;
+    skos:definition "Recorrido en profundidad de un grafo que explora un camino al maximo antes de retroceder."@es ;
+    skos:exactMatch wd:Q816319 ;
+    skos:example """def dfs(g, n, visto=None):
+    visto = visto or set()
+    visto.add(n)
+    for v in g[n]:
+        if v not in visto:
+            dfs(g, v, visto)""" ;
+    skos:related cfr:bfs ;
+    skos:scopeNote "Se implementa con recursion o pila explicita; util para deteccion de ciclos y ordenacion topologica."@es ;
+    cfkg:aNivelDominio cfr:avanzado ;
+    cfkg:contrastaCon cfr:bfs ;
+    cfkg:perteneceATema cfr:T_algoritmos ;
+    cfkg:requierePrerrequisito cfr:grafo_estr,
+        cfr:recursion ;
+    cfkg:tieneComplejidadTemporal "O(V + E)"^^xsd:string ;
+    cfkg:tieneDificultad 5 .
+
+cfr:herencia_multiple a cfkg:Paradigma ;
+    rdfs:label "Multiple inheritance"@en,
+        "Herencia múltiple"@es ;
+    skos:broader cfr:herencia ;
+    skos:closeMatch dbr:Multiple_inheritance ;
+    skos:definition "Capacidad de una clase de heredar de varias clases base a la vez."@es ;
+    skos:example """class A: ...
+class B: ...
+class C(A, B): ...""" ;
+    skos:scopeNote "Util con mixins; el orden de resolucion de metodos (MRO) determina que implementacion se usa."@es ;
+    cfkg:aNivelDominio cfr:avanzado ;
+    cfkg:perteneceATema cfr:T_poo ;
+    cfkg:requierePrerrequisito cfr:herencia ;
+    cfkg:tieneDificultad 5 .
+
+cfr:jerarquia_excepciones a cfkg:EstructuraDeControl ;
+    rdfs:label "Exception hierarchy"@en,
+        "Jerarquía de excepciones"@es ;
+    skos:definition "Arbol de clases de excepcion donde las mas especificas heredan de las generales."@es ;
+    skos:example """try:
+    ...
+except FileNotFoundError:
+    ...
+except OSError:
+    ...""" ;
+    skos:narrower cfr:encadenar_excepciones,
+        cfr:excepcion_personalizada ;
+    skos:scopeNote "Captura primero las especificas; except Exception captura casi todo y puede ocultar errores."@es ;
+    cfkg:aNivelDominio cfr:intermedio ;
+    cfkg:perteneceATema cfr:T_excepciones ;
+    cfkg:requierePrerrequisito cfr:excepcion,
+        cfr:herencia ;
+    cfkg:tieneDificultad 3 .
+
+cfr:lock_threading a cfkg:ConceptoDeConcurrencia ;
+    rdfs:label "Lock"@en,
+        "Cerrojo (Lock)"@es ;
+    skos:closeMatch dbr:Lock_\(computer_science\) ;
+    skos:definition "Primitiva de sincronizacion que garantiza que solo un hilo accede a una seccion critica a la vez."@es ;
+    skos:exactMatch wd:Q1047554 ;
+    skos:example """import threading
+cerrojo = threading.Lock()
+with cerrojo:
+    saldo += 1""" ;
+    skos:related cfr:hilos ;
+    skos:scopeNote "Protege estado compartido frente a condiciones de carrera; usalo como gestor de contexto con with."@es ;
+    cfkg:aNivelDominio cfr:avanzado ;
+    cfkg:perteneceATema cfr:T_concurrencia ;
+    cfkg:requierePrerrequisito cfr:hilos ;
+    cfkg:tieneDificultad 5 .
+
+cfr:memoizacion a cfkg:PrincipioTransversal ;
+    rdfs:label "Memoization"@en,
+        "Memoización (lru_cache)"@es ;
+    skos:closeMatch dbr:Memoization ;
+    skos:definition "Tecnica que almacena en cache los resultados de una funcion para reutilizarlos."@es ;
+    skos:example """import functools
+@functools.lru_cache
+def fib(n):
+    return n if n < 2 else fib(n-1) + fib(n-2)""" ;
+    skos:scopeNote "functools.lru_cache la implementa con un decorador; acelera funciones puras y recursivas."@es ;
+    cfkg:aNivelDominio cfr:avanzado ;
+    cfkg:perteneceATema cfr:T_recursion ;
+    cfkg:requierePrerrequisito cfr:diccionario,
+        cfr:recursion ;
+    cfkg:tieneDificultad 4 .
+
+cfr:mutabilidad a cfkg:PrincipioTransversal ;
+    rdfs:label "Mutability"@en,
+        "Mutabilidad"@es ;
+    rdfs:comment "Propiedad de los objetos cuyo estado puede cambiar tras su creación."@es ;
+    skos:closeMatch dbr:Immutable_object ;
+    skos:definition "Propiedad de los objetos cuyo estado puede modificarse tras su creacion."@es ;
+    skos:example """xs = [1]
+xs.append(2)  # mutado en sitio""" ;
+    skos:scopeNote "Listas, dicts y sets son mutables; numeros, cadenas y tuplas son inmutables. Afecta a alias y copias."@es ;
+    cfkg:aNivelDominio cfr:avanzado ;
+    cfkg:contrastaCon cfr:tupla ;
+    cfkg:perteneceATema cfr:T_estructuras ;
+    cfkg:tieneDificultad 4 .
+
+cfr:parametros a cfkg:PrincipioTransversal ;
+    rdfs:label "Parameters"@en,
+        "Parámetros y argumentos"@es ;
+    skos:definition "Variables declaradas en la definicion de una funcion que reciben los argumentos al llamarla."@es ;
+    skos:example """def f(a, b=0):  # a y b son parametros
+    return a + b""" ;
+    skos:scopeNote "Distingue parametro (en la definicion) de argumento (en la llamada); admiten valores por defecto."@es ;
+    cfkg:aNivelDominio cfr:basico ;
+    cfkg:perteneceATema cfr:T_funciones ;
+    cfkg:requierePrerrequisito cfr:funcion ;
+    cfkg:tieneDificultad 2 .
+
+cfr:pila a cfkg:EstructuraDeDatos ;
+    rdfs:label "Stack"@en,
+        "Pila (stack)"@es ;
+    skos:broader cfr:lista ;
+    skos:closeMatch dbr:Stack_\(abstract_data_type\) ;
+    skos:definition "Estructura LIFO (ultimo en entrar, primero en salir) que apila y desapila por un mismo extremo."@es ;
+    skos:exactMatch wd:Q177929 ;
+    skos:example """pila = []
+pila.append(1)
+pila.pop()  # 1""" ;
+    skos:related cfr:cola ;
+    skos:scopeNote "Una lista funciona como pila con append y pop; base de la recursion, el deshacer y la evaluacion de expresiones."@es ;
+    cfkg:aNivelDominio cfr:basico ;
+    cfkg:contrastaCon cfr:cola ;
+    cfkg:perteneceATema cfr:T_estructuras ;
+    cfkg:requierePrerrequisito cfr:lista ;
+    cfkg:tieneDificultad 2 .
+
+cfr:slicing a cfkg:PrincipioTransversal ;
+    rdfs:label "Slicing"@en,
+        "Slicing (rebanado)"@es ;
+    skos:broader cfr:indexacion ;
+    skos:definition "Extraccion de subsecuencias mediante la notacion [inicio:fin:paso]."@es ;
+    skos:example """xs = [0, 1, 2, 3, 4]
+xs[1:4]  # [1, 2, 3]""" ;
+    skos:narrower cfr:slicing_str ;
+    skos:scopeNote "El fin se excluye; admite indices negativos y omitir extremos. xs[:] copia la secuencia."@es ;
+    cfkg:perteneceATema cfr:T_estructuras ;
+    cfkg:requierePrerrequisito cfr:indexacion ;
+    cfkg:tieneDificultad 3 .
+
+cfr:tipo_int a cfkg:TipoDeDato ;
+    rdfs:label "Integer (int)"@en,
+        "Entero (int)"@es ;
+    skos:definition "Tipo numerico entero de precision arbitraria en Python."@es ;
+    skos:example "10 ** 100  # entero enorme sin desbordamiento" ;
+    skos:scopeNote "No desborda como en otros lenguajes; admite bases y separadores de miles con guion bajo."@es ;
+    cfkg:perteneceATema cfr:T_fundamentos ;
+    cfkg:tieneDificultad 1 .
+
+cfr:async_await a cfkg:EstructuraDeControl ;
+    rdfs:label "async/await"@en,
+        "async/await"@es ;
+    skos:definition "Sintaxis async/await para definir y suspender corrutinas en programacion asincrona."@es ;
+    skos:example """import asyncio
+async def main():
+    await asyncio.sleep(1)
+    print('listo')""" ;
+    skos:narrower cfr:corrutina ;
+    skos:scopeNote "await solo puede usarse dentro de una funcion async def; cede el control al bucle de eventos sin bloquear el hilo."@es ;
+    cfkg:aNivelDominio cfr:avanzado ;
+    cfkg:introducidoEnVersion "3.5"^^xsd:string ;
+    cfkg:perteneceATema cfr:T_concurrencia ;
+    cfkg:requierePrerrequisito cfr:funcion ;
+    cfkg:tieneDificultad 5 .
+
+cfr:busqueda_binaria a cfkg:PrincipioTransversal ;
+    rdfs:label "Binary search"@en,
+        "Búsqueda binaria"@es ;
+    skos:closeMatch dbr:Binary_search_algorithm ;
+    skos:definition "Algoritmo que localiza un elemento en una lista ordenada dividiendo a la mitad el espacio de busqueda."@es ;
+    skos:exactMatch wd:Q243754 ;
+    skos:example """def binaria(xs, x):
+    lo, hi = 0, len(xs) - 1
+    while lo <= hi:
+        m = (lo + hi) // 2
+        if xs[m] == x: return m
+        if xs[m] < x: lo = m + 1
+        else: hi = m - 1
+    return -1""" ;
+    skos:prefLabel "Búsqueda binaria"@es ;
+    skos:related cfr:busqueda_lineal ;
+    skos:scopeNote "Requiere que la secuencia este ordenada; su coste es O(log n) frente a O(n) de la busqueda lineal."@es ;
+    cfkg:perteneceATema cfr:T_complejidad ;
+    cfkg:requierePrerrequisito cfr:bucle_while,
+        cfr:indexacion ;
+    cfkg:seAplicaA cfr:lista ;
+    cfkg:tieneComplejidadTemporal "O(log n)"^^xsd:string ;
+    cfkg:tieneDificultad 4 .
+
+cfr:closure a cfkg:PrincipioTransversal ;
+    rdfs:label "Closure"@en,
+        "Clausura (closure)"@es ;
+    skos:closeMatch dbr:Closure_\(computer_programming\) ;
+    skos:definition "Funcion interna que recuerda y captura variables del ambito envolvente donde fue creada."@es ;
+    skos:exactMatch wd:Q535335 ;
+    skos:example """def multiplicador(n):
+    def f(x):
+        return x * n
+    return f
+doble = multiplicador(2)""" ;
+    skos:scopeNote "Permite fabricas de funciones; las variables capturadas se evaluan en el momento de la llamada (cuidado con el late binding)."@es ;
+    cfkg:aNivelDominio cfr:avanzado ;
+    cfkg:perteneceATema cfr:T_funcional ;
+    cfkg:requierePrerrequisito cfr:ambito,
+        cfr:funcion ;
+    cfkg:tieneDificultad 4 .
+
+cfr:conjunto a cfkg:EstructuraDeDatos ;
+    rdfs:label "Set"@en,
+        "Conjunto (set)"@es ;
+    skos:closeMatch dbr:Set_\(abstract_data_type\) ;
+    skos:definition "Coleccion no ordenada de elementos unicos e inmutables (set)."@es ;
+    skos:exactMatch wd:Q1514741 ;
+    skos:example """s = {1, 2, 2, 3}  # {1, 2, 3}
+2 in s  # True""" ;
+    skos:related cfr:frozenset_tipo,
+        cfr:lista ;
+    skos:scopeNote "Ofrece pertenencia y operaciones de conjunto (union, interseccion) en tiempo medio O(1); no admite duplicados."@es ;
+    cfkg:perteneceATema cfr:T_estructuras ;
+    cfkg:tieneComplejidadTemporal "O(1)"^^xsd:string ;
+    cfkg:tieneDificultad 3 .
+
+cfr:ej_factorial a cfkg:Ejercicio ;
+    rdfs:label "Recursive factorial"@en,
+        "Factorial recursivo"@es ;
+    cfkg:cubreConcepto cfr:funcion,
+        cfr:recursion ;
+    cfkg:tieneDificultad 3 ;
+    cfkg:tieneEnunciado "Implementa el factorial de n de forma recursiva."@es .
+
+cfr:ej_suma_lista a cfkg:Ejercicio ;
+    rdfs:label "Sum the elements of a list"@en,
+        "Suma de los elementos de una lista"@es ;
+    cfkg:cubreConcepto cfr:bucle_for,
+        cfr:funcion,
+        cfr:lista ;
+    cfkg:tieneDificultad 2 ;
+    cfkg:tieneEnunciado "Escribe una función que reciba una lista de enteros y devuelva su suma usando un bucle."@es .
+
+cfr:fstring a cfkg:PrincipioTransversal ;
+    rdfs:label "f-strings"@en,
+        "f-strings"@es ;
+    skos:definition "Cadena literal con prefijo f que permite interpolar expresiones entre llaves."@es ;
+    skos:example """nombre = 'Ana'
+f'Hola {nombre}, {2+2=}'""" ;
+    skos:related cfr:formato_str ;
+    skos:scopeNote "Disponible desde Python 3.6; admite formato y, desde 3.8, la sintaxis de depuracion {x=}."@es ;
+    cfkg:aNivelDominio cfr:basico ;
+    cfkg:introducidoEnVersion "3.6"^^xsd:string ;
+    cfkg:perteneceATema cfr:T_strings ;
+    cfkg:requierePrerrequisito cfr:tipo_str ;
+    cfkg:tieneDificultad 2 .
+
+cfr:grafo_estr a cfkg:EstructuraDeDatos ;
+    rdfs:label "Graph"@en,
+        "Grafo (estructura)"@es ;
+    skos:closeMatch dbr:Graph_\(abstract_data_type\) ;
+    skos:definition "Estructura de datos formada por nodos (vertices) y conexiones (aristas) entre ellos."@es ;
+    skos:exactMatch wd:Q2479726 ;
+    skos:example "g = {'a': ['b', 'c'], 'b': ['c'], 'c': []}" ;
+    skos:narrower cfr:bfs,
+        cfr:dfs ;
+    skos:scopeNote "Se representa habitualmente con listas o diccionarios de adyacencia; base de BFS y DFS."@es ;
+    cfkg:aNivelDominio cfr:avanzado ;
+    cfkg:perteneceATema cfr:T_algoritmos ;
+    cfkg:requierePrerrequisito cfr:diccionario ;
+    cfkg:tieneDificultad 4 .
+
+cfr:itertools_mod a cfkg:ModuloLibreria ;
+    rdfs:label "itertools"@en,
+        "itertools"@es ;
+    skos:definition "Modulo itertools con utilidades para construir iteradores eficientes y combinatorios."@es ;
+    skos:example """import itertools
+list(itertools.islice(itertools.count(), 3))  # [0, 1, 2]""" ;
+    skos:narrower cfr:itertools_chain,
+        cfr:itertools_product ;
+    skos:scopeNote "Incluye count, cycle, chain, product o combinations; opera de forma perezosa."@es ;
+    cfkg:aNivelDominio cfr:avanzado ;
+    cfkg:perteneceATema cfr:T_funcional ;
+    cfkg:requierePrerrequisito cfr:iterables ;
+    cfkg:tieneDificultad 4 ;
+    cfkg:tieneURLDocumentacion "https://docs.python.org/3/library/itertools.html"^^xsd:anyURI .
+
+cfr:multiproceso a cfkg:Paradigma ;
+    rdfs:label "Multiprocessing"@en,
+        "Multiproceso"@es ;
+    skos:closeMatch dbr:Process_\(computing\) ;
+    skos:definition "Ejecucion paralela mediante varios procesos (multiprocessing) con memoria independiente."@es ;
+    skos:example """from multiprocessing import Pool
+with Pool() as p:
+    p.map(cuadrado, range(10))""" ;
+    skos:related cfr:gil,
+        cfr:hilos ;
+    skos:scopeNote "Esquiva el GIL y aprovecha varios nucleos para calculo de CPU; comunicar procesos tiene coste."@es ;
+    cfkg:aNivelDominio cfr:avanzado ;
+    cfkg:contrastaCon cfr:hilos ;
+    cfkg:perteneceATema cfr:T_concurrencia ;
+    cfkg:requierePrerrequisito cfr:gil ;
+    cfkg:tieneDificultad 5 .
+
+cfr:notacion_o a cfkg:PrincipioTransversal ;
+    rdfs:label "Big-O notation"@en,
+        "Notación O grande"@es ;
+    skos:closeMatch dbr:Big_O_notation ;
+    skos:definition "Notacion O grande que describe el crecimiento asintotico del coste de un algoritmo."@es ;
+    skos:exactMatch wd:Q269878 ;
+    skos:example """# Busqueda binaria: O(log n)
+# Ordenacion por mezcla: O(n log n)""" ;
+    skos:narrower cfr:ordenacion_burbuja,
+        cfr:ordenacion_mezcla,
+        cfr:ordenacion_rapida ;
+    skos:scopeNote "Ignora constantes y terminos menores; O(1) < O(log n) < O(n) < O(n log n) < O(n^2)."@es ;
+    cfkg:aNivelDominio cfr:avanzado ;
+    cfkg:perteneceATema cfr:T_algoritmos ;
+    cfkg:requierePrerrequisito cfr:complejidad ;
+    cfkg:tieneDificultad 4 .
+
+cfr:objeto a cfkg:Paradigma ;
+    rdfs:label "Object"@en,
+        "Objeto / instancia"@es ;
+    skos:closeMatch dbr:Object_\(computer_science\) ;
+    skos:definition "Instancia concreta de una clase con su propio estado y comportamiento."@es ;
+    skos:example "p = Punto(1, 2)  # p es un objeto" ;
+    skos:scopeNote "Todo en Python es un objeto; se crea llamando a la clase y vive mientras haya referencias a el."@es ;
+    cfkg:aNivelDominio cfr:intermedio ;
+    cfkg:perteneceATema cfr:T_poo ;
+    cfkg:requierePrerrequisito cfr:clase ;
+    cfkg:tieneDificultad 3 .
+
+cfr:polimorfismo a cfkg:Paradigma ;
+    rdfs:label "Polymorphism"@en,
+        "Polimorfismo"@es ;
+    skos:closeMatch dbr:Polymorphism_\(computer_science\) ;
+    skos:definition "Capacidad de tratar de forma uniforme objetos de distintas clases que comparten interfaz."@es ;
+    skos:exactMatch wd:Q3240252 ;
+    skos:example """for a in animales:
+    print(a.hablar())  # cada clase implementa hablar""" ;
+    skos:scopeNote "Python lo logra por duck typing: importa el comportamiento, no el tipo exacto."@es ;
+    cfkg:aNivelDominio cfr:avanzado ;
+    cfkg:perteneceATema cfr:T_poo ;
+    cfkg:requierePrerrequisito cfr:herencia ;
+    cfkg:tieneDificultad 4 .
+
+cfr:propiedad a cfkg:Paradigma ;
+    rdfs:label "Property"@en,
+        "Propiedad (@property)"@es ;
+    skos:broader cfr:decorador ;
+    skos:definition "Atributo gestionado (@property) que ejecuta metodos al leer o escribir un valor."@es ;
+    skos:example """class C:
+    @property
+    def area(self):
+        return self.lado ** 2""" ;
+    skos:scopeNote "Permite anadir validacion o calculo sin cambiar la interfaz publica del atributo."@es ;
+    cfkg:aNivelDominio cfr:avanzado ;
+    cfkg:perteneceATema cfr:T_poo ;
+    cfkg:requierePrerrequisito cfr:decorador,
+        cfr:encapsulacion ;
+    cfkg:tieneDificultad 4 .
+
+cfr:tipo_bool a cfkg:TipoDeDato ;
+    rdfs:label "Boolean (bool)"@en,
+        "Booleano (bool)"@es ;
+    skos:definition "Tipo booleano con los valores True y False, subtipo de int."@es ;
+    skos:example "es_mayor = 5 > 3  # True" ;
+    skos:scopeNote "Resulta de comparaciones; True equivale a 1 y False a 0 en contextos numericos."@es ;
+    cfkg:perteneceATema cfr:T_fundamentos ;
+    cfkg:tieneDificultad 1 .
+
+cfr:tipo_bytes a cfkg:TipoDeDato ;
+    rdfs:label "Bytes"@en,
+        "Bytes"@es ;
+    skos:definition "Secuencia inmutable de bytes (0-255) para datos binarios."@es ;
+    skos:example """b'abc'
+'cana'.encode('utf-8')""" ;
+    skos:scopeNote "Se obtiene codificando texto; no confundas bytes con str. Para datos mutables usa bytearray."@es ;
+    cfkg:aNivelDominio cfr:intermedio ;
+    cfkg:perteneceATema cfr:T_tipos ;
+    cfkg:requierePrerrequisito cfr:tipo_str ;
+    cfkg:tieneDificultad 3 .
+
+cfr:try_except_else a cfkg:EstructuraDeControl ;
+    rdfs:label "try/except/else/finally"@en,
+        "try/except/else/finally"@es ;
+    skos:definition "Estructura try/except/else/finally para capturar y gestionar excepciones."@es ;
+    skos:example """try:
+    x = int(s)
+except ValueError:
+    x = 0
+else:
+    print('ok')
+finally:
+    print('fin')""" ;
+    skos:narrower cfr:finally_clause ;
+    skos:scopeNote "else se ejecuta si no hubo excepcion y finally siempre; mantenes el try lo mas pequeno posible."@es ;
+    cfkg:aNivelDominio cfr:intermedio ;
+    cfkg:perteneceATema cfr:T_excepciones ;
+    cfkg:requierePrerrequisito cfr:excepcion ;
+    cfkg:tieneDificultad 3 .
+
+cfr:variable a cfkg:PrincipioTransversal ;
+    rdfs:label "Variable"@en,
+        "Variable"@es ;
+    rdfs:comment "Nombre asociado a un valor en memoria."@es ;
+    skos:closeMatch dbr:Variable_\(computer_science\) ;
+    skos:definition "Nombre que referencia un valor almacenado en memoria."@es ;
+    skos:example """x = 42
+x = 'ahora texto'""" ;
+    skos:scopeNote "En Python no se declara el tipo: el nombre se vincula al objeto en la asignacion y puede reasignarse."@es ;
+    cfkg:aNivelDominio cfr:basico ;
+    cfkg:perteneceATema cfr:T_fundamentos ;
+    cfkg:tieneDificultad 1 ;
+    cfkg:tieneEjemploCodigo "x = 42" .
+
+cfr:with_context a cfkg:EstructuraDeControl ;
+    rdfs:label "with statement"@en,
+        "Sentencia with"@es ;
+    skos:definition "Sentencia with que delega en un gestor de contexto la apertura y cierre de un recurso."@es ;
+    skos:example """with open('f.txt') as f:
+    datos = f.read()""" ;
+    skos:scopeNote "Garantiza la liberacion del recurso aunque ocurra una excepcion; reduce el codigo repetitivo de try/finally."@es ;
+    cfkg:aNivelDominio cfr:avanzado ;
+    cfkg:perteneceATema cfr:T_control ;
+    cfkg:requierePrerrequisito cfr:excepcion ;
+    cfkg:tieneDificultad 4 .
+
+cfkg:NivelDominio a owl:Class ;
+    rdfs:label "Mastery level"@en,
+        "Nivel de dominio"@es ;
+    rdfs:subClassOf skos:Concept .
+
+cfr:ambito a cfkg:PrincipioTransversal ;
+    rdfs:label "Variable scope"@en,
+        "Ámbito de variables (scope)"@es ;
+    skos:closeMatch dbr:Scope_\(computer_science\) ;
+    skos:definition "Region del programa donde un nombre de variable es visible y accesible (regla LEGB)."@es ;
+    skos:example """x = 1
+def f():
+    x = 2  # variable local, no afecta a la global
+    return x""" ;
+    skos:scopeNote "Distingue ambito local, envolvente, global e incorporado; una asignacion crea una variable local salvo global/nonlocal."@es ;
+    cfkg:perteneceATema cfr:T_funciones ;
+    cfkg:requierePrerrequisito cfr:funcion ;
+    cfkg:tieneDificultad 3 .
+
+cfr:dataclass a cfkg:Paradigma ;
+    rdfs:label "Dataclass"@en,
+        "Dataclass"@es ;
+    skos:definition "Decorador @dataclass que genera automaticamente __init__, __repr__ y __eq__ a partir de anotaciones."@es ;
+    skos:example """from dataclasses import dataclass
+@dataclass
+class Punto:
+    x: int
+    y: int = 0""" ;
+    skos:narrower cfr:dataclass_field,
+        cfr:frozen_dataclass ;
+    skos:related cfr:namedtuple ;
+    skos:scopeNote "Reduce el codigo repetitivo de las clases que solo almacenan datos; admite valores por defecto y campos."@es ;
+    cfkg:aNivelDominio cfr:intermedio ;
+    cfkg:introducidoEnVersion "3.7"^^xsd:string ;
+    cfkg:perteneceATema cfr:T_tipos ;
+    cfkg:requierePrerrequisito cfr:anotaciones_tipo,
+        cfr:clase ;
+    cfkg:tieneDificultad 3 .
+
+cfr:ej_busqueda a cfkg:Ejercicio ;
+    rdfs:label "Binary search on a sorted list"@en,
+        "Búsqueda binaria sobre lista ordenada"@es ;
+    cfkg:cubreConcepto cfr:bucle_while,
+        cfr:busqueda_binaria,
+        cfr:indexacion ;
+    cfkg:tieneDificultad 4 ;
+    cfkg:tieneEnunciado "Implementa la búsqueda binaria sobre una lista ordenada y devuelve el índice del elemento."@es .
+
+cfr:excepcion a cfkg:EstructuraDeControl ;
+    rdfs:label "Exception"@en,
+        "Excepción"@es ;
+    skos:closeMatch dbr:Exception_handling ;
+    skos:definition "Evento que interrumpe el flujo normal del programa para senalar un error o situacion especial."@es ;
+    skos:exactMatch wd:Q471748 ;
+    skos:example """try:
+    1 / 0
+except ZeroDivisionError:
+    print('division por cero')""" ;
+    skos:scopeNote "Se captura con try/except; en Python se prefiere pedir perdon (EAFP) a comprobar antes (LBYL)."@es ;
+    cfkg:perteneceATema cfr:T_excepciones ;
+    cfkg:requierePrerrequisito cfr:condicional ;
+    cfkg:tieneDificultad 3 .
+
+cfr:generador a cfkg:EstructuraDeControl ;
+    rdfs:label "Generator"@en,
+        "Generador (yield)"@es ;
+    skos:closeMatch dbr:Generator_\(computer_programming\) ;
+    skos:definition "Funcion que produce una secuencia de valores de forma perezosa usando yield."@es ;
+    skos:exactMatch wd:Q2565187 ;
+    skos:example """def cuenta(n):
+    i = 0
+    while i < n:
+        yield i
+        i += 1""" ;
+    skos:scopeNote "Mantiene su estado entre llamadas y ahorra memoria; se agota tras recorrerse una vez."@es ;
+    cfkg:aNivelDominio cfr:avanzado ;
+    cfkg:perteneceATema cfr:T_funcional ;
+    cfkg:requierePrerrequisito cfr:funcion,
+        cfr:iterador ;
+    cfkg:tieneDificultad 4 .
+
+cfr:gil a cfkg:PrincipioTransversal ;
+    rdfs:label "Global Interpreter Lock"@en,
+        "GIL"@es ;
+    skos:closeMatch dbr:Global_interpreter_lock ;
+    skos:definition "Bloqueo global del interprete (GIL) de CPython que permite ejecutar un solo hilo de bytecode a la vez."@es ;
+    skos:exactMatch wd:Q5570451 ;
+    skos:example """# Los hilos no aceleran calculo puro de CPU por el GIL
+import threading""" ;
+    skos:related cfr:hilos,
+        cfr:multiproceso ;
+    skos:scopeNote "Limita el paralelismo real con hilos en tareas de CPU; usa multiprocessing para calculo intensivo."@es ;
+    cfkg:aNivelDominio cfr:avanzado ;
+    cfkg:perteneceATema cfr:T_concurrencia ;
+    cfkg:tieneDificultad 5 .
+
+cfkg:ConceptoDeConcurrencia a owl:Class ;
+    rdfs:label "Concurrency concept"@en,
+        "Concepto de concurrencia"@es ;
+    rdfs:comment "Concepto relacionado con la ejecucion concurrente o paralela."@es ;
+    rdfs:subClassOf cfkg:Concepto .
+
+cfkg:EvaluacionDeConcepto a owl:Class ;
+    rdfs:label "Concept assessment occurrence"@en,
+        "Evaluación de concepto"@es ;
+    rdfs:comment "Nodo intermedio que reifica la relación N-aria (ejercicio, concepto, peso, nivel) sin perder información, según el patrón de relaciones N-arias del material docente."@es ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:allValuesFrom cfkg:Concepto ;
+            owl:onProperty cfkg:sobreConcepto ],
+        [ a owl:Restriction ;
+            owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onClass cfkg:Ejercicio ;
+            owl:onProperty cfkg:enEjercicio ],
+        cfkg:EntidadEducativa .
+
+cfkg:Recurso a owl:Class ;
+    rdfs:label "Learning resource"@en,
+        "Recurso de aprendizaje"@es ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:allValuesFrom cfkg:Concepto ;
+            owl:onProperty cfkg:ilustraConcepto ],
+        schema1:LearningResource,
+        cfkg:EntidadEducativa .
+
+cfr:T_ficheros a cfkg:Tema ;
+    rdfs:label "Files and I/O"@en,
+        "Ficheros y E/S"@es .
+
+cfr:atributo a cfkg:Paradigma ;
+    rdfs:label "Attribute"@en,
+        "Atributo de instancia"@es ;
+    skos:definition "Variable asociada a una instancia que almacena parte de su estado."@es ;
+    skos:example """class Punto:
+    def __init__(self, x):
+        self.x = x  # atributo de instancia""" ;
+    skos:scopeNote "Se define normalmente en __init__ usando self; no confundir con atributos de clase compartidos."@es ;
+    cfkg:aNivelDominio cfr:intermedio ;
+    cfkg:perteneceATema cfr:T_poo ;
+    cfkg:requierePrerrequisito cfr:objeto ;
+    cfkg:tieneDificultad 3 .
+
+cfr:cola a cfkg:EstructuraDeDatos ;
+    rdfs:label "Queue"@en,
+        "Cola (queue)"@es ;
+    skos:broader cfr:lista ;
+    skos:closeMatch dbr:Queue_\(abstract_data_type\) ;
+    skos:definition "Estructura FIFO (primero en entrar, primero en salir) que anade por un extremo y extrae por el otro."@es ;
+    skos:exactMatch wd:Q220543 ;
+    skos:example """from collections import deque
+q = deque()
+q.append(1); q.popleft()""" ;
+    skos:narrower cfr:deque ;
+    skos:related cfr:pila ;
+    skos:scopeNote "Usa collections.deque para operaciones O(1) en ambos extremos en lugar de list.pop(0)."@es ;
+    cfkg:aNivelDominio cfr:basico ;
+    cfkg:contrastaCon cfr:pila ;
+    cfkg:perteneceATema cfr:T_estructuras ;
+    cfkg:requierePrerrequisito cfr:lista ;
+    cfkg:tieneDificultad 2 .
+
+cfr:est_alicia a foaf:Person,
+        cfkg:Estudiante ;
+    rdfs:label "Alice"@en,
+        "Alicia"@es ;
+    foaf:name "Alicia" ;
+    cfkg:dominaConcepto cfr:bucle_for,
+        cfr:funcion,
+        cfr:variable .
+
+cfr:est_borja a foaf:Person,
+        cfkg:Estudiante ;
+    rdfs:label "Borja"@en,
+        "Borja"@es ;
+    foaf:name "Borja" ;
+    cfkg:dominaConcepto cfr:condicional,
+        cfr:variable .
+
+cfkg:relacionadoConceptualmenteCon a owl:ObjectProperty ;
+    rdfs:label "conceptually related to"@en,
+        "relacionado conceptualmente con"@es ;
+    rdfs:comment "Superpropiedad genérica de las relaciones entre conceptos; permite consultas amplias por subsunción de subpropiedades."@es ;
+    rdfs:domain cfkg:Concepto ;
+    rdfs:range cfkg:Concepto .
+
+cfr:T_testing a cfkg:Tema ;
+    rdfs:label "Testing and style"@en,
+        "Pruebas y estilo"@es .
+
+cfr:condicional a cfkg:EstructuraDeControl ;
+    rdfs:label "Conditional (if)"@en,
+        "Condicional (if)"@es ;
+    skos:definition "Sentencia if/elif/else que ejecuta bloques distintos segun condiciones booleanas."@es ;
+    skos:example """if x > 0:
+    print('positivo')
+elif x == 0:
+    print('cero')
+else:
+    print('negativo')""" ;
+    skos:scopeNote "La sangria delimita el bloque; las condiciones se evaluan en orden hasta la primera verdadera."@es ;
+    cfkg:perteneceATema cfr:T_control ;
+    cfkg:requierePrerrequisito cfr:tipo_bool ;
+    cfkg:tieneDificultad 1 .
+
+cfr:funcion_orden_superior a cfkg:PrincipioTransversal ;
+    rdfs:label "Higher-order functions"@en,
+        "Funciones de orden superior"@es ;
+    skos:closeMatch dbr:Higher-order_function ;
+    skos:definition "Funcion que recibe otras funciones como argumento o devuelve una funcion."@es ;
+    skos:exactMatch wd:Q1474542 ;
+    skos:example """def aplica(f, x):
+    return f(x)
+aplica(abs, -5)""" ;
+    skos:scopeNote "Base de map, filter y los decoradores; aprovecha que las funciones son objetos de primera clase."@es ;
+    cfkg:aNivelDominio cfr:avanzado ;
+    cfkg:perteneceATema cfr:T_funcional ;
+    cfkg:requierePrerrequisito cfr:funcion ;
+    cfkg:tieneDificultad 4 .
+
+cfr:tupla a cfkg:EstructuraDeDatos ;
+    rdfs:label "Tuple"@en,
+        "Tupla"@es ;
+    skos:closeMatch dbr:Tuple ;
+    skos:definition "Secuencia ordenada e inmutable de elementos, posiblemente de distintos tipos."@es ;
+    skos:exactMatch wd:Q2879072 ;
+    skos:example """punto = (3, 4)
+x, y = punto""" ;
+    skos:narrower cfr:namedtuple ;
+    skos:related cfr:lista ;
+    skos:scopeNote "Util para datos heterogeneos fijos y como claves de diccionario; es hashable si sus elementos lo son."@es ;
+    cfkg:contrastaCon cfr:lista ;
+    cfkg:perteneceATema cfr:T_estructuras ;
+    cfkg:tieneDificultad 2 .
+
+cfkg:EnvioEstudiante a owl:Class ;
+    rdfs:label "Student submission"@en,
+        "Envío de estudiante"@es ;
+    rdfs:comment "Entrega de código de un estudiante en respuesta a un ejercicio."@es ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:allValuesFrom cfkg:ErrorConceptual ;
+            owl:onProperty cfkg:manifiestaError ],
+        [ a owl:Restriction ;
+            owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onClass cfkg:Ejercicio ;
+            owl:onProperty cfkg:resuelveEjercicio ],
+        cfkg:EntidadEducativa .
+
+cfkg:Estudiante a owl:Class ;
+    rdfs:label "Student"@en,
+        "Estudiante"@es ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:allValuesFrom cfkg:Concepto ;
+            owl:onProperty cfkg:dominaConcepto ],
+        foaf:Person,
+        cfkg:EntidadEducativa .
+
+cfkg:OperadorDelLenguaje a owl:Class ;
+    rdfs:label "Language operator"@en,
+        "Operador del lenguaje"@es ;
+    rdfs:comment "Simbolo que representa una operacion sobre uno o varios operandos."@es ;
+    rdfs:subClassOf cfkg:Concepto .
+
+cfr:T_excepciones a cfkg:Tema ;
+    rdfs:label "Exceptions"@en,
+        "Excepciones"@es .
+
+cfr:comprension_listas a cfkg:EstructuraDeControl ;
+    rdfs:label "List comprehension"@en,
+        "Comprensión de listas"@es ;
+    skos:broader cfr:bucle_for ;
+    skos:closeMatch dbr:List_comprehension ;
+    skos:definition "Sintaxis concisa para construir listas a partir de un iterable, con filtros opcionales."@es ;
+    skos:exactMatch wd:Q795065 ;
+    skos:example "ys = [x*x for x in range(10) if x % 2 == 0]" ;
+    skos:narrower cfr:comprension_dicts,
+        cfr:comprension_sets,
+        cfr:expresion_generadora ;
+    skos:scopeNote "Mas legible y rapida que un bucle con append para transformaciones simples; evita anidar demasiado."@es ;
+    cfkg:aNivelDominio cfr:avanzado ;
+    cfkg:perteneceATema cfr:T_control ;
+    cfkg:requierePrerrequisito cfr:lista ;
+    cfkg:tieneDificultad 4 ;
+    cfkg:tieneEjemploCodigo "ys = [x*x for x in xs if x > 0]" .
+
+cfr:decorador a cfkg:Paradigma ;
+    rdfs:label "Decorator"@en,
+        "Decorador"@es ;
+    skos:closeMatch dbr:Python_syntax_and_semantics ;
+    skos:definition "Funcion que envuelve a otra para anadir comportamiento sin modificar su codigo, aplicada con @."@es ;
+    skos:exactMatch wd:Q110938941 ;
+    skos:example """def log(f):
+    def envoltura(*a, **k):
+        print('llamando', f.__name__)
+        return f(*a, **k)
+    return envoltura""" ;
+    skos:narrower cfr:metodo_clase,
+        cfr:propiedad ;
+    skos:scopeNote "Conserva metadatos con functools.wraps; util para logging, cache, control de acceso o tiempos."@es ;
+    cfkg:aNivelDominio cfr:avanzado ;
+    cfkg:perteneceATema cfr:T_funcional ;
+    cfkg:requierePrerrequisito cfr:closure,
+        cfr:funcion_orden_superior ;
+    cfkg:tieneDificultad 5 .
+
+cfr:hilos a cfkg:Paradigma ;
+    rdfs:label "Threads"@en,
+        "Hilos (threading)"@es ;
+    skos:closeMatch dbr:Thread_\(computing\) ;
+    skos:definition "Hilos de ejecucion (threading) que comparten memoria dentro de un mismo proceso."@es ;
+    skos:exactMatch wd:Q213092 ;
+    skos:example """import threading
+t = threading.Thread(target=tarea)
+t.start(); t.join()""" ;
+    skos:related cfr:gil,
+        cfr:multiproceso ;
+    skos:scopeNote "Adecuados para E/S concurrente; por el GIL no paralelizan calculo de CPU. Cuidado con las condiciones de carrera."@es ;
+    cfkg:aNivelDominio cfr:avanzado ;
+    cfkg:contrastaCon cfr:multiproceso ;
+    cfkg:perteneceATema cfr:T_concurrencia ;
+    cfkg:requierePrerrequisito cfr:gil ;
+    cfkg:tieneDificultad 5 .
+
+cfr:iterables a cfkg:PrincipioTransversal ;
+    rdfs:label "Iterables"@en,
+        "Iterables"@es ;
+    skos:definition "Objetos que pueden recorrerse en un bucle for porque producen un iterador (listas, cadenas, dicts)."@es ;
+    skos:example """for c in 'abc':
+    print(c)""" ;
+    skos:scopeNote "Implementan __iter__; distingue iterable (se puede recorrer) de iterador (mantiene la posicion)."@es ;
+    cfkg:aNivelDominio cfr:basico ;
+    cfkg:perteneceATema cfr:T_estructuras ;
+    cfkg:requierePrerrequisito cfr:lista ;
+    cfkg:tieneDificultad 2 .
+
+cfkg:ConceptoDeTipado a owl:Class ;
+    rdfs:label "Typing concept"@en,
+        "Concepto de tipado"@es ;
+    rdfs:comment "Concepto relativo al sistema de tipos y a las anotaciones de tipo."@es ;
+    rdfs:subClassOf cfkg:Concepto .
+
+cfr:T_funciones a cfkg:Tema ;
+    rdfs:label "Functions"@en,
+        "Funciones"@es .
+
+cfr:import_mod a cfkg:PrincipioTransversal ;
+    rdfs:label "import"@en,
+        "import"@es ;
+    skos:definition "Sentencia import que carga un modulo y lo pone a disposicion del programa."@es ;
+    skos:example """import math
+math.pi""" ;
+    skos:scopeNote "El interprete cachea los modulos importados; situa los imports al inicio del fichero (PEP 8)."@es ;
+    cfkg:aNivelDominio cfr:basico ;
+    cfkg:perteneceATema cfr:T_modulos ;
+    cfkg:tieneDificultad 2 .
+
+cfr:indexacion a cfkg:PrincipioTransversal ;
+    rdfs:label "Indexing"@en,
+        "Indexación"@es ;
+    skos:definition "Acceso a un elemento de una secuencia mediante su posicion entre corchetes."@es ;
+    skos:example """xs = [10, 20, 30]
+xs[0]  # 10""" ;
+    skos:narrower cfr:indexacion_negativa,
+        cfr:slicing ;
+    skos:scopeNote "Los indices empiezan en 0; acceder fuera de rango lanza IndexError."@es ;
+    cfkg:perteneceATema cfr:T_estructuras ;
+    cfkg:requierePrerrequisito cfr:lista ;
+    cfkg:seAplicaA cfr:lista ;
+    cfkg:tieneDificultad 2 .
+
+cfr:metodo a cfkg:Paradigma ;
+    rdfs:label "Method"@en,
+        "Método"@es ;
+    skos:definition "Funcion definida dentro de una clase que opera sobre sus instancias."@es ;
+    skos:example """class Saludo:
+    def hola(self):
+        return 'hola'""" ;
+    skos:narrower cfr:init_method,
+        cfr:metodo_clase,
+        cfr:metodo_estatico ;
+    skos:scopeNote "Recibe la instancia como primer parametro (self); se invoca con la notacion objeto.metodo()."@es ;
+    cfkg:aNivelDominio cfr:intermedio ;
+    cfkg:perteneceATema cfr:T_poo ;
+    cfkg:requierePrerrequisito cfr:clase,
+        cfr:funcion ;
+    cfkg:tieneDificultad 3 .
+
+cfr:herencia a cfkg:Paradigma ;
+    rdfs:label "Inheritance"@en,
+        "Herencia"@es ;
+    skos:closeMatch dbr:Inheritance_\(object-oriented_programming\) ;
+    skos:definition "Mecanismo por el que una clase deriva atributos y metodos de otra clase base."@es ;
+    skos:exactMatch wd:Q212542 ;
+    skos:example """class Animal:
+    def hablar(self): ...
+class Perro(Animal):
+    def hablar(self): return 'guau'""" ;
+    skos:narrower cfr:herencia_multiple ;
+    skos:related cfr:composicion ;
+    skos:scopeNote "Modela relaciones 'es-un'; usa super() para extender el comportamiento heredado sin duplicarlo."@es ;
+    cfkg:perteneceATema cfr:T_poo ;
+    cfkg:requierePrerrequisito cfr:clase ;
+    cfkg:tieneDificultad 4 .
+
+cfr:T_concurrencia a cfkg:Tema ;
+    rdfs:label "Concurrency"@en,
+        "Concurrencia"@es .
+
+cfr:T_modulos a cfkg:Tema ;
+    rdfs:label "Modules and packages"@en,
+        "Módulos y paquetes"@es .
+
+cfr:T_strings a cfkg:Tema ;
+    rdfs:label "Strings"@en,
+        "Cadenas de texto"@es .
+
+cfr:clase a cfkg:Paradigma ;
+    rdfs:label "Class"@en,
+        "Clase"@es ;
+    skos:closeMatch dbr:Class_\(computer_programming\) ;
+    skos:definition "Plantilla que define atributos y metodos para crear objetos de un mismo tipo."@es ;
+    skos:exactMatch wd:Q4479242 ;
+    skos:example """class Coche:
+    def __init__(self, marca):
+        self.marca = marca""" ;
+    skos:related cfr:enum_tipo ;
+    skos:scopeNote "Convencion: el nombre va en CamelCase; instanciar la clase llama a __init__."@es ;
+    cfkg:perteneceATema cfr:T_poo ;
+    cfkg:requierePrerrequisito cfr:funcion ;
+    cfkg:tieneDificultad 3 .
+
+cfr:T_fundamentos a cfkg:Tema ;
+    rdfs:label "Fundamentals"@en,
+        "Fundamentos"@es .
+
+cfr:anotaciones_tipo a cfkg:PrincipioTransversal ;
+    rdfs:label "Type hints"@en,
+        "Anotaciones de tipo"@es ;
+    skos:closeMatch dbr:Type_signature ;
+    skos:definition "Indicaciones opcionales del tipo esperado de variables, parametros y valores de retorno (type hints)."@es ;
+    skos:example """def saluda(nombre: str) -> str:
+    return f'Hola {nombre}'""" ;
+    skos:scopeNote "No las comprueba el interprete en tiempo de ejecucion; las usan herramientas como mypy y los editores."@es ;
+    cfkg:aNivelDominio cfr:intermedio ;
+    cfkg:introducidoEnVersion "3.5"^^xsd:string ;
+    cfkg:perteneceATema cfr:T_tipos ;
+    cfkg:requierePrerrequisito cfr:funcion ;
+    cfkg:tieneDificultad 3 .
+
+cfr:recursion a cfkg:PrincipioTransversal ;
+    rdfs:label "Recursion"@en,
+        "Recursión"@es ;
+    rdfs:comment "Definición de una función en términos de sí misma."@es ;
+    skos:closeMatch dbr:Recursion_\(computer_science\) ;
+    skos:definition "Tecnica en la que una funcion se define en terminos de si misma sobre un problema menor."@es ;
+    skos:exactMatch wd:Q264164 ;
+    skos:example """def fact(n):
+    return 1 if n == 0 else n * fact(n - 1)""" ;
+    skos:narrower cfr:recursion_cola ;
+    skos:prefLabel "Recursión"@es ;
+    skos:related cfr:bucle_for ;
+    skos:scopeNote "Necesita un caso base que detenga la recursion; cuidado con el limite de profundidad de la pila."@es ;
+    cfkg:aNivelDominio cfr:avanzado ;
+    cfkg:contrastaCon cfr:bucle_for ;
+    cfkg:perteneceATema cfr:T_recursion ;
+    cfkg:requierePrerrequisito cfr:funcion ;
+    cfkg:tieneDificultad 4 .
+
+cfr:tipo_str a cfkg:TipoDeDato ;
+    rdfs:label "String (str)"@en,
+        "Cadena (str)"@es ;
+    skos:definition "Secuencia inmutable de caracteres Unicode para representar texto."@es ;
+    skos:example """s = 'Python'
+s[0]  # 'P'""" ;
+    skos:scopeNote "Admite indexacion, slicing y muchos metodos; al ser inmutable, cada operacion crea una cadena nueva."@es ;
+    cfkg:perteneceATema cfr:T_fundamentos ;
+    cfkg:tieneDificultad 1 .
+
+cfkg:EntidadEducativa a owl:Class ;
+    rdfs:label "Educational entity"@en,
+        "Entidad educativa"@es ;
+    rdfs:comment "Superclase abstracta de todas las entidades del grafo educativo."@es .
+
+cfkg:TipoDeDato a owl:Class ;
+    rdfs:label "Data type"@en,
+        "Tipo de dato"@es ;
+    rdfs:subClassOf cfkg:Concepto ;
+    owl:disjointWith cfkg:ModuloLibreria .
+
+cfr:bucle_for a cfkg:EstructuraDeControl ;
+    rdfs:label "For loop"@en,
+        "Bucle for"@es ;
+    skos:definition "Bucle que itera sobre los elementos de un iterable ejecutando un bloque por cada uno."@es ;
+    skos:example """for x in [1, 2, 3]:
+    print(x)""" ;
+    skos:narrower cfr:comprension_listas ;
+    skos:prefLabel "Bucle for"@es ;
+    skos:related cfr:recursion ;
+    skos:scopeNote "Es el bucle idiomatico en Python; con range() permite repetir un numero fijo de veces."@es ;
+    cfkg:aNivelDominio cfr:basico ;
+    cfkg:esPrerrequisitoDe cfr:comprension_listas ;
+    cfkg:perteneceATema cfr:T_control ;
+    cfkg:tieneDificultad 2 ;
+    cfkg:tieneEjemploCodigo """for x in xs:
+    print(x)""" .
+
+cfkg:Ejercicio a owl:Class ;
+    rdfs:label "Exercise or assignment"@en,
+        "Ejercicio o enunciado"@es ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:allValuesFrom cfkg:Concepto ;
+            owl:onProperty cfkg:cubreConcepto ],
+        cfkg:EntidadEducativa .
+
+cfkg:EvaluacionActividad a owl:Class ;
+    rdfs:label "Activity assessment"@en,
+        "Evaluación de actividad"@es ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:allValuesFrom cfkg:Estudiante ;
+            owl:onProperty cfkg:porEstudiante ],
+        [ a owl:Restriction ;
+            owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onClass cfkg:Ejercicio ;
+            owl:onProperty cfkg:evaluaA ],
+        cfkg:EntidadEducativa .
+
+cfr:T_algoritmos a cfkg:Tema ;
+    rdfs:label "Algorithms"@en,
+        "Algoritmos"@es .
+
+cfr:diccionario a cfkg:EstructuraDeDatos ;
+    rdfs:label "Dictionary"@en,
+        "Diccionario"@es ;
+    skos:closeMatch dbr:Associative_array ;
+    skos:definition "Coleccion de pares clave-valor con acceso por clave en tiempo medio O(1)."@es ;
+    skos:exactMatch wd:Q80585 ;
+    skos:example """d = {'a': 1, 'b': 2}
+d['a']  # 1""" ;
+    skos:narrower cfr:counter,
+        cfr:defaultdict,
+        cfr:tabla_hash ;
+    skos:scopeNote "Las claves deben ser hashables; desde Python 3.7 conserva el orden de insercion."@es ;
+    cfkg:perteneceATema cfr:T_estructuras ;
+    cfkg:tieneComplejidadTemporal "O(1)"^^xsd:string ;
+    cfkg:tieneDificultad 2 .
+
+cfr:T_control a cfkg:Tema ;
+    rdfs:label "Control flow"@en,
+        "Control de flujo"@es .
+
+cfr:T_funcional a cfkg:Tema ;
+    rdfs:label "Functional programming"@en,
+        "Programación funcional"@es .
+
+cfkg:FuncionIntegrada a owl:Class ;
+    rdfs:label "Built-in function"@en,
+        "Función integrada"@es ;
+    rdfs:subClassOf cfkg:Concepto ;
+    owl:disjointWith cfkg:EstructuraDeControl,
+        cfkg:TipoDeDato .
+
+cfr:funcion a cfkg:PrincipioTransversal ;
+    rdfs:label "Function"@en,
+        "Función"@es ;
+    skos:definition "Bloque de codigo reutilizable con nombre que recibe parametros y puede devolver un valor."@es ;
+    skos:example """def cuadrado(x):
+    return x * x""" ;
+    skos:narrower cfr:funcion_lambda ;
+    skos:prefLabel "Función"@es ;
+    skos:scopeNote "Se define con def; favorece la modularidad y evita la repeticion de codigo."@es ;
+    cfkg:esPrerrequisitoDe cfr:recursion ;
+    cfkg:perteneceATema cfr:T_funciones ;
+    cfkg:tieneDificultad 2 ;
+    cfkg:tieneEjemploCodigo """def f(x):
+    return x + 1""" .
+
+cfkg:ErrorConceptual a owl:Class ;
+    rdfs:label "Misconception"@en,
+        "Error conceptual (misconception)"@es ;
+    rdfs:comment "Malentendido recurrente documentado en la literatura de didáctica de la programación."@es ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:allValuesFrom cfkg:Concepto ;
+            owl:onProperty cfkg:errorSobreConcepto ],
+        cfkg:EntidadEducativa .
+
+cfkg:Tema a owl:Class ;
+    rdfs:label "Curricular topic"@en,
+        "Tema curricular"@es ;
+    rdfs:comment "Agrupación curricular de conceptos (unidad didáctica)."@es ;
+    rdfs:subClassOf cfkg:EntidadEducativa .
+
+cfr:lista a cfkg:EstructuraDeDatos ;
+    rdfs:label "List"@en,
+        "Lista"@es ;
+    skos:closeMatch dbr:List_\(abstract_data_type\) ;
+    skos:definition "Secuencia mutable y ordenada que admite elementos de cualquier tipo."@es ;
+    skos:exactMatch wd:Q27948 ;
+    skos:example """xs = [1, 'a', True]
+xs.append(2)""" ;
+    skos:narrower cfr:cola,
+        cfr:pila ;
+    skos:prefLabel "Lista"@es ;
+    skos:related cfr:conjunto,
+        cfr:tupla ;
+    skos:scopeNote "Crece dinamicamente; el acceso por indice es O(1) y la insercion al final amortizada O(1)."@es ;
+    cfkg:aNivelDominio cfr:basico ;
+    cfkg:perteneceATema cfr:T_estructuras ;
+    cfkg:tieneComplejidadTemporal "O(n)"^^xsd:string ;
+    cfkg:tieneDificultad 2 ;
+    cfkg:tieneEjemploCodigo "xs = [1, 2, 3]" .
+
+cfkg:EstructuraDeDatos a owl:Class ;
+    rdfs:label "Data structure"@en,
+        "Estructura de datos"@es ;
+    rdfs:subClassOf cfkg:Concepto ;
+    owl:disjointWith cfkg:ModuloLibreria,
+        cfkg:TipoDeDato .
+
+cfr:T_estructuras a cfkg:Tema ;
+    rdfs:label "Data structures"@en,
+        "Estructuras de datos"@es .
+
+cfkg:EstructuraDeControl a owl:Class ;
+    rdfs:label "Control structure"@en,
+        "Estructura de control"@es ;
+    rdfs:subClassOf cfkg:Concepto ;
+    owl:disjointWith cfkg:EstructuraDeDatos,
+        cfkg:ModuloLibreria,
+        cfkg:TipoDeDato .
+
+cfkg:ModuloLibreria a owl:Class ;
+    rdfs:label "Module or library"@en,
+        "Módulo o librería"@es ;
+    rdfs:subClassOf cfkg:Concepto .
+
+cfr:T_poo a cfkg:Tema ;
+    rdfs:label "Object-oriented programming"@en,
+        "Programación orientada a objetos"@es .
+
+cfr:T_tipos a cfkg:Tema ;
+    rdfs:label "Type system"@en,
+        "Sistema de tipos"@es .
+
+cfkg:Paradigma a owl:Class ;
+    rdfs:label "Programming paradigm"@en,
+        "Paradigma de programación"@es ;
+    rdfs:subClassOf cfkg:Concepto ;
+    owl:disjointWith cfkg:EstructuraDeDatos,
+        cfkg:TipoDeDato .
+
+cfr:basico a cfkg:NivelDominio ;
+    rdfs:label "basic"@en,
+        "básico"@es ;
+    skos:notation "1" ;
+    skos:prefLabel "basic"@en,
+        "básico"@es .
+
+cfkg:Concepto a owl:Class ;
+    rdfs:label "Programming concept"@en,
+        "Concepto de programación"@es ;
+    rdfs:comment "Unidad de conocimiento del dominio (p. ej. recursión, bucle for, mutabilidad). Al ser subclase de skos:Concept admite la red conceptual skos:broader/narrower/related."@es ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:allValuesFrom cfkg:Concepto ;
+            owl:onProperty cfkg:requierePrerrequisito ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom cfkg:Tema ;
+            owl:onProperty cfkg:perteneceATema ],
+        skos:Concept,
+        cfkg:EntidadEducativa .
+
+cfkg:PrincipioTransversal a owl:Class ;
+    rdfs:label "Cross-cutting principle"@en,
+        "Principio transversal"@es ;
+    rdfs:subClassOf cfkg:Concepto .
+
+cfr:intermedio a cfkg:NivelDominio ;
+    rdfs:label "intermediate"@en,
+        "intermedio"@es ;
+    skos:notation "2" ;
+    skos:prefLabel "intermediate"@en,
+        "intermedio"@es .
+
+cfr:avanzado a cfkg:NivelDominio ;
+    rdfs:label "advanced"@en,
+        "avanzado"@es ;
+    skos:notation "3" ;
+    skos:prefLabel "advanced"@en,
+        "avanzado"@es .
+
+[] a owl:AllDisjointClasses ;
+    owl:members ( cfkg:Concepto cfkg:Tema cfkg:Competencia cfkg:Ejercicio cfkg:EnvioEstudiante cfkg:ErrorConceptual cfkg:Recurso cfkg:Estudiante cfkg:RutaAprendizaje cfkg:EvaluacionDeConcepto ) .
+

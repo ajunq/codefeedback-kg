@@ -1,0 +1,168 @@
+@prefix sh:      <http://www.w3.org/ns/shacl#> .
+@prefix cfkg:   <https://w3id.org/codefeedback-kg/schema#> .
+@prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix xsd:     <http://www.w3.org/2001/XMLSchema#> .
+@prefix foaf:    <http://xmlns.com/foaf/0.1/> .
+@prefix owl:     <http://www.w3.org/2002/07/owl#> .
+@prefix skos:    <http://www.w3.org/2004/02/skos/core#> .
+
+#################################################################
+#  SHACL — Validación de forma del CodeFeedback-KG
+#  (corresponde a la "tarea de validación de la forma del grafo"
+#   que el profesor describe en la Sesión 3: comprobar que no falten
+#   enlaces obligatorios). Se valida sobre el grafo con inferencia
+#   RDFS, de modo que sh:targetClass alcance los tipos inferidos.
+#################################################################
+
+cfkg:ConceptoShape a sh:NodeShape ;
+    sh:targetClass cfkg:Concepto ;
+    sh:property [
+        sh:path rdfs:label ;
+        sh:minCount 1 ;
+        sh:message "Todo concepto debe tener al menos una etiqueta rdfs:label."@es ] ;
+    sh:property [
+        sh:path cfkg:perteneceATema ;
+        sh:minCount 1 ;
+        sh:class cfkg:Tema ;
+        sh:message "Todo concepto debe pertenecer al menos a un tema."@es ] ;
+    sh:property [
+        sh:path cfkg:tieneDificultad ;
+        sh:maxCount 1 ;
+        sh:datatype xsd:integer ;
+        sh:minInclusive 1 ;
+        sh:maxInclusive 5 ;
+        sh:message "La dificultad, si existe, debe ser un entero entre 1 y 5."@es ] ;
+    sh:property [
+        sh:path skos:exactMatch ;
+        sh:nodeKind sh:IRI ;
+        sh:pattern "^http://www.wikidata.org/entity/Q[0-9]+$" ;
+        sh:message "skos:exactMatch debe apuntar a una entidad Wikidata (http://www.wikidata.org/entity/Q…)."@es ] .
+
+cfkg:EjercicioShape a sh:NodeShape ;
+    sh:targetClass cfkg:Ejercicio ;
+    sh:property [
+        sh:path cfkg:tieneEnunciado ;
+        sh:minCount 1 ;
+        sh:message "Todo ejercicio debe tener un enunciado."@es ] ;
+    sh:property [
+        sh:path cfkg:cubreConcepto ;
+        sh:minCount 1 ;
+        sh:class cfkg:Concepto ;
+        sh:message "Todo ejercicio debe cubrir al menos un concepto."@es ] ;
+    sh:property [
+        sh:path cfkg:tieneDificultad ;
+        sh:minCount 1 ;
+        sh:datatype xsd:integer ;
+        sh:minInclusive 1 ;
+        sh:maxInclusive 5 ;
+        sh:message "Todo ejercicio debe declarar una dificultad entera de 1 a 5."@es ] .
+
+cfkg:ErrorConceptualShape a sh:NodeShape ;
+    sh:targetClass cfkg:ErrorConceptual ;
+    sh:property [
+        sh:path rdfs:label ;
+        sh:minCount 1 ;
+        sh:message "Todo error conceptual debe tener etiqueta."@es ] ;
+    sh:property [
+        sh:path cfkg:errorSobreConcepto ;
+        sh:minCount 1 ;
+        sh:class cfkg:Concepto ;
+        sh:message "Todo error conceptual debe asociarse al menos a un concepto."@es ] .
+
+cfkg:EnvioEstudianteShape a sh:NodeShape ;
+    sh:targetClass cfkg:EnvioEstudiante ;
+    sh:property [
+        sh:path cfkg:enviadoPor ;
+        sh:minCount 1 ;
+        sh:class cfkg:Estudiante ;
+        sh:message "Todo envío debe tener un estudiante autor."@es ] ;
+    sh:property [
+        sh:path cfkg:resuelveEjercicio ;
+        sh:minCount 1 ;
+        sh:class cfkg:Ejercicio ;
+        sh:message "Todo envío debe resolver un ejercicio."@es ] ;
+    sh:property [
+        sh:path cfkg:numeroDeLineas ;
+        sh:maxCount 1 ;
+        sh:datatype xsd:integer ;
+        sh:minInclusive 1 ;
+        sh:message "El número de líneas, si existe, debe ser un entero positivo."@es ] .
+
+cfkg:RecursoShape a sh:NodeShape ;
+    sh:targetClass cfkg:Recurso ;
+    sh:property [
+        sh:path dcterms:title ;
+        sh:minCount 1 ;
+        sh:message "Todo recurso debe declarar un título (dcterms:title)."@es ] .
+
+cfkg:EstudianteShape a sh:NodeShape ;
+    sh:targetClass cfkg:Estudiante ;
+    sh:property [
+        sh:path foaf:name ;
+        sh:minCount 1 ;
+        sh:message "Todo estudiante debe tener foaf:name."@es ] ;
+    sh:property [
+        sh:path rdfs:label ;
+        sh:minCount 1 ;
+        sh:message "Todo estudiante debe tener etiqueta."@es ] .
+
+cfkg:TemaShape a sh:NodeShape ;
+    sh:targetClass cfkg:Tema ;
+    sh:property [
+        sh:path rdfs:label ;
+        sh:minCount 1 ;
+        sh:message "Todo tema debe tener etiqueta."@es ] .
+
+cfkg:NivelDominioShape a sh:NodeShape ;
+    sh:targetClass cfkg:NivelDominio ;
+    sh:property [
+        sh:path rdfs:label ;
+        sh:minCount 1 ;
+        sh:message "Todo nivel de dominio debe tener etiqueta."@es ] .
+
+cfkg:EvaluacionDeConceptoShape a sh:NodeShape ;
+    sh:targetClass cfkg:EvaluacionDeConcepto ;
+    sh:property [
+        sh:path cfkg:enEjercicio ;
+        sh:minCount 1 ;
+        sh:nodeKind sh:IRI ;
+        sh:class cfkg:Ejercicio ;
+        sh:message "La evaluación de concepto debe referir a un ejercicio."@es ] ;
+    sh:property [
+        sh:path cfkg:sobreConcepto ;
+        sh:minCount 1 ;
+        sh:nodeKind sh:IRI ;
+        sh:class cfkg:Concepto ;
+        sh:message "La evaluación de concepto debe referir a un concepto."@es ] ;
+    sh:property [
+        sh:path cfkg:conPeso ;
+        sh:maxCount 1 ;
+        sh:datatype xsd:decimal ;
+        sh:minInclusive 0 ;
+        sh:maxInclusive 1 ;
+        sh:message "El peso debe ser un decimal entre 0 y 1."@es ] .
+
+cfkg:EvaluacionActividadShape a sh:NodeShape ;
+    sh:targetClass cfkg:EvaluacionActividad ;
+    sh:property [
+        sh:path cfkg:porEstudiante ;
+        sh:minCount 1 ;
+        sh:class cfkg:Estudiante ;
+        sh:message "Toda evaluación de actividad debe tener un estudiante."@es ] ;
+    sh:property [
+        sh:path cfkg:evaluaA ;
+        sh:minCount 1 ;
+        sh:message "Toda evaluación de actividad debe evaluar una actividad."@es ] ;
+    sh:property [
+        sh:path cfkg:obtuvoNota ;
+        sh:maxCount 1 ;
+        sh:datatype xsd:decimal ;
+        sh:minInclusive 0 ;
+        sh:maxInclusive 10 ;
+        sh:message "La nota debe ser un decimal entre 0 y 10."@es ] ;
+    sh:property [
+        sh:path cfkg:enFecha ;
+        sh:maxCount 1 ;
+        sh:datatype xsd:date ;
+        sh:message "La fecha debe ser xsd:date."@es ] .

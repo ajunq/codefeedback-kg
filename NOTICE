@@ -1,0 +1,14 @@
+CodeFeedback-KG
+Copyright 2026 Adrián Bueno Junquero
+
+This product bundles artifacts under a split license stack:
+- Source code: Apache License, Version 2.0 — see LICENSE.
+- Ontology, knowledge graph and dataset: CC BY 4.0 — see LICENSE-DATA.
+
+Third-party model attributions:
+- The fine-tuned feedback adapter (CFKG-Coder-Adapter-v1) is a LoRA/QLoRA adapter over the base
+  model Qwen2.5-Coder-7B-Instruct, which is licensed under Apache-2.0 (© Alibaba Cloud / Qwen Team).
+  See modelos/cfkg-coder-adapter/NOTICE.
+- Baseline systems A and C use Meta Llama 3.1 8B for local inference only and do not redistribute it.
+  Built with Meta Llama 3.1. Llama 3.1 is provided under the Llama 3.1 Community License
+  (© Meta Platforms, Inc.). This is a courtesy attribution; no Llama-derived model is shipped.
